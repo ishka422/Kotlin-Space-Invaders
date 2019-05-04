@@ -2,30 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1016ef21-bfdb-46d6-8c7a-74a907a63db9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Kotlin-Space-Invaders.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Disassembler.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpaceInvaderSampleOutput.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SpaceInvadersByteCode.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invaders" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-reflect-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-reflect.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib-jdk7-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib-jdk7.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib-jdk8-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib-jdk8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-stdlib.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-test-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/kotlin-test.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/META-INF/Kotlin-Space-Invaders.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Disassembler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/8080Disassembler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/8080.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/META-INF/Kotlin-Space-Invaders.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/META-INF/Kotlin-Space-Invaders.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/8080.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/8080.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,33 +15,22 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Kotlin_Space_Invaders$_8080Kt.ic" NAME="_8080Kt Coverage Results" MODIFIED="1555717889462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/8080.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="464" column="31" selection-start-line="464" selection-start-column="31" selection-end-line="464" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Disassembler.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17459">
-              <caret line="1027" column="43" selection-start-line="1027" selection-start-column="39" selection-end-line="1027" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../BlackjackKT/src/main/kotlin/Blackjack.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="777">
+              <caret line="340" column="67" selection-start-line="340" selection-start-column="67" selection-end-line="340" selection-end-column="67" />
               <folding>
-                <element signature="n#!!block;n#Card#0" />
-                <element signature="n#!!block;n#Player#0" />
+                <element signature="e#0#199#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,34 +47,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>println(st)</find>
-      <find>&quot;&quot;</find>
-      <find>jnz</find>
-      <find>bytes.</find>
-      <find>This</find>
+      <find>21</find>
+      <find>pr</find>
+      <find>state.a =</find>
+      <find>push</find>
       <find>02</find>
-      <find>JNZ</find>
-      <find>String.format(</find>
-      <find>bytes[i + 1], bytes[i + 2]</find>
-      <find>bytes[i+1], bytes[i+2]</find>
-      <find>bytes[i+2]</find>
-      <find>bytes[i + 2]</find>
-      <find>bytes[i+1]</find>
-      <find>bytes[i + 1]</find>
-      <find>fd</find>
-      <find>this</find>
-      <find>--</find>
-      <find>----</find>
-      <find>---</find>
-      <find>38</find>
-      <find>i+=3</find>
-      <find>]</find>
-      <find>18d4</find>
-      <find>18d8</find>
-      <find>call</find>
-      <find>18d9</find>
-      <find>offset</find>
-      <find>3a</find>
+      <find>fe</find>
+      <find>fb</find>
+      <find>0f</find>
+      <find>da</find>
+      <find>f1</find>
+      <find>e5</find>
+      <find>ca</find>
+      <find>46</find>
+      <find>setPC</find>
+      <find>c5</find>
+      <find>f5</find>
+      <find>state.sp</find>
+      <find>23fb</find>
+      <find>print</find>
+      <find>04</find>
+      <find>4e</find>
+      <find>4E</find>
+      <find>22</find>
+      <find>15</find>
+      <find>be</find>
+      <find>01</find>
+      <find>05</find>
+      <find>15d3</find>
+      <find>65</find>
+      <find>kotlin.graphics.BitmapFactory</find>
     </findStrings>
     <replaceStrings>
       <replace>println(String.format(st))</replace>
@@ -119,13 +92,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/8080Disassembler.kt" />
         <option value="$PROJECT_DIR$/src/Disassembler.kt" />
+        <option value="$USER_HOME$/Downloads/contacts.kt" />
         <option value="$PROJECT_DIR$/src/8080.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="981" />
+    <option name="width" value="896" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -159,7 +133,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554961777862" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555775355679" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../BlackjackKT/src/main/kotlin/Blackjack.kt" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -229,15 +204,30 @@
       <option name="project" value="LOCAL" />
       <updated>1554321955464</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="4/11/2019&#10;implemented 50 cpu instructions">
+      <created>1555021269365</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1555021269365</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="981" height="1047" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="896" height="1047" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1324647" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992948" visible="true" weight="0.035885166" />
+      <window_info id="Structure" order="1" sideWeight="0.50140846" side_tool="true" weight="0.15298508" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -245,15 +235,15 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.42669585" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26914662" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3501094" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3249453" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32827735" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32275712" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -262,28 +252,90 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.32995737" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="3/23/19" />
     <MESSAGE value="4/3/2019&#10;implemented general class structure for CPU and some flag setting methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="4/3/2019&#10;implemented general class structure for CPU and some flag setting methods" />
+    <MESSAGE value="4/11/2019&#10;implemented 50 cpu instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/11/2019&#10;implemented 50 cpu instructions" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/8080.kt</url>
+          <line>1077</line>
+          <properties />
+          <option name="timeStamp" value="455" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JetRunConfigurationType">
+        <watch expression="((Registers)state).memory[8346]" custom="Registers" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>opcount&gt;70000 &amp;&amp; sp == 0x23fcu</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>opcount&gt;73000 &amp;&amp; sp == 0x23fcu</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>opcount&gt;73000 &amp;&amp; sp ==</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>opcount &gt;7300 &amp;&amp; pc ==0x23fcu</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>offset.toInt() == 2711</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>offset == 2711</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>5</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>1</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>state.h</expression-string>
+        <language-id>kotlin</language-id>
+        <custom-info>import Registers</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/8080.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="464" column="31" selection-start-line="464" selection-start-column="31" selection-end-line="464" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Disassembler.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17459">
-          <caret line="1027" column="43" selection-start-line="1027" selection-start-column="39" selection-end-line="1027" selection-end-column="43" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/SpaceInvaderSampleOutput.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../BlackjackKT/src/main/kotlin/Blackjack.kt">
       <provider selected="true" editor-type-id="text-editor">
@@ -291,6 +343,65 @@
           <folding>
             <element signature="n#!!block;n#Card#0" />
             <element signature="n#!!block;n#Player#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Disassembler.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="1027" column="43" selection-start-line="1027" selection-start-column="39" selection-end-line="1027" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/io/BufferedOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/net/SocketInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/io/FileOutputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="301" column="24" selection-start-line="301" selection-start-column="24" selection-end-line="301" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/kotlin-stdlib-sources.jar!/common/kotlin/UByteArray.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/DSL.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="81" lean-forward="true" selection-start-line="23" selection-start-column="81" selection-end-line="23" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/contacts.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="39" column="30" selection-end-line="62" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/8080.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="340" column="67" selection-start-line="340" selection-start-column="67" selection-end-line="340" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#199#0" expanded="true" />
           </folding>
         </state>
       </provider>
