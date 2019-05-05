@@ -369,6 +369,9 @@ fun main() {
 
         }
         opcount++
+        if(opcount%25 == 0){
+            Thread.sleep(1)
+        }
         //println(opcount)
     }
 
@@ -386,48 +389,50 @@ fun UnimplementedInstruction(state:Registers){
 
 @kotlin.ExperimentalUnsignedTypes
 fun Emulate8080Op(state:Registers) {
-    var opcode = String.format("%02x", state.memory[state.pc.toInt()].toByte()).toUpperCase()
-    println(opcode + "  " + String.format("%04x", state.pc.toInt()))
+    var opcode  =  state.memory[state.pc.toInt()].toInt()
+    //var opcode = String.format("%02x", state.memory[state.pc.toInt()].toByte()).toUpperCase()
+    println(String.format("%02x\t%04x", state.memory[state.pc.toInt()].toByte(), state.pc.toInt()))
+    //println(opcode + "  " + String.format("%04x", state.pc.toInt()))
     when (opcode) {
-        "00" -> {
+        0x00 -> {
             state.pc++
         } // NOP
-        "01" -> {                                   //LXI   B,byte
+        0x01 -> {                                   //LXI   B,byte
             state.c = state.memory[state.pc.toInt() + 1]
             state.b = state.memory[state.pc.toInt() + 2]
             state.pc = state.pc + 2u
             state.pc++
         }
-        "02" -> {                                   //STAX  B
+        0x02 -> {                                   //STAX  B
             state.pc++
             val offset = (state.b.toInt().shl(8)).or(state.c.toInt())
             //println(String.format("%04x", state.b.toInt()))
             state.WriteMem(offset, state.a)
 
         }
-        "03" -> {                                   //INX   B
+        0x03 -> {                                   //INX   B
             state.c++
             if (state.c.toInt() == 0) {
                 state.b++
             }
             state.pc++
         }
-        "04" -> {                                   //INR   B
+        0x04 -> {                                   //INR   B
             state.b++
             state.flagsZSP(state.b)
             state.pc++
         }
-        "05" -> {                                   //DCR   B
+        0x05 -> {                                   //DCR   B
             state.b--
             state.flagsZSP(state.b)
             state.pc++
         }
-        "06" -> {                                   //MVI   B,byte
+        0x06 -> {                                   //MVI   B,byte
             state.b = state.memory[state.pc.toInt() + 1]
             state.pc++
             state.pc++
         }
-        "07" -> {
+        0x07 -> {
             val res = state.a.toUInt()
             state.a =  ((res.and(0x80u).shr(7)).or(res.shl(1))).toUByte()
             if (1u == (res.and(1u))) {
@@ -437,8 +442,8 @@ fun Emulate8080Op(state:Registers) {
             }
             state.pc++
         }
-        "08" -> UnimplementedInstruction(state)
-        "09" -> {                                   //DAD   B
+        0x08 -> UnimplementedInstruction(state)
+        0x09 -> {                                   //DAD   B
             val hl: UInt = (state.h.toUInt().shl(8).or(state.l.toUInt()))
             //println(String.format("h: %02x l: %02x", state.h.toInt(), state.l.toInt()))
             val bc: UInt = (state.b.toUInt().shl(8).or(state.c.toUInt()))
@@ -454,26 +459,30 @@ fun Emulate8080Op(state:Registers) {
             }
             state.pc++
         }
-        "0A" -> {                                   //LDAX B
+        0x0A -> {                                   //LDAX B
             val offset = (state.b.toUInt().shl(8).or(state.c.toUInt()))
             state.a = state.memory[offset.toInt()]
             state.pc++
         }
-        "0B" -> UnimplementedInstruction(state)
-        "0C" -> UnimplementedInstruction(state)
-        "0D" -> {                                   //DCR   C
+        0x0B -> UnimplementedInstruction(state)
+        0x0C -> {                                   //INR   C
+            state.c++
+            state.flagsZSP(state.c)
+            state.pc++
+        }
+        0x0D -> {                                   //DCR   C
 
             state.c--
             state.flagsZSP(state.c)
             state.pc++
         }
-        "0E" -> {                                   //MVI   C,byte
+        0x0E -> {                                   //MVI   C,byte
 
             state.c = state.memory[state.pc.toInt() + 1]
             state.pc++
             state.pc++
         }
-        "0F" -> {                                   //RRC
+        0x0F -> {                                   //RRC
 
             var x = state.a.toUInt()
             state.a = ((x.and(1u).shl(7)).or(x.shr(1))).toUByte()
@@ -493,36 +502,36 @@ fun Emulate8080Op(state:Registers) {
 //            }
         }
 
-        "10" -> UnimplementedInstruction(state)
-        "11" -> {
+        0x10 -> UnimplementedInstruction(state)
+        0x11 -> {
             state.e = state.memory[state.pc.toInt() + 1]
             state.d = state.memory[state.pc.toInt() + 2]
             state.pc = state.pc + 2u
             state.pc++
         }
-        "12" -> UnimplementedInstruction(state)
-        "13" -> {                                       //INX   D
+        0x12 -> UnimplementedInstruction(state)
+        0x13 -> {                                       //INX   D
             state.e++
             if (state.e.toInt() == 0) {
                 state.d++
             }
             state.pc++
         }
-        "14" -> {                                       //INR   D
+        0x14 -> {                                       //INR   D
             state.d++
             state.flagsZSP(state.d)
             state.pc++
         }
-        "15" -> {                                       //DCR   D
+        0x15 -> {                                       //DCR   D
             state.d--
             state.flagsZSP(state.d)
             state.pc++
         }
-        "16" -> {
+        0x16 -> {
             state.d = state.memory[state.pc.toInt()+1]
             state.pc+=2u
         }
-        "17" -> {
+        0x17-> {
             val x = state.a
             state.a = (state.cc.cy.or(x.toUInt().shl(1))).toUByte()
             if (0x80 == (x.and(0x80u)).toInt()) {
@@ -532,8 +541,8 @@ fun Emulate8080Op(state:Registers) {
             }
             state.pc++
         }
-        "18" -> UnimplementedInstruction(state)
-        "19" -> {                                   //DAD   D
+        0x18 -> UnimplementedInstruction(state)
+        0x19 -> {                                   //DAD   D
             val hl: UInt = (state.h.toUInt().shl(8).or(state.l.toUInt()))
             val de: UInt = (state.d.toUInt().shl(8).or(state.e.toUInt()))
             val res = hl + de
@@ -546,16 +555,16 @@ fun Emulate8080Op(state:Registers) {
             }
             state.pc++
         }
-        "1A" -> {                               //LDAX	D
+        0x1A -> {                               //LDAX	D
             val offset = (state.d.toInt().shl(8)).or(state.e.toInt())
             state.a = state.memory[offset]
             state.pc++
         }
-        "1B" -> UnimplementedInstruction(state)
-        "1C" -> UnimplementedInstruction(state)
-        "1D" -> UnimplementedInstruction(state)
-        "1E" -> UnimplementedInstruction(state)
-        "1F" -> {                               //RAR
+        0x1B -> UnimplementedInstruction(state)
+        0x1C -> UnimplementedInstruction(state)
+        0x1D-> UnimplementedInstruction(state)
+        0x1E -> UnimplementedInstruction(state)
+        0x1F -> {                               //RAR
             val res = state.a
             state.a = ((state.cc.cy).shl(7).or(res.toUInt().shr(1))).toUByte()
             if(1u.toUByte() == res.and(1u)){
@@ -566,36 +575,38 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
         }
 
-        "20" -> UnimplementedInstruction(state)
-        "21" -> {
+        0x20 -> UnimplementedInstruction(state)
+        0x21 -> {
             state.l = state.memory[state.pc.toInt() + 1]
             state.h = state.memory[state.pc.toInt() + 2]
             state.pc = state.pc + 2u
             state.pc++
         }
-        "22" -> {
+        0x22 -> {
             val offset = (state.memory[state.pc.toInt()+1].toUInt()).or(state.memory[state.pc.toInt()+2].toUInt().shl(8))
             state.WriteMem(offset.toInt(), state.l)
             state.WriteMem(offset.toInt()+1,state.h)
             state.pc+=3u
         }
-        "23" -> {                           //INX   H
+        0x23 -> {                           //INX   H
             state.l++
             if (state.l.toInt() == 0) {
                 state.h++
             }
             state.pc++
         }
-        "24" -> UnimplementedInstruction(state)
-        "25" -> UnimplementedInstruction(state)
-        "26" -> {                                   //MVI   H,byte
+        0x24 -> UnimplementedInstruction(state)
+        0x25 -> UnimplementedInstruction(state)
+        0x26 -> {                                   //MVI   H,byte
             state.h = state.memory[state.pc.toInt() + 1]
             state.pc++
             state.pc++
         }
-        "27" -> UnimplementedInstruction(state)
-        "28" -> UnimplementedInstruction(state)
-        "29" -> {                                   //DAD   HL
+        0x27 -> {
+            UnimplementedInstruction(state)
+        }
+        0x28 -> UnimplementedInstruction(state)
+        0x29 -> {                                   //DAD   HL
             val hl: UInt = (state.h.toUInt().shl(8).or(state.l.toUInt()))
             val res: UInt = hl + hl
             state.h = (res.and(0xFF00u).shr(8)).toUByte()
@@ -608,39 +619,39 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
 
         }
-        "2A" -> {
+        0x2A -> {
             val offset = (state.memory[state.pc.toInt()+1].toUInt()).or(state.memory[state.pc.toInt()+2].toUInt().shl(8))
             state.l = state.memory[offset.toInt()]
             state.h = state.memory[offset.toInt()+1]
             state.pc+=3u
         }
-        "2B" -> {
+        0x2B -> {
             state.l--
             if(state.l == 0xffu.toUByte()){
                 state.h--
             }
             state.pc++
         }
-        "2C" -> UnimplementedInstruction(state)
-        "2D" -> UnimplementedInstruction(state)
-        "2E" -> {
+        0x2C -> UnimplementedInstruction(state)
+        0x2D -> UnimplementedInstruction(state)
+        0x2E -> {
             state.l = state.memory[state.pc.toInt()+1]
             state.pc+=2u
         }
-        "2F" -> {                                   //CMA
+        0x2F -> {                                   //CMA
             state.a = state.a.inv()
             state.pc++
         }
 
-        "30" -> UnimplementedInstruction(state)
-        "31" -> {                                   //LXI   SP
+        0x30 -> UnimplementedInstruction(state)
+        0x31 -> {                                   //LXI   SP
             state.sp = (state.memory[state.pc.toInt() + 2].toUInt().shl(8)).or(state.memory[state.pc.toInt() + 1].toUInt())
 
             state.pc++
             state.pc++
             state.pc++
         }
-        "32" -> {                                   //STA   byte
+        0x32 -> {                                   //STA   byte
             val offset = (state.memory[state.pc.toInt() + 2].toInt()).shl(8)
                     .or(state.memory[state.pc.toInt() + 1].toInt())
             val temp1 = state.memory[state.pc.toInt() + 2]
@@ -649,14 +660,14 @@ fun Emulate8080Op(state:Registers) {
             state.pc = state.pc + 2u
             state.pc++
         }
-        "33" -> UnimplementedInstruction(state)
-        "34" -> {                                   //INR   (HL)
+        0x33 -> UnimplementedInstruction(state)
+        0x34 -> {                                   //INR   (HL)
             val res = (state.readFromHL() +1u).toUByte()
             state.flagsZSP(res)
             state.writeToHL(res)
             state.pc++
         }
-        "35" -> {
+        0x35 -> {
             val res = (state.readFromHL() - 1u).toUByte()
             state.setZero(res)
             state.setSign(res)
@@ -664,19 +675,19 @@ fun Emulate8080Op(state:Registers) {
             state.writeToHL(res)
             state.pc++
         }
-        "36" -> {                                   //MVI   M,byte
+        0x36 -> {                                   //MVI   M,byte
 //            val offset = state.h.toUInt().shl(8).or(state.l.toUInt())
 //            state.memory[offset.toInt()] = state.memory[state.pc.toInt() + 1]
             state.writeToHL(state.memory[state.pc.toInt()+1])
             state.pc++
             state.pc++
         }
-        "37" -> {
+        0x37 -> {
             state.cc.cy = 1u
             state.pc++
         }
-        "38" -> UnimplementedInstruction(state)
-        "39" -> {                                   //DAD   SP
+        0x38 -> UnimplementedInstruction(state)
+        0x39 -> {                                   //DAD   SP
             val hl: UInt = state.h.toUInt().shl(8).or(state.l.toUInt())
             val res = hl + state.sp
             state.h = (res.and(0xFF00u)).shr(8).toUByte()
@@ -688,7 +699,7 @@ fun Emulate8080Op(state:Registers) {
             }
             state.pc++
         }
-        "3A" -> {                                   //LDA   byte
+        0x3A -> {                                   //LDA   byte
             val offset = (state.memory[state.pc.toInt() + 2].toUInt()).shl(8)
                     .or(state.memory[state.pc.toInt() + 1].toUInt())
             //println(String.format("%04x", offset))
@@ -697,313 +708,313 @@ fun Emulate8080Op(state:Registers) {
             state.pc = state.pc + 2u
             state.pc++
         }
-        "3B" -> UnimplementedInstruction(state)
-        "3C" -> {                                   //INR   A
+        0x3B -> UnimplementedInstruction(state)
+        0x3C -> {                                   //INR   A
             state.a++
             state.flagsZSP(state.a)
             state.pc++
         }
-        "3D" -> {                                   //DCR   A
+        0x3D -> {                                   //DCR   A
             state.a--
             state.flagsZSP(state.a)
             state.pc++
         }
-        "3E" -> {                                   //MVI   A,byte
+        0x3E -> {                                   //MVI   A,byte
             state.a = state.memory[state.pc.toInt() + 1]
             state.pc++
             state.pc++
 
         }
-        "3F" -> UnimplementedInstruction(state)
+        0x3F -> UnimplementedInstruction(state)
 
-        "40" -> UnimplementedInstruction(state)
-        "41" -> UnimplementedInstruction(state)
-        "42" -> UnimplementedInstruction(state)
-        "43" -> UnimplementedInstruction(state)
-        "44" -> UnimplementedInstruction(state)
-        "45" -> UnimplementedInstruction(state)
-        "46" -> {
+        0x40 -> UnimplementedInstruction(state)
+        0x41 -> UnimplementedInstruction(state)
+        0x42 -> UnimplementedInstruction(state)
+        0x43 -> UnimplementedInstruction(state)
+        0x44 -> UnimplementedInstruction(state)
+        0x45 -> UnimplementedInstruction(state)
+        0x46 -> {
             state.b = state.readFromHL()
             state.pc++
         }
-        "47" -> {
+        0x47 -> {
             state.b = state.a
             state.pc++
         }
-        "48" -> UnimplementedInstruction(state)
-        "49" -> UnimplementedInstruction(state)
-        "4A" -> UnimplementedInstruction(state)
-        "4B" -> UnimplementedInstruction(state)
-        "4C" -> UnimplementedInstruction(state)
-        "4D" -> UnimplementedInstruction(state)
-        "4E" -> {
+        0x48 -> UnimplementedInstruction(state)
+        0x49 -> UnimplementedInstruction(state)
+        0x4A -> UnimplementedInstruction(state)
+        0x4B -> UnimplementedInstruction(state)
+        0x4C -> UnimplementedInstruction(state)
+        0x4D -> UnimplementedInstruction(state)
+        0x4E -> {
             state.c = state.readFromHL()
             state.pc++
         }
-        "4F" -> {
+        0x4F -> {
             state.c = state.a
             state.pc++
         }
 
-        "50" -> UnimplementedInstruction(state)
-        "51" -> UnimplementedInstruction(state)
-        "52" -> UnimplementedInstruction(state)
-        "53" -> UnimplementedInstruction(state)
-        "54" -> UnimplementedInstruction(state)
-        "55" -> UnimplementedInstruction(state)
-        "56" -> {                                   //MOV   D,M
+        0x50 -> UnimplementedInstruction(state)
+        0x51 -> UnimplementedInstruction(state)
+        0x52 -> UnimplementedInstruction(state)
+        0x53 -> UnimplementedInstruction(state)
+        0x54 -> UnimplementedInstruction(state)
+        0x55 -> UnimplementedInstruction(state)
+        0x56 -> {                                   //MOV   D,M
             state.d = state.memory[state.offsetHL().toInt()]
             state.pc++
         }
-        "57" -> {
+        0x57 -> {
             state.d = state.a
             state.pc++
         }
-        "58" -> UnimplementedInstruction(state)
-        "59" -> UnimplementedInstruction(state)
-        "5A" -> UnimplementedInstruction(state)
-        "5B" -> UnimplementedInstruction(state)
-        "5C" -> UnimplementedInstruction(state)
-        "5D" -> UnimplementedInstruction(state)
-        "5E" -> {                                   //MOV   E,M
+        0x58 -> UnimplementedInstruction(state)
+        0x59 -> UnimplementedInstruction(state)
+        0x5A -> UnimplementedInstruction(state)
+        0x5B -> UnimplementedInstruction(state)
+        0x5C -> UnimplementedInstruction(state)
+        0x5D -> UnimplementedInstruction(state)
+        0x5E -> {                                   //MOV   E,M
             state.e = state.memory[state.offsetHL().toInt()]
             state.pc++
         }
-        "5F" -> {
+        0x5F -> {
             state.e = state.a
             state.pc++
         }
 
-        "60" -> UnimplementedInstruction(state)
-        "61" -> {                                  //MOV    H,C
+        0x60 -> UnimplementedInstruction(state)
+        0x61 -> {                                  //MOV    H,C
             state.h = state.c
             state.pc++
         }
-        "62" -> UnimplementedInstruction(state)
-        "63" -> UnimplementedInstruction(state)
-        "64" -> UnimplementedInstruction(state)
-        "65" -> {
+        0x62 -> UnimplementedInstruction(state)
+        0x63 -> UnimplementedInstruction(state)
+        0x64 -> UnimplementedInstruction(state)
+        0x65 -> {
             state.h = state.l
             state.pc++
         }
-        "66" -> {                                   //MOV   H,M
+        0x66 -> {                                   //MOV   H,M
             state.h = state.memory[state.offsetHL().toInt()]
             state.pc++
         }
-        "67" -> {
+        0x67 -> {
             state.h = state.a
             state.pc++
         }
-        "68" -> {                               //MOV   L,B
+        0x68 -> {                               //MOV   L,B
             state.l = state.b
             state.pc++
         }
-        "69" -> {                                   //
+        0x69 -> {                                   //
             state.l = state.c
             state.pc++
         }
-        "6A" -> UnimplementedInstruction(state)
-        "6B" -> UnimplementedInstruction(state)
-        "6C" -> UnimplementedInstruction(state)
-        "6D" -> UnimplementedInstruction(state)
-        "6E" -> UnimplementedInstruction(state)
-        "6F" -> {                                   //MOV   L,A
+        0x6A -> UnimplementedInstruction(state)
+        0x6B -> UnimplementedInstruction(state)
+        0x6C -> UnimplementedInstruction(state)
+        0x6D -> UnimplementedInstruction(state)
+        0x6E -> UnimplementedInstruction(state)
+        0x6F -> {                                   //MOV   L,A
             state.l = state.a
             state.pc++
         }
 
-        "70" -> {                                   //MOV (HL), B
+        0x70 -> {                                   //MOV (HL), B
             state.writeToHL(state.b)
             state.pc++
         }
-        "71" -> UnimplementedInstruction(state)
-        "72" -> UnimplementedInstruction(state)
-        "73" -> UnimplementedInstruction(state)
-        "74" -> UnimplementedInstruction(state)
-        "75" -> UnimplementedInstruction(state)
-        "76" -> UnimplementedInstruction(state)
-        "77" -> {                                   //MOV   M,A
+        0x71 -> UnimplementedInstruction(state)
+        0x72 -> UnimplementedInstruction(state)
+        0x73 -> UnimplementedInstruction(state)
+        0x74 -> UnimplementedInstruction(state)
+        0x75 -> UnimplementedInstruction(state)
+        0x76 -> UnimplementedInstruction(state)
+        0x77 -> {                                   //MOV   M,A
             state.writeToHL(state.a)
             state.pc++
 
         }
-        "78" -> {
+        0x78 -> {
             state.a = state.b
             state.pc++
         }
-        "79" -> {
+        0x79 -> {
             state.a = state.c
             state.pc++
         }
-        "7A" -> {                                   //MOV   D,A
+        0x7A -> {                                   //MOV   D,A
             state.a = state.d
             state.pc++
         }
-        "7B" -> {                                   //MOV   E,A
+        0x7B -> {                                   //MOV   E,A
             state.a = state.e
             state.pc++
         }
-        "7C" -> {                                    //MOV   A,H
+        0x7C -> {                                    //MOV   A,H
             state.a = state.h
             state.pc++
         }
-        "7D" -> {                                   //
+        0x7D -> {                                   //
             state.a = state.l
             state.pc++
         }
-        "7E" -> {                                   //MOV   A,M
+        0x7E -> {                                   //MOV   A,M
             state.a = state.memory[state.offsetHL().toInt()]
             state.pc++
         }
-        "7F" -> UnimplementedInstruction(state)
+        0x7F -> UnimplementedInstruction(state)
 
-        "80" -> {
+        0x80 -> {
             val res: UShort = (state.a.toUShort() + state.b.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "81" -> {
+        0x81 -> {
             val res: UShort = (state.a.toUShort() + state.c.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "82" -> {
+        0x82 -> {
             val res: UShort = (state.a.toUShort() + state.d.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "83" -> {
+        0x83 -> {
             val res: UShort = (state.a.toUShort() + state.e.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "84" -> {
+        0x84 -> {
             val res: UShort = (state.a.toUShort() + state.h.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "85" -> {
+        0x85 -> {
             val res: UShort = (state.a.toUShort() + state.l.toUShort()).toUShort()
             state.ArithFlags(res)
             state.a = res.and(0xffu).toUByte()
             state.pc++
         }
-        "86" -> {                                   //ADD   (HL)
+        0x86 -> {                                   //ADD   (HL)
             val res = (state.a + state.readFromHL()).toUShort()
             state.ArithFlags(res)
             state.a = res.toUByte()
             state.pc++
         }
-        "87" -> UnimplementedInstruction(state)
-        "88" -> UnimplementedInstruction(state)
-        "89" -> UnimplementedInstruction(state)
-        "8A" -> UnimplementedInstruction(state)
-        "8B" -> UnimplementedInstruction(state)
-        "8C" -> UnimplementedInstruction(state)
-        "8D" -> UnimplementedInstruction(state)
-        "8E" -> UnimplementedInstruction(state)
-        "8F" -> UnimplementedInstruction(state)
+        0x87 -> UnimplementedInstruction(state)
+        0x88 -> UnimplementedInstruction(state)
+        0x89 -> UnimplementedInstruction(state)
+        0x8A -> UnimplementedInstruction(state)
+        0x8B -> UnimplementedInstruction(state)
+        0x8C -> UnimplementedInstruction(state)
+        0x8D-> UnimplementedInstruction(state)
+        0x8E -> UnimplementedInstruction(state)
+        0x8F -> UnimplementedInstruction(state)
 
-        "90" -> UnimplementedInstruction(state)
-        "91" -> UnimplementedInstruction(state)
-        "92" -> UnimplementedInstruction(state)
-        "93" -> UnimplementedInstruction(state)
-        "94" -> UnimplementedInstruction(state)
-        "95" -> UnimplementedInstruction(state)
-        "96" -> UnimplementedInstruction(state)
-        "97" -> UnimplementedInstruction(state)
-        "98" -> UnimplementedInstruction(state)
-        "99" -> UnimplementedInstruction(state)
-        "9A" -> UnimplementedInstruction(state)
-        "9B" -> UnimplementedInstruction(state)
-        "9C" -> UnimplementedInstruction(state)
-        "9D" -> UnimplementedInstruction(state)
-        "9E" -> UnimplementedInstruction(state)
-        "9F" -> UnimplementedInstruction(state)
+        0x90 -> UnimplementedInstruction(state)
+        0x91 -> UnimplementedInstruction(state)
+        0x92 -> UnimplementedInstruction(state)
+        0x93 -> UnimplementedInstruction(state)
+        0x94 -> UnimplementedInstruction(state)
+        0x95 -> UnimplementedInstruction(state)
+        0x96 -> UnimplementedInstruction(state)
+        0x97 -> UnimplementedInstruction(state)
+        0x98 -> UnimplementedInstruction(state)
+        0x99 -> UnimplementedInstruction(state)
+        0x9A -> UnimplementedInstruction(state)
+        0x9B -> UnimplementedInstruction(state)
+        0x9C -> UnimplementedInstruction(state)
+        0x9D -> UnimplementedInstruction(state)
+        0x9E -> UnimplementedInstruction(state)
+        0x9F -> UnimplementedInstruction(state)
 
-        "A0" ->{
+        0xA0 ->{
             state.a = state.a.and(state.b)
             state.LogicFlagsA()
             state.pc++
         }
-        "A1" -> UnimplementedInstruction(state)
-        "A2" -> UnimplementedInstruction(state)
-        "A3" -> UnimplementedInstruction(state)
-        "A4" -> UnimplementedInstruction(state)
-        "A5" -> UnimplementedInstruction(state)
-        "A6" -> {                                   //ANA   (HL)
+        0xA1 -> UnimplementedInstruction(state)
+        0xA2 -> UnimplementedInstruction(state)
+        0xA3 -> UnimplementedInstruction(state)
+        0xA4 -> UnimplementedInstruction(state)
+        0xA5 -> UnimplementedInstruction(state)
+        0xA6 -> {                                   //ANA   (HL)
             state.a = state.a.and(state.readFromHL())
             state.LogicFlagsA()
             state.pc++
         }
-        "A7" -> {                                   //ANA   A
+        0xA7 -> {                                   //ANA   A
             state.a = state.a.and(state.a)
             state.LogicFlagsA()
             state.pc++
         }
-        "A8" -> {
+        0xA8 -> {
             state.a = state.a.xor(state.b)
             state.LogicFlagsA()
             state.pc++
         }
-        "A9" -> UnimplementedInstruction(state)
-        "AA" -> UnimplementedInstruction(state)
-        "AB" -> UnimplementedInstruction(state)
-        "AC" -> UnimplementedInstruction(state)
-        "AD" -> UnimplementedInstruction(state)
-        "AE" -> UnimplementedInstruction(state)
-        "AF" -> {                                    //XRA   A
+        0xA9 -> UnimplementedInstruction(state)
+        0xAA -> UnimplementedInstruction(state)
+        0xAB -> UnimplementedInstruction(state)
+        0xAC -> UnimplementedInstruction(state)
+        0xAD -> UnimplementedInstruction(state)
+        0xAE -> UnimplementedInstruction(state)
+        0xAF -> {                                    //XRA   A
             state.a = state.a.xor(state.a)
             state.LogicFlagsA()
             state.pc++
         }
 
-        "B0" -> {
+        0xB0 -> {
             state.a = state.a.or(state.b)
             state.LogicFlagsA()
             state.pc++
         }
-        "B1" -> UnimplementedInstruction(state)
-        "B2" -> UnimplementedInstruction(state)
-        "B3" -> UnimplementedInstruction(state)
-        "B4" -> {                                   //ORA   H
+        0xB1 -> UnimplementedInstruction(state)
+        0xB2 -> UnimplementedInstruction(state)
+        0xB3 -> UnimplementedInstruction(state)
+        0xB4 -> {                                   //ORA   H
             state.a = state.a.or(state.h)
             state.LogicFlagsA()
             state.pc++
         }
-        "B5" -> UnimplementedInstruction(state)
-        "B6" -> {
+        0xB5 -> UnimplementedInstruction(state)
+        0xB6 -> {
             state.a = state.a.or(state.readFromHL())
             state.pc++
         }
-        "B7" -> UnimplementedInstruction(state)
-        "B8" -> {                                   //CMP   B
+        0xB7 -> UnimplementedInstruction(state)
+        0xB8 -> {                                   //CMP   B
             val res = (state.a - state.b).toUShort()
             state.ArithFlags(res)
             state.pc++
         }
-        "B9" -> UnimplementedInstruction(state)
-        "BA" -> UnimplementedInstruction(state)
-        "BB" -> UnimplementedInstruction(state)
-        "BC" -> {                                   //CMP   H
+        0xB9 -> UnimplementedInstruction(state)
+        0xBA -> UnimplementedInstruction(state)
+        0xBB -> UnimplementedInstruction(state)
+        0xBC -> {                                   //CMP   H
             val res = (state.a - state.h).toUShort()
             state.ArithFlags(res)
             state.pc++
         }
-        "BD" -> UnimplementedInstruction(state)
-        "BE" -> {
+        0xBD -> UnimplementedInstruction(state)
+        0xBE -> {
             val res = state.a - state.readFromHL()
             state.ArithFlags(res.toUShort())
             state.pc++
         }
-        "BF" -> UnimplementedInstruction(state)
+        0xBF -> UnimplementedInstruction(state)
 
-        "C0" -> {                                   //RNZ
+        0xC0 -> {                                   //RNZ
             if (state.cc.z == 0u) {
                 state.pc = (state.memory[state.sp.toInt()].toUInt()).or(state.memory[state.sp.toInt() + 1].toUInt().shl(8))
                 state.sp = state.sp + 2u
@@ -1011,14 +1022,14 @@ fun Emulate8080Op(state:Registers) {
                 state.pc++
             }
         }
-        "C1" -> {                                   //POP   B
+        0xC1 -> {                                   //POP   B
 
             state.c = state.memory[state.sp.toInt()]
             state.b = state.memory[state.sp.toInt() + 1]
             state.sp = state.sp + 2u
             state.pc++
         }
-        "C2" -> {                                   //JNZ   address
+        0xC2 -> {                                   //JNZ   address
             if (state.cc.z == 0u) {
 
                 state.setPC()
@@ -1028,10 +1039,10 @@ fun Emulate8080Op(state:Registers) {
                 state.pc++
             }
         }
-        "C3" -> {
+        0xC3 -> {
             state.setPC()
         }
-        "C4" -> {
+        0xC4 -> {
             if(state.cc.z == 0u){
                 val ret: UInt = state.pc + 3u
                 state.WriteMem(state.sp.toInt() - 1, (ret.shr(8)).toUByte())
@@ -1042,11 +1053,11 @@ fun Emulate8080Op(state:Registers) {
                 state.pc+=3u
             }
         }
-        "C5" -> {                                   //PUSH  B
+        0xC5 -> {                                   //PUSH  B
             state.Push(state.b, state.c)
             state.pc++
         }
-        "C6" -> {                                   //ADI   byte
+        0xC6 -> {                                   //ADI   byte
             val res = (state.a.toUShort() + state.memory[state.pc.toInt() + 1].toUShort()).toUShort()
             state.flagsZSP((res.and(0xffu)).toUByte())
             if (res > 0xffu) {
@@ -1060,8 +1071,8 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
             state.pc++
         }
-        "C7" -> UnimplementedInstruction(state)
-        "C8" -> {                                   //RZ
+        0xC7 -> UnimplementedInstruction(state)
+        0xC8 -> {                                   //RZ
             state.pc++
             if (state.cc.z == 1u) {
                 state.pc = state.memory[state.sp.toInt()].toUInt().or(state.memory[state.sp.toInt() + 1].toUInt().shl(8))
@@ -1070,7 +1081,7 @@ fun Emulate8080Op(state:Registers) {
 
 
         }
-        "C9" -> {                                   //RET
+        0xC9 -> {                                   //RET
            // val offset = (state.memory[state.sp.toInt()].toUInt()).or(state.memory[state.sp.toInt() + 1].toUInt().shl(8))
 
             val high = state.memory[state.sp.toInt()+1].toUInt().shl(8)
@@ -1081,15 +1092,15 @@ fun Emulate8080Op(state:Registers) {
             state.pc = offset
             state.sp = state.sp + 2u
         }
-        "CA" -> {                                   //JZ
+        0xCA -> {                                   //JZ
             if (state.cc.z==1u) {
                 state.setPC()
             } else {
                 state.pc += 3u
             }
         }
-        "CB" -> UnimplementedInstruction(state)
-        "CC" -> {                                   //CZ
+        0xCB -> UnimplementedInstruction(state)
+        0xCC -> {                                   //CZ
             if(state.cc.z == 1u){
                 val ret: UInt = state.pc + 3u
                 state.WriteMem(state.sp.toInt() - 1, (ret.shr(8)).toUByte())
@@ -1100,7 +1111,7 @@ fun Emulate8080Op(state:Registers) {
                 state.pc+=3u
             }
         }
-        "CD" -> {                                   //CALL address
+        0xCD -> {                                   //CALL address
             val ret: UInt = state.pc + 3u
             //println(String.format("%04x",ret.toInt()))
             val ret1 = ret.shr(8).toUByte()
@@ -1112,10 +1123,10 @@ fun Emulate8080Op(state:Registers) {
             state.sp = state.sp - 2u
             state.setPC()
         }
-        "CE" -> UnimplementedInstruction(state)
-        "CF" -> UnimplementedInstruction(state)
+        0xCE -> UnimplementedInstruction(state)
+        0xCF -> UnimplementedInstruction(state)
 
-        "D0" -> {                                   //RNC
+        0xD0 -> {                                   //RNC
            state.pc++
             if (state.cc.cy == 0u) {
                 val pointer = state.memory[state.sp.toInt()].toUInt().or(state.memory[state.sp.toInt() + 1].toUInt().shl(8))
@@ -1123,13 +1134,13 @@ fun Emulate8080Op(state:Registers) {
                 state.sp = (state.sp + 2u)
             }
         }
-        "D1" -> {                                   //POP   D
+        0xD1 -> {                                   //POP   D
             state.e = state.memory[state.sp.toInt()]
             state.d = state.memory[state.sp.toInt() + 1]
             state.sp += 2u
             state.pc++
         }
-        "D2" -> {                                   //JNC
+        0xD2 -> {                                   //JNC
             if(state.cc.cy == 0u){
                 state.setPC()
             }
@@ -1137,12 +1148,12 @@ fun Emulate8080Op(state:Registers) {
                 state.pc+=3u
             }
         }
-        "D3" -> {                                   //PUSH  D
+        0xD3 -> {                                   //PUSH  D
             //not doing anything yet
             state.pc++
             state.pc++
         }
-        "D4" -> {                                   //CNC   adr
+        0xD4 -> {                                   //CNC   adr
             if (state.cc.cy == 0u){
                 val ret: UInt = state.pc + 3u
                 state.WriteMem(state.sp.toInt() - 1, (ret.shr(8)).toUByte())
@@ -1153,12 +1164,12 @@ fun Emulate8080Op(state:Registers) {
                 state.pc+=3u
             }
         }
-        "D5" -> {                                   //PUSH  D
+        0xD5 -> {                                   //PUSH  D
             state.Push(state.d, state.e)
 
             state.pc++
         }
-        "D6" -> {                                   //SUI
+        0xD6 -> {                                   //SUI
             val res = (state.a - state.memory[state.pc.toInt()+1].and(0xffu)).toUByte()
             state.flagsZSP(res)
             if(state.a < state.memory[state.pc.toInt()+1]){
@@ -1169,16 +1180,16 @@ fun Emulate8080Op(state:Registers) {
             state.a = res
             state.pc+=2u
         }
-        "D7" -> UnimplementedInstruction(state)
-        "D8" -> {                                   //RC
+        0xD7 -> UnimplementedInstruction(state)
+        0xD8 -> {                                   //RC
             state.pc++
             if(state.cc.cy != 0u){
                 state.pc = (state.memory[state.sp.toInt()].toUInt()).or(state.memory[state.sp.toInt()+1].toUInt().shl(8))
                 state.sp +=2u
             }
         }
-        "D9" -> UnimplementedInstruction(state)
-        "DA" -> {                                   //JC
+        0xD9 -> UnimplementedInstruction(state)
+        0xDA -> {                                   //JC
             if (state.cc.cy != 0u) {
                 state.setPC()
             } else {
@@ -1186,10 +1197,10 @@ fun Emulate8080Op(state:Registers) {
                 state.pc++
             }
         }
-        "DB" -> UnimplementedInstruction(state)
-        "DC" -> UnimplementedInstruction(state)
-        "DD" -> UnimplementedInstruction(state)
-        "DE" -> {                                   //SBI
+        0xDB -> UnimplementedInstruction(state)
+        0xDC -> UnimplementedInstruction(state)
+        0xDD -> UnimplementedInstruction(state)
+        0xDE -> {                                   //SBI
             val res = (state.a -(state.memory[state.pc.toInt()+1] + state.cc.cy))
             state.flagsZSP((res).toUByte())
             if(res > 0xffu){
@@ -1200,17 +1211,17 @@ fun Emulate8080Op(state:Registers) {
             state.a = res.toUByte()
             state.pc+=2u
         }
-        "DF" -> UnimplementedInstruction(state)
+        0xDF -> UnimplementedInstruction(state)
 
-        "E0" -> UnimplementedInstruction(state)
-        "E1" -> {                                   //POP   H
+        0xE0 -> UnimplementedInstruction(state)
+        0xE1 -> {                                   //POP   H
             state.l = state.memory[state.sp.toInt()]
             state.h = state.memory[state.sp.toInt() + 1]
             state.sp = state.sp + 2u
             state.pc++
         }
-        "E2" -> UnimplementedInstruction(state)
-        "E3" -> {
+        0xE2 -> UnimplementedInstruction(state)
+        0xE3 -> {
             val h = state.h
             val l = state.l
 
@@ -1222,24 +1233,24 @@ fun Emulate8080Op(state:Registers) {
 
             state.pc++
         }
-        "E4" -> UnimplementedInstruction(state)
-        "E5" -> {                                   //PUSH  H
+        0xE4 -> UnimplementedInstruction(state)
+        0xE5 -> {                                   //PUSH  H
             state.Push(state.h, state.l)
             state.pc++
         }
-        "E6" -> {                                   //ANI   byte
+        0xE6 -> {                                   //ANI   byte
             state.a = (state.a.and(state.memory[state.pc.toInt() + 1]))
             state.LogicFlagsA()
             state.pc++
             state.pc++
         }
-        "E7" -> UnimplementedInstruction(state)
-        "E8" -> UnimplementedInstruction(state)
-        "E9" -> {                                   //PCHL
+        0xE7 -> UnimplementedInstruction(state)
+        0xE8 -> UnimplementedInstruction(state)
+        0xE9 -> {                                   //PCHL
             state.pc = (state.h.toUInt().shl(8)).or(state.l.toUInt())
         }
-        "EA" -> UnimplementedInstruction(state)
-        "EB" -> {                                   //XCHG
+        0xEA -> UnimplementedInstruction(state)
+        0xEB -> {                                   //XCHG
             val save1 = state.d
             val save2 = state.e
             state.d = state.h
@@ -1248,13 +1259,13 @@ fun Emulate8080Op(state:Registers) {
             state.l = save2
             state.pc++
         }
-        "EC" -> UnimplementedInstruction(state)
-        "ED" -> UnimplementedInstruction(state)
-        "EE" -> UnimplementedInstruction(state)
-        "EF" -> UnimplementedInstruction(state)
+        0xEC -> UnimplementedInstruction(state)
+        0xED -> UnimplementedInstruction(state)
+        0xEE -> UnimplementedInstruction(state)
+        0xEF -> UnimplementedInstruction(state)
 
-        "F0" -> UnimplementedInstruction(state)
-        "F1" -> {                                   //POP psw
+        0xF0 -> UnimplementedInstruction(state)
+        0xF1 -> {                                   //POP psw
 
             state.a = state.memory[state.sp.toInt() + 1]
             val psw = state.memory[state.sp.toInt()]
@@ -1291,10 +1302,10 @@ fun Emulate8080Op(state:Registers) {
             state.sp = state.sp + 2u
             state.pc++
         }
-        "F2" -> UnimplementedInstruction(state)
-        "F3" -> UnimplementedInstruction(state)
-        "F4" -> UnimplementedInstruction(state)
-        "F5" -> {                                   //PUSH  PSW
+        0xF2 -> UnimplementedInstruction(state)
+        0xF3 -> UnimplementedInstruction(state)
+        0xF4 -> UnimplementedInstruction(state)
+        0xF5 -> {                                   //PUSH  PSW
             //println(state.sp.toInt()-1)
 
             state.memory[state.sp.toInt() - 1] = state.a
@@ -1308,30 +1319,30 @@ fun Emulate8080Op(state:Registers) {
             state.sp = state.sp - 2u
             state.pc++
         }
-        "F6" -> {                                   //ORI
+        0xF6 -> {                                   //ORI
             val res = state.a.or(state.memory[state.pc.toInt()+1])
             state.flagsZSP(res)
             state.cc.cy = 0u
             state.a = res
             state.pc+=2u
         }
-        "F7" -> UnimplementedInstruction(state)
-        "F8" -> UnimplementedInstruction(state)
-        "F9" -> UnimplementedInstruction(state)
-        "FA" -> {                                   //JM
+        0xF7 -> UnimplementedInstruction(state)
+        0xF8 -> UnimplementedInstruction(state)
+        0xF9 -> UnimplementedInstruction(state)
+        0xFA -> {                                   //JM
             if(state.cc.s != 0u){
                 state.setPC()
             }else{
                 state.pc+=3u
             }
         }
-        "FB" -> {                                   //EI
+        0xFB -> {                                   //EI
             state.int_enable = 1
             state.pc++
         }
-        "FC" -> UnimplementedInstruction(state)
-        "FD" -> UnimplementedInstruction(state)
-        "FE" -> {
+        0xFC -> UnimplementedInstruction(state)
+        0xFD -> UnimplementedInstruction(state)
+        0xFE -> {
             val val2 = state.memory[state.pc.toInt() + 1]
             val value = (state.a - state.memory[state.pc.toInt() + 1]).toUByte()
             state.flagsZSP(value)
@@ -1345,7 +1356,7 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
 
         }
-        "FF" -> UnimplementedInstruction(state)
+        0xFF -> UnimplementedInstruction(state)
     }
 
 
