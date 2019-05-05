@@ -8,21 +8,21 @@ import kotlin.system.exitProcess
 
 
 @kotlin.ExperimentalUnsignedTypes
-const val x01:UByte = 1u
-const val x02:UByte = 2u
-const val x04:UByte = 4u
-const val x05:UByte = 5u
-const val x08:UByte = 8u
-const val x10:UByte = 16u
-const val xFF:UShort = 255u
-const val x80:UShort = 128u
-const val xFFb:UByte = 254u
-const val x80b:UByte = 128u
-const val xFF00:UInt = 65280u
-const val xFF00s:UShort = 65280u
-const val x00FF:UInt = 255u
-const val xFFFF:UInt = 65535u
-const val xFFFF0000:UInt = 4294901760u
+//const val x01:UByte = 1u
+//const val x02:UByte = 2u
+//const val x04:UByte = 4u
+//const val x05:UByte = 5u
+//const val x08:UByte = 8u
+//const val x10:UByte = 16u
+//const val xFF:UShort = 255u
+//const val x80:UShort = 128u
+//const val xFFb:UByte = 254u
+//const val x80b:UByte = 128u
+//const val xFF00:UInt = 65280u
+//const val xFF00s:UShort = 65280u
+//const val x00FF:UInt = 255u
+//const val xFFFF:UInt = 65535u
+//const val xFFFF0000:UInt = 4294901760u
 var opcount = 0
 
 @kotlin.ExperimentalUnsignedTypes
@@ -85,7 +85,7 @@ class Registers(){
 
     fun setZero(value:UShort){
         //condense this
-        if(value.and(xFF).compareTo(0u) == 0){
+        if(value.and(0xFFu).compareTo(0u) == 0){
             cc.z = 1u
         }else{
             cc.z = 0u
@@ -101,14 +101,14 @@ class Registers(){
     }
 
     fun setSign(value:UShort){
-        if(value.and(x80).compareTo(0u) == 0){
+        if(value.and(0x80u).compareTo(0u) == 0){
             cc.s = 0u
         }else{
             cc.s = 1u
         }
     }
     fun setSign(value:UByte){
-        if(value.and(x80b).compareTo(0u) == 0){
+        if(value.and(0x80u).compareTo(0u) == 0){
             cc.s = 0u
         }else{
             cc.s = 1u
@@ -116,14 +116,14 @@ class Registers(){
     }
 
     fun setCarry(value:UShort){
-        if(value > xFF){
+        if(value > 0xFFu){
             cc.cy = 1u
         }else{
             cc.cy = 0u
         }
     }
     fun setCarry(value:UByte){
-        if(value > xFFb){
+        if(value > 0xFFu){
             cc.cy = 1u
         }else{
             cc.cy = 0u
@@ -213,7 +213,7 @@ class Registers(){
     }
     fun GenerateInterupt(interupt_num:Int){
         val high = (pc.and(0xFF00u).shr(8)).toUByte()
-        val low = (pc .and(0x00FFu)).toUByte()
+        val low = (pc.and(0x00FFu)).toUByte()
         Push(high,low)
         pc = (8*interupt_num).toUInt()
         int_enable = 0
@@ -264,12 +264,12 @@ class Registers(){
 //
 //}
 fun arrayToBitmap(stateMemory:UByteArray):BufferedImage{
-    val img = BufferedImage(256,224,TYPE_BYTE_BINARY)
+    val img = BufferedImage(224,256,TYPE_BYTE_BINARY)
     var i = 0
     var j = 0
     val offset = 0x2400
     for(x in 0 until img.getWidth()){
-        for(y in 0 until img.getHeight()){
+        for(y in img.getHeight()-1 downTo 0){
             var pixel = getBit(stateMemory[i+offset].toInt(),j)
             if(pixel == 1) {
                 img.setRGB(x, y, 0xffffff)
@@ -285,6 +285,7 @@ fun arrayToBitmap(stateMemory:UByteArray):BufferedImage{
             }
         }
     }
+
     return img
 }
 private fun getBit(byte:Int, position:Int):Int{
@@ -300,7 +301,7 @@ fun main() {
     var display = JLabel(ImageIcon())
     screen.getContentPane().add(display,BorderLayout.CENTER)
     screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
-    screen.setSize(Dimension(256,224))
+    screen.setSize(Dimension(224,256))
     screen.setLocationRelativeTo(null)
     screen.setVisible(true)
 
@@ -386,7 +387,7 @@ fun UnimplementedInstruction(state:Registers){
 @kotlin.ExperimentalUnsignedTypes
 fun Emulate8080Op(state:Registers) {
     var opcode = String.format("%02x", state.memory[state.pc.toInt()].toByte()).toUpperCase()
-    //println(opcode + "  " + String.format("%04x", state.pc.toInt()))
+    println(opcode + "  " + String.format("%04x", state.pc.toInt()))
     when (opcode) {
         "00" -> {
             state.pc++
@@ -664,8 +665,9 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
         }
         "36" -> {                                   //MVI   M,byte
-            val offset = state.h.toUInt().shl(8).or(state.l.toUInt())
-            state.memory[offset.toInt()] = state.memory[state.pc.toInt() + 1]
+//            val offset = state.h.toUInt().shl(8).or(state.l.toUInt())
+//            state.memory[offset.toInt()] = state.memory[state.pc.toInt() + 1]
+            state.writeToHL(state.memory[state.pc.toInt()+1])
             state.pc++
             state.pc++
         }
@@ -988,7 +990,11 @@ fun Emulate8080Op(state:Registers) {
         "B9" -> UnimplementedInstruction(state)
         "BA" -> UnimplementedInstruction(state)
         "BB" -> UnimplementedInstruction(state)
-        "BC" -> UnimplementedInstruction(state)
+        "BC" -> {                                   //CMP   H
+            val res = (state.a - state.h).toUShort()
+            state.ArithFlags(res)
+            state.pc++
+        }
         "BD" -> UnimplementedInstruction(state)
         "BE" -> {
             val res = state.a - state.readFromHL()
@@ -1136,7 +1142,17 @@ fun Emulate8080Op(state:Registers) {
             state.pc++
             state.pc++
         }
-        "D4" -> UnimplementedInstruction(state)
+        "D4" -> {                                   //CNC   adr
+            if (state.cc.cy == 0u){
+                val ret: UInt = state.pc + 3u
+                state.WriteMem(state.sp.toInt() - 1, (ret.shr(8)).toUByte())
+                state.WriteMem(state.sp.toInt() - 2, ret.and(0xffu).toUByte())
+                state.sp = state.sp - 2u
+                state.setPC()
+            }else{
+                state.pc+=3u
+            }
+        }
         "D5" -> {                                   //PUSH  D
             state.Push(state.d, state.e)
 
@@ -1243,31 +1259,31 @@ fun Emulate8080Op(state:Registers) {
             state.a = state.memory[state.sp.toInt() + 1]
             val psw = state.memory[state.sp.toInt()]
 
-            if (psw.and(x01) == x01) {
+            if (psw.and(0x01u) == 0x01u.toUByte()) {
                 state.cc.z = 1u
             } else {
                 state.cc.z = 0u
             }
 
-            if (psw.and(x02) == x02) {
+            if (psw.and(0x02u) == 0x02u.toUByte()) {
                 state.cc.s = 1u
             } else {
                 state.cc.s = 0u
             }
 
-            if (psw.and(x04) == x04) {
+            if (psw.and(0x04u) == 0x04.toUByte()) {
                 state.cc.p = 1u
             } else {
                 state.cc.p = 0u
             }
 
-            if (psw.and(x08) == x05) {
+            if (psw.and(0x08u) == 0x05u.toUByte()) {
                 state.cc.cy = 1u
             } else {
                 state.cc.cy = 0u
             }
 
-            if (psw.and(x10) == x10) {
+            if (psw.and(0x10u) == 0x10u.toUByte()) {
                 state.cc.ac = 1u
             } else {
                 state.cc.ac = 0u

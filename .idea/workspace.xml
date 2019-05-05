@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1016ef21-bfdb-46d6-8c7a-74a907a63db9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/META-INF/Kotlin-Space-Invaders.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/META-INF/Kotlin-Space-Invaders.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/8080.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/8080.kt" afterDir="false" />
     </list>
@@ -27,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/8080.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="777">
-              <caret line="340" column="67" selection-start-line="340" selection-start-column="67" selection-end-line="340" selection-end-column="67" />
+            <state relative-caret-position="222">
+              <caret line="583" selection-start-line="583" selection-end-line="583" />
               <folding>
                 <element signature="e#0#199#0" expanded="true" />
               </folding>
@@ -47,7 +44,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>21</find>
       <find>pr</find>
       <find>state.a =</find>
       <find>push</find>
@@ -77,6 +73,7 @@
       <find>15d3</find>
       <find>65</find>
       <find>kotlin.graphics.BitmapFactory</find>
+      <find>21</find>
     </findStrings>
     <replaceStrings>
       <replace>println(String.format(st))</replace>
@@ -98,8 +95,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="896" />
+    <option name="x" value="-8" />
+    <option name="width" value="977" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -211,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555021269365</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="5/4/2019&#10;Lots of changes&#10;-many more instructions implemented&#10;-a handler for interupts&#10;-implemented the shift hardware&#10;-draws to screen">
+      <created>1556943104963</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1556943104963</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -224,9 +228,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="896" height="1047" extended-state="0" />
+    <frame x="-8" y="0" width="977" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992948" visible="true" weight="0.035885166" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992948" visible="true" weight="0.032715376" />
       <window_info id="Structure" order="1" sideWeight="0.50140846" side_tool="true" weight="0.15298508" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -235,8 +240,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26914662" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3501094" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26914662" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3501094" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -260,19 +265,10 @@
     <MESSAGE value="3/23/19" />
     <MESSAGE value="4/3/2019&#10;implemented general class structure for CPU and some flag setting methods" />
     <MESSAGE value="4/11/2019&#10;implemented 50 cpu instructions" />
-    <option name="LAST_COMMIT_MESSAGE" value="4/11/2019&#10;implemented 50 cpu instructions" />
+    <MESSAGE value="5/4/2019&#10;Lots of changes&#10;-many more instructions implemented&#10;-a handler for interupts&#10;-implemented the shift hardware&#10;-draws to screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="5/4/2019&#10;Lots of changes&#10;-many more instructions implemented&#10;-a handler for interupts&#10;-implemented the shift hardware&#10;-draws to screen" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/8080.kt</url>
-          <line>1077</line>
-          <properties />
-          <option name="timeStamp" value="455" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JetRunConfigurationType">
         <watch expression="((Registers)state).memory[8346]" custom="Registers" />
@@ -281,6 +277,11 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>state.l&gt;250u</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>opcount&gt;70000 &amp;&amp; sp == 0x23fcu</expression-string>
         <language-id>kotlin</language-id>
@@ -398,8 +399,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/8080.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="340" column="67" selection-start-line="340" selection-start-column="67" selection-end-line="340" selection-end-column="67" />
+        <state relative-caret-position="222">
+          <caret line="583" selection-start-line="583" selection-end-line="583" />
           <folding>
             <element signature="e#0#199#0" expanded="true" />
           </folding>
