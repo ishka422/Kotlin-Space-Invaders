@@ -1,9 +1,9 @@
-import java.awt.*
-import java.awt.image.BufferedImage
-import java.awt.image.BufferedImage.TYPE_BYTE_BINARY
+import java.awt.BorderLayout
+import java.awt.Dimension
 import java.io.File
-import java.util.*
-import javax.swing.*
+import javax.swing.ImageIcon
+import javax.swing.JFrame
+import javax.swing.JLabel
 import kotlin.system.exitProcess
 
 
@@ -59,44 +59,10 @@ fun main() {
 
 
 
-        var now = System.currentTimeMillis()
-        if (lastTimer == 0L){
-            lastTimer = now
-            nextInterupt = lastTimer + 48
-            whichInterupt = 1
-
-        }
-
-        if((emulate.int_enable ==1) && now > nextInterupt){
-            if(whichInterupt == 1){
-                emulate.GenerateInterupt(1)
-                whichInterupt = 2
-            }
-            else{
-                emulate.GenerateInterupt(2)
-                whichInterupt = 1
-            }
-            nextInterupt = now + 24
-        }
-        if((now - nextFrame) > 16){
-            nextFrame = now+16
-
-            display.icon = ImageIcon(arrayToBitmap(emulate.memory))
-            display.repaint()
-            screen.add(display)
-            display.repaint()
-            screen.revalidate()
-            screen.repaint()
-        }
-        var sinceLast = now - lastTimer
-        var cyclesToCatchUp = (2 * sinceLast).toLong()*1000
-
-//        var now = (System.nanoTime()/1000).toLong()
-//
-//        //var now = System.currentTimeMillis()
+//        var now = System.currentTimeMillis()
 //        if (lastTimer == 0L){
 //            lastTimer = now
-//            nextInterupt = lastTimer + 32000
+//            nextInterupt = lastTimer + 56 //16//48
 //            whichInterupt = 1
 //
 //        }
@@ -110,13 +76,11 @@ fun main() {
 //                emulate.GenerateInterupt(2)
 //                whichInterupt = 1
 //            }
-//            nextInterupt = now + 16000
+//            nextInterupt = now + 28 //8//24
 //        }
-//        if((now - nextFrame) > 16000){
-//            nextFrame = now+16000
-//            //screen.remove(display)
+//        if((now - nextFrame) > 16){
+//            nextFrame = now+16
 //            display.icon = ImageIcon(arrayToBitmap(emulate.memory))
-//            //display = JLabel(ImageIcon(arrayToBitmap(emulate.memory)))
 //            display.repaint()
 //            screen.add(display)
 //            display.repaint()
@@ -124,7 +88,46 @@ fun main() {
 //            screen.repaint()
 //        }
 //        var sinceLast = now - lastTimer
-//        var cyclesToCatchUp = (2 * sinceLast).toLong()
+//        var cyclesToCatchUp = (2 * sinceLast).toLong()*1000
+        var now = System.nanoTime()
+        var now2 = System.currentTimeMillis()
+        println(now)
+        now /= 1000L
+        //println(now)
+        //println("$now2--")
+
+        //var now = System.currentTimeMillis()
+        if (lastTimer == 0L){
+            lastTimer = now
+            nextInterupt = lastTimer + 16000
+            whichInterupt = 1
+
+        }
+
+        if((emulate.int_enable ==1) && now > nextInterupt){
+            if(whichInterupt == 1){
+                emulate.GenerateInterupt(1)
+                whichInterupt = 2
+            }
+            else{
+                emulate.GenerateInterupt(2)
+                whichInterupt = 1
+            }
+            nextInterupt = now + 8000
+        }
+        if((now - nextFrame) > 16000){
+            nextFrame = now+16000
+            //screen.remove(display)
+            display.icon = ImageIcon(arrayToBitmap(emulate.memory))
+            //display = JLabel(ImageIcon(arrayToBitmap(emulate.memory)))
+            display.repaint()
+            screen.add(display)
+            display.repaint()
+            screen.revalidate()
+            screen.repaint()
+        }
+        var sinceLast = now - lastTimer
+        var cyclesToCatchUp = (2 * sinceLast).toLong()
         var cycles = 0
         while(cyclesToCatchUp > cycles) {
             var opcode = String.format("%02x",emulate.memory[emulate.pc.toInt()].toByte()).toUpperCase()

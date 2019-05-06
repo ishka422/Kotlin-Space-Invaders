@@ -231,7 +231,11 @@ fun Emulate8080Op(state:Registers):Int {
             }
             state.pc++
         }
-        0x2C -> UnimplementedInstruction(state)
+        0x2C -> {
+            state.l++
+            state.flagsZSP(state.l)
+            state.pc++
+        }
         0x2D -> UnimplementedInstruction(state)
         0x2E -> {
             state.l = state.memory[state.pc.toInt()+1]
@@ -775,10 +779,7 @@ fun Emulate8080Op(state:Registers):Int {
         0xDA -> {                                   //JC
 
             if (state.cc.cy != 0u) {
-                if (state.pc == 0x09ebu){
-                    println(String.format("%02x%02x", state.memory[state.pc.toInt()+2].toByte(),state.memory[state.pc.toInt()+1].toByte()))
 
-                }
                 state.setPC()
             } else {
                 state.pc += 2u
@@ -923,6 +924,7 @@ fun Emulate8080Op(state:Registers):Int {
             }
         }
         0xFB -> {                                   //EI
+
             state.int_enable = 1
             state.pc++
         }
