@@ -1,0 +1,5608 @@
+0000    00 NOP
+0001    00 NOP
+0002    00 NOP
+0003    JMP  18 D4
+0006    00 NOP
+0007    00 NOP
+0008    PUSH  PSW
+0009    PUSH B
+000A    PUSH D
+000B    PUSH  PSW
+000C    JMP  00 8C
+000F    00 NOP
+0010    PUSH  PSW
+0011    PUSH B
+0012    PUSH D
+0013    PUSH  PSW
+0014    MVI    A, 80
+0016    32 STA    a16, 72 20
+0019    21 LXI    H  <-  20 L  <-  C0
+001C    35 DCR    M
+001D    CALL     a16, 17 CD
+0020    IN     d8, 01
+0022    0F  RRC
+0023    JC     a16, 00 67
+0026    LDA  adr
+0029    ANA A
+002A    JZ  00 42
+002D    LDA  adr
+0030    CPI 99
+0032    JZ  00 3E
+0035    ADI 01
+0037    27 DAA
+0038    32 STA    a16, EB 20
+003B    CALL     a16, 19 47
+003E    XRA A
+003F    32 STA    a16, EA 20
+0042    LDA  adr
+0045    ANA A
+0046    JZ  00 82
+0049    LDA  adr
+004C    ANA A
+004D    JNZ 00 6F
+0050    LDA  adr
+0053    ANA A
+0054    JNZ 00 5D
+0057    CALL     a16, 0A BF
+005A    JMP  00 82
+005D    LDA  adr
+0060    ANA A
+0061    JNZ 00 82
+0064    JMP  07 65
+0067    MVI    A, 01
+0069    32 STA    a16, EA 20
+006C    JMP  00 3F
+006F    CALL     a16, 17 40
+0072    LDA  adr
+0075    32 STA    a16, 80 20
+0078    CALL     a16, 01 00
+007B    CALL     a16, 02 48
+007E    CALL     a16, 09 13
+0081    00 NOP
+0082    POP H
+0083    POP D
+0084    POP B
+0085    POP PSW
+0086    EI
+0087    RET
+0088    00 NOP
+0089    00 NOP
+008A    00 NOP
+008B    00 NOP
+008C    XRA A
+008D    32 STA    a16, 72 20
+0090    LDA  adr
+0093    ANA A
+0094    JZ  00 82
+0097    LDA  adr
+009A    ANA A
+009B    JNZ 00 A5
+009E    LDA  adr
+00A1    0F  RRC
+00A2    JNC 00 82
+00A5    21 LXI    H  <-  20 L  <-  20
+00A8    CALL     a16, 02 4B
+00AB    CALL     a16, 01 41
+00AE    JMP  00 82
+00B1    CALL     a16, 08 86
+00B4    PUSH  PSW
+00B5    MOV  A  <-  M
+00B6    23 INX H
+00B7    MOV  H  <-  M
+00B8    MOV  L  <-  A
+00B9    22 DHLD     (adr)  <-  L, (adr)  <-  H
+00BC    22 DHLD     (adr)  <-  L, (adr)  <-  H
+00BF    POP H
+00C0    2b DCX H
+00C1    MOV  A  <-  M
+00C2    CPI 03
+00C4    JNZ 00 C8
+00C7    DCR A
+00C8    32 STA    a16, 08 20
+00CB    CPI FE
+00CD    MVI    A, 00
+00CF    JNZ 00 D3
+00D2    INR A
+00D3    32 STA    a16, 0D 20
+00D6    RET
+00D7    MVI    A, 02
+00D9    32 STA    a16, FB 21
+00DC    32 STA    a16, FB 22
+00DF    JMP  08 E4
+00E2    00 NOP
+00E3    00 NOP
+00E4    00 NOP
+00E5    00 NOP
+00E6    00 NOP
+00E7    00 NOP
+00E8    00 NOP
+00E9    00 NOP
+00EA    00 NOP
+00EB    00 NOP
+00EC    00 NOP
+00ED    00 NOP
+00EE    00 NOP
+00EF    00 NOP
+00F0    00 NOP
+00F1    00 NOP
+00F2    00 NOP
+00F3    00 NOP
+00F4    00 NOP
+00F5    00 NOP
+00F6    00 NOP
+00F7    00 NOP
+00F8    00 NOP
+00F9    00 NOP
+00FA    00 NOP
+00FB    00 NOP
+00FC    00 NOP
+00FD    00 NOP
+00FE    00 NOP
+00FF    00 NOP
+0100    21 LXI    H  <-  20 L  <-  02
+0103    MOV  A  <-  M
+0104    ANA A
+0105    JNZ 15 38
+0108    PUSH  PSW
+0109    LDA  adr
+010C    MOV  L  <-  A
+010D    LDA  adr
+0110    MOV  H  <-  A
+0111    MOV  A  <-  M
+0112    ANA A
+0113    POP H
+0114    JZ  01 36
+0117    23 INX H
+0118    23 INX H
+0119    MOV  A  <-  M
+011A    23 INX H
+011B    MOV  B  <-  M
+011C    ANI FE
+011E    07  RLC
+011F    07  RLC
+0120    07  RLC
+0121    MOV  E  <-  A
+0122    16  MVI  D  <- 00
+0124    21 LXI    H  <-  1C L  <-  00
+0127    19 DAD D
+0128    XCGH
+0129    MOV  A  <-  B
+012A    ANA A
+012B    CNZ  01 3B
+012E    2a LHLD adr    L  <- (adr)  H  <- (adr)
+0131    06  MVI B <- 10
+0133    CALL     a16, 15 D3
+0136    XRA A
+0137    32 STA    a16, 00 20
+013A    RET
+013B    21 LXI    H  <-  00 L  <-  30
+013E    19 DAD D
+013F    XCGH
+0140    RET
+0141    LDA  adr
+0144    ANA A
+0145    RZ
+0146    LDA  adr
+0149    ANA A
+014A    RNZ
+014B    LDA  adr
+014E    MOV  H  <-  A
+014F    LDA  adr
+0152    16  MVI  D  <- 02
+0154    INR A
+0155    CPI 37
+0157    CZ 01 A1
+015A    MOV  L  <-  A
+015B    MOV  B  <-  M
+015C    05  DCR B
+015D    JNZ 01 54
+0160    32 STA    a16, 06 20
+0163    CALL     a16, 01 7A
+0166    MOV  H  <-  C
+0167    22 DHLD     (adr)  <-  L, (adr)  <-  H
+016A    MOV  A  <-  L
+016B    CPI 28
+016D    JC     a16, 19 71
+0170    MOV  A  <-  D
+0171    32 STA    a16, 04 20
+0174    MVI    A, 01
+0176    32 STA    a16, 00 20
+0179    RET
+017A    16  MVI  D  <- 00
+017C    MOV  A  <-  L
+017D    21 LXI    H  <-  20 L  <-  09
+0180    MOV  B  <-  M
+0181    23 INX H
+0182    MOV  C  <-  M
+0183    CPI 0B
+0185    JM 01 94
+0188    SBI 0B
+018A    MOV  E  <-  A
+018B    MOV  A  <-  B
+018C    ADI 10
+018E    MOV  B  <-  A
+018F    MOV  A  <-  E
+0190    14 INR D
+0191    JMP  01 83
+0194    MOV  L  <-  B
+0195    ANA A
+0196    RZ
+0197    MOV  E  <-  A
+0198    MOV  A  <-  C
+0199    ADI 10
+019B    MOV  C  <-  A
+019C    MOV  A  <-  E
+019D    DCR A
+019E    JMP  01 95
+01A1    15 DCR D
+01A2    JZ  01 CD
+01A5    21 LXI    H  <-  20 L  <-  06
+01A8    36 MVI      M  <-  00
+01AA    23 INX H
+01AB    MOV  C  <-  M
+01AC    36 MVI      M  <-  00
+01AE    CALL     a16, 01 D9
+01B1    21 LXI    H  <-  20 L  <-  05
+01B4    MOV  A  <-  M
+01B5    INR A
+01B6    ANI 01
+01B8    MOV  M  <-  A
+01B9    XRA A
+01BA    21 LXI    H  <-  20 L  <-  67
+01BD    MOV  H  <-  M
+01BE    RET
+01BF    00 NOP
+01C0    21 LXI    H  <-  21 L  <-  00
+01C3    06  MVI B <- 37
+01C5    36 MVI      M  <-  01
+01C7    23 INX H
+01C8    05  DCR B
+01C9    JNZ 01 C5
+01CC    RET
+01CD    POP H
+01CE    RET
+01CF    MVI    A, 01
+01D1    06  MVI B <- E0
+01D3    21 LXI    H  <-  24 L  <-  02
+01D6    JMP  14 CC
+01D9    23 INX H
+01DA    MOV  B  <-  M
+01DB    23 INX H
+01DC    MOV  A  <-  C
+01DD    ADD M
+01DE    MOV  M  <-  A
+01DF    23 INX H
+01E0    MOV  A  <-  B
+01E1    ADD M
+01E2    MOV  M  <-  A
+01E3    RET
+01E4    06  MVI B <- C0
+01E6    11 LXI  D <-  1B  E <-  00
+01E9    21 LXI    H  <-  20 L  <-  00
+01EC    JMP  1A 32
+01EF    21 LXI    H  <-  21 L  <-  42
+01F2    JMP  01 F8
+01F5    21 LXI    H  <-  22 L  <-  42
+01F8    0e MVI      C  <-  04
+01FA    11 LXI  D <-  1D  E <-  20
+01FD    PUSH D
+01FE    06  MVI B <- 2C
+0200    CALL     a16, 1A 32
+0203    POP D
+0204    0d DCR C
+0205    JNZ 01 FD
+0208    RET
+0209    MVI    A, 01
+020B    JMP  02 1B
+020E    MVI    A, 01
+0210    JMP  02 14
+0213    XRA A
+0214    11 LXI  D <-  22  E <-  42
+0217    JMP  02 1E
+021A    XRA A
+021B    11 LXI  D <-  21  E <-  42
+021E    32 STA    a16, 81 20
+0221    01  LXI, B: 16 02
+0224    21 LXI    H  <-  28 L  <-  06
+0227    MVI    A, 04
+0229    PUSH  PSW
+022A    PUSH B
+022B    LDA  adr
+022E    ANA A
+022F    JNZ 02 42
+0232    CALL     a16, 1A 69
+0235    POP B
+0236    POP PSW
+0237    DCR A
+0238    RZ
+0239    PUSH D
+023A    11 LXI  D <-  02  E <-  E0
+023D    19 DAD D
+023E    POP D
+023F    JMP  02 29
+0242    CALL     a16, 14 7C
+0245    JMP  02 35
+0248    21 LXI    H  <-  20 L  <-  10
+024B    MOV  A  <-  M
+024C    CPI FF
+024E    RZ
+024F    CPI FE
+0251    JZ  02 81
+0254    23 INX H
+0255    MOV  B  <-  M
+0256    MOV  C  <-  A
+0257    ORA B
+0258    MOV  A  <-  C
+0259    JNZ 02 77
+025C    23 INX H
+025D    MOV  A  <-  M
+025E    ANA A
+025F    JNZ 02 88
+0262    23 INX H
+0263    MOV  E  <-  M
+0264    23 INX H
+0265    MOV  D  <-  M
+0266    PUSH  PSW
+0267    XCGH
+0268    PUSH  PSW
+0269    21 LXI    H  <-  02 L  <-  6F
+026C    XTHL
+026D    PUSH D
+026E    PCHL
+026F    POP H
+0270    11 LXI  D <-  00  E <-  0C
+0273    19 DAD D
+0274    JMP  02 4B
+0277    05  DCR B
+0278    04  INR B
+0279    JNZ 02 7D
+027C    DCR A
+027D    05  DCR B
+027E    MOV  M  <-  B
+027F    2b DCX H
+0280    MOV  M  <-  A
+0281    11 LXI  D <-  00  E <-  10
+0284    19 DAD D
+0285    JMP  02 4B
+0288    35 DCR    M
+0289    2b DCX H
+028A    2b DCX H
+028B    JMP  02 81
+028E    POP H
+028F    23 INX H
+0290    MOV  A  <-  M
+0291    CPI FF
+0293    JZ  03 3B
+0296    23 INX H
+0297    35 DCR    M
+0298    RNZ
+0299    MOV  B  <-  A
+029A    XRA A
+029B    32 STA    a16, 68 20
+029E    32 STA    a16, 69 20
+02A1    MVI    A, 30
+02A3    32 STA    a16, 6A 20
+02A6    MOV  A  <-  B
+02A7    36 MVI      M  <-  05
+02A9    23 INX H
+02AA    35 DCR    M
+02AB    JNZ 03 9B
+02AE    2a LHLD adr    L  <- (adr)  H  <- (adr)
+02B1    06  MVI B <- 10
+02B3    CALL     a16, 14 24
+02B6    21 LXI    H  <-  20 L  <-  10
+02B9    11 LXI  D <-  1B  E <-  10
+02BC    06  MVI B <- 10
+02BE    CALL     a16, 1A 32
+02C1    06  MVI B <- 00
+02C3    CALL     a16, 19 DC
+02C6    LDA  adr
+02C9    ANA A
+02CA    RNZ
+02CB    LDA  adr
+02CE    ANA A
+02CF    RZ
+02D0    31 LXI      SP.hi  <- 24  SP.lo  <- 00
+02D3    EI
+02D4    CALL     a16, 19 D7
+02D7    CALL     a16, 09 2E
+02DA    ANA A
+02DB    JZ  16 6D
+02DE    CALL     a16, 18 E7
+02E1    MOV  A  <-  M
+02E2    ANA A
+02E3    JZ  03 2C
+02E6    LDA  adr
+02E9    ANA A
+02EA    JZ  03 2C
+02ED    LDA  adr
+02F0    PUSH  PSW
+02F1    0F  RRC
+02F2    JC     a16, 03 32
+02F5    CALL     a16, 02 0E
+02F8    CALL     a16, 08 78
+02FB    MOV  M  <-  E
+02FC    23 INX H
+02FD    MOV  M  <-  D
+02FE    2b DCX H
+02FF    2b DCX H
+0300    MOV  M  <-  B
+0301    00 NOP
+0302    CALL     a16, 01 E4
+0305    POP PSW
+0306    0F  RRC
+0307    MVI    A, 21
+0309    06  MVI B <- 00
+030B    JNC 03 12
+030E    06  MVI B <- 20
+0310    MVI    A, 22
+0312    32 STA    a16, 67 20
+0315    CALL     a16, 0A B6
+0318    XRA A
+0319    32 STA    a16, 11 20
+031C    MOV  A  <-  B
+031D    OUT D8
+031F    INR A
+0320    32 STA    a16, 98 20
+0323    CALL     a16, 09 D6
+0326    CALL     a16, 1A 7F
+0329    JMP  07 F9
+032C    CALL     a16, 1A 7F
+032F    JMP  08 17
+0332    CALL     a16, 02 09
+0335    JMP  02 F8
+0338    00 NOP
+0339    00 NOP
+033A    00 NOP
+033B    21 LXI    H  <-  20 L  <-  68
+033E    36 MVI      M  <-  01
+0340    23 INX H
+0341    MOV  A  <-  M
+0342    ANA A
+0343    JMP  03 B0
+0346    00 NOP
+0347    2b DCX H
+0348    36 MVI      M  <-  01
+034A    LDA  adr
+034D    MOV  B  <-  A
+034E    LDA  adr
+0351    ANA A
+0352    JNZ 03 63
+0355    LDA  adr
+0358    0F  RRC
+0359    JC     a16, 03 81
+035C    0F  RRC
+035D    JC     a16, 03 8E
+0360    JMP  03 6F
+0363    CALL     a16, 17 C0
+0366    07  RLC
+0367    07  RLC
+0368    JC     a16, 03 81
+036B    07  RLC
+036C    JC     a16, 03 8E
+036F    21 LXI    H  <-  20 L  <-  18
+0372    CALL     a16, 1A 3B
+0375    CALL     a16, 1A 47
+0378    CALL     a16, 14 39
+037B    MVI    A, 00
+037D    32 STA    a16, 12 20
+0380    RET
+0381    MOV  A  <-  B
+0382    CPI D9
+0384    JZ  03 6F
+0387    INR A
+0388    32 STA    a16, 1B 20
+038B    JMP  03 6F
+038E    MOV  A  <-  B
+038F    CPI 30
+0391    JZ  03 6F
+0394    DCR A
+0395    32 STA    a16, 1B 20
+0398    JMP  03 6F
+039B    INR A
+039C    ANI 01
+039E    32 STA    a16, 15 20
+03A1    07  RLC
+03A2    07  RLC
+03A3    07  RLC
+03A4    07  RLC
+03A5    21 LXI    H  <-  1C L  <-  70
+03A8    ADD L
+03A9    MOV  L  <-  A
+03AA    22 DHLD     (adr)  <-  L, (adr)  <-  H
+03AD    JMP  03 6F
+03B0    JNZ 03 4A
+03B3    23 INX H
+03B4    35 DCR    M
+03B5    JNZ 03 4A
+03B8    JMP  03 46
+03BB    11 LXI  D <-  20  E <-  2A
+03BE    CALL     a16, 1A 06
+03C1    POP H
+03C2    RNC
+03C3    23 INX H
+03C4    MOV  A  <-  M
+03C5    ANA A
+03C6    RZ
+03C7    CPI 01
+03C9    JZ  03 FA
+03CC    CPI 02
+03CE    JZ  04 0A
+03D1    23 INX H
+03D2    CPI 03
+03D4    JNZ 04 2A
+03D7    35 DCR    M
+03D8    JZ  04 36
+03DB    MOV  A  <-  M
+03DC    CPI 0F
+03DE    RNZ
+03DF    PUSH  PSW
+03E0    CALL     a16, 04 30
+03E3    CALL     a16, 14 52
+03E6    POP H
+03E7    23 INX H
+03E8    34 INR  M
+03E9    23 INX H
+03EA    23 INX H
+03EB    35 DCR    M
+03EC    35 DCR    M
+03ED    23 INX H
+03EE    35 DCR    M
+03EF    35 DCR    M
+03F0    35 DCR    M
+03F1    23 INX H
+03F2    36 MVI      M  <-  08
+03F4    CALL     a16, 04 30
+03F7    JMP  14 00
+03FA    INR A
+03FB    MOV  M  <-  A
+03FC    LDA  adr
+03FF    ADI 08
+0401    32 STA    a16, 2A 20
+0404    CALL     a16, 04 30
+0407    JMP  14 00
+040A    CALL     a16, 04 30
+040D    PUSH D
+040E    PUSH  PSW
+040F    PUSH B
+0410    CALL     a16, 14 52
+0413    POP B
+0414    POP H
+0415    POP D
+0416    LDA  adr
+0419    ADD L
+041A    MOV  L  <-  A
+041B    32 STA    a16, 29 20
+041E    CALL     a16, 14 91
+0421    LDA  adr
+0424    ANA A
+0425    RZ
+0426    32 STA    a16, 02 20
+0429    RET
+042A    CPI 05
+042C    RZ
+042D    JMP  04 36
+0430    21 LXI    H  <-  20 L  <-  27
+0433    JMP  1A 3B
+0436    CALL     a16, 04 30
+0439    CALL     a16, 14 52
+043C    21 LXI    H  <-  20 L  <-  25
+043F    11 LXI  D <-  1B  E <-  25
+0442    06  MVI B <- 07
+0444    CALL     a16, 1A 32
+0447    2a LHLD adr    L  <- (adr)  H  <- (adr)
+044A    2c INR L
+044B    MOV  A  <-  L
+044C    CPI 63
+044E    JC     a16, 04 53
+0451    2e MVI     L  <-  54
+0453    22 DHLD     (adr)  <-  L, (adr)  <-  H
+0456    2a LHLD adr    L  <- (adr)  H  <- (adr)
+0459    2c INR L
+045A    22 DHLD     (adr)  <-  L, (adr)  <-  H
+045D    LDA  adr
+0460    ANA A
+0461    RNZ
+0462    MOV  A  <-  M
+0463    ANI 01
+0465    01  LXI, B: 02 29
+0468    JNZ 04 6E
+046B    01  LXI, B: FE E0
+046E    21 LXI    H  <-  20 L  <-  8A
+0471    MOV  M  <-  C
+0472    23 INX H
+0473    23 INX H
+0474    MOV  M  <-  B
+0475    RET
+0476    POP H
+0477    LDA  adr
+047A    32 STA    a16, 32 20
+047D    2a LHLD adr    L  <- (adr)  H  <- (adr)
+0480    MOV  A  <-  L
+0481    ORA H
+0482    JNZ 04 8A
+0485    2b DCX H
+0486    22 DHLD     (adr)  <-  L, (adr)  <-  H
+0489    RET
+048A    11 LXI  D <-  20  E <-  35
+048D    MVI    A, F9
+048F    CALL     a16, 05 50
+0492    LDA  adr
+0495    32 STA    a16, 70 20
+0498    LDA  adr
+049B    32 STA    a16, 71 20
+049E    CALL     a16, 05 63
+04A1    LDA  adr
+04A4    ANA A
+04A5    21 LXI    H  <-  20 L  <-  35
+04A8    JNZ 05 5B
+04AB    11 LXI  D <-  1B  E <-  30
+04AE    21 LXI    H  <-  20 L  <-  30
+04B1    06  MVI B <- 10
+04B3    JMP  1A 32
+04B6    POP H
+04B7    LDA  adr
+04BA    ANA A
+04BB    RNZ
+04BC    LDA  adr
+04BF    CPI 01
+04C1    RNZ
+04C2    11 LXI  D <-  20  E <-  45
+04C5    MVI    A, ED
+04C7    CALL     a16, 05 50
+04CA    LDA  adr
+04CD    32 STA    a16, 70 20
+04D0    LDA  adr
+04D3    32 STA    a16, 71 20
+04D6    CALL     a16, 05 63
+04D9    LDA  adr
+04DC    CPI 10
+04DE    JC     a16, 04 E7
+04E1    LDA  adr
+04E4    32 STA    a16, 76 20
+04E7    LDA  adr
+04EA    ANA A
+04EB    21 LXI    H  <-  20 L  <-  45
+04EE    JNZ 05 5B
+04F1    11 LXI  D <-  1B  E <-  40
+04F4    21 LXI    H  <-  20 L  <-  40
+04F7    06  MVI B <- 10
+04F9    CALL     a16, 1A 32
+04FC    LDA  adr
+04FF    DCR A
+0500    JNZ 05 08
+0503    MVI    A, 01
+0505    32 STA    a16, 6E 20
+0508    2a LHLD adr    L  <- (adr)  H  <- (adr)
+050B    JMP  06 7E
+050E    POP H
+050F    11 LXI  D <-  20  E <-  55
+0512    MVI    A, DB
+0514    CALL     a16, 05 50
+0517    LDA  adr
+051A    32 STA    a16, 70 20
+051D    LDA  adr
+0520    32 STA    a16, 71 20
+0523    CALL     a16, 05 63
+0526    LDA  adr
+0529    CPI 15
+052B    JC     a16, 05 34
+052E    LDA  adr
+0531    32 STA    a16, 76 20
+0534    LDA  adr
+0537    ANA A
+0538    21 LXI    H  <-  20 L  <-  55
+053B    JNZ 05 5B
+053E    11 LXI  D <-  1B  E <-  50
+0541    21 LXI    H  <-  20 L  <-  50
+0544    06  MVI B <- 10
+0546    CALL     a16, 1A 32
+0549    2a LHLD adr    L  <- (adr)  H  <- (adr)
+054C    22 DHLD     (adr)  <-  L, (adr)  <-  H
+054F    RET
+0550    32 STA    a16, 7F 20
+0553    21 LXI    H  <-  20 L  <-  73
+0556    06  MVI B <- 0B
+0558    JMP  1A 32
+055B    11 LXI  D <-  20  E <-  73
+055E    06  MVI B <- 0B
+0560    JMP  1A 32
+0563    21 LXI    H  <-  20 L  <-  73
+0566    MOV  A  <-  M
+0567    ANI 80
+0569    JNZ 05 C1
+056C    LDA  adr
+056F    CPI 04
+0571    LDA  adr
+0574    JZ  05 B7
+0577    ANA A
+0578    RZ
+0579    23 INX H
+057A    36 MVI      M  <-  00
+057C    LDA  adr
+057F    ANA A
+0580    JZ  05 89
+0583    MOV  B  <-  A
+0584    LDA  adr
+0587    CMP B
+0588    RNC
+0589    LDA  adr
+058C    ANA A
+058D    JZ  05 96
+0590    MOV  B  <-  A
+0591    LDA  adr
+0594    CMP B
+0595    RNC
+0596    23 INX H
+0597    MOV  A  <-  M
+0598    ANA A
+0599    JZ  06 1B
+059C    2a LHLD adr    L  <- (adr)  H  <- (adr)
+059F    MOV  C  <-  M
+05A0    23 INX H
+05A1    00 NOP
+05A2    22 DHLD     (adr)  <-  L, (adr)  <-  H
+05A5    CALL     a16, 06 2F
+05A8    RNC
+05A9    CALL     a16, 01 7A
+05AC    MOV  A  <-  C
+05AD    ADI 07
+05AF    MOV  H  <-  A
+05B0    MOV  A  <-  L
+05B1    SUI 0A
+05B3    MOV  L  <-  A
+05B4    22 DHLD     (adr)  <-  L, (adr)  <-  H
+05B7    21 LXI    H  <-  20 L  <-  73
+05BA    MOV  A  <-  M
+05BB    ORI 80
+05BD    MOV  M  <-  A
+05BE    23 INX H
+05BF    34 INR  M
+05C0    RET
+05C1    11 LXI  D <-  20  E <-  7C
+05C4    CALL     a16, 1A 06
+05C7    RNC
+05C8    23 INX H
+05C9    MOV  A  <-  M
+05CA    ANI 01
+05CC    JNZ 06 44
+05CF    23 INX H
+05D0    34 INR  M
+05D1    CALL     a16, 06 75
+05D4    LDA  adr
+05D7    ADI 03
+05D9    21 LXI    H  <-  20 L  <-  7F
+05DC    CMP M
+05DD    JC     a16, 05 E2
+05E0    SUI 0C
+05E2    32 STA    a16, 79 20
+05E5    LDA  adr
+05E8    MOV  B  <-  A
+05E9    LDA  adr
+05EC    ADD B
+05ED    32 STA    a16, 7B 20
+05F0    CALL     a16, 06 6C
+05F3    LDA  adr
+05F6    CPI 15
+05F8    JC     a16, 06 12
+05FB    LDA  adr
+05FE    ANA A
+05FF    RZ
+0600    LDA  adr
+0603    CPI 1E
+0605    JC     a16, 06 12
+0608    CPI 27
+060A    00 NOP
+060B    JNC 06 12
+060E    SUB A
+060F    32 STA    a16, 15 20
+0612    LDA  adr
+0615    ORI 01
+0617    32 STA    a16, 73 20
+061A    RET
+061B    LDA  adr
+061E    ADI 08
+0620    MOV  H  <-  A
+0621    CALL     a16, 15 6F
+0624    MOV  A  <-  C
+0625    CPI 0C
+0627    JC     a16, 05 A5
+062A    0e MVI      C  <-  0B
+062C    JMP  05 A5
+062F    0d DCR C
+0630    LDA  adr
+0633    MOV  H  <-  A
+0634    MOV  L  <-  C
+0635    16  MVI  D  <- 05
+0637    MOV  A  <-  M
+0638    ANA A
+0639    37 STC
+063A    RNZ
+063B    MOV  A  <-  L
+063C    ADI 0B
+063E    MOV  L  <-  A
+063F    15 DCR D
+0640    JNZ 06 37
+0643    RET
+0644    21 LXI    H  <-  20 L  <-  78
+0647    35 DCR    M
+0648    MOV  A  <-  M
+0649    CPI 03
+064B    JNZ 06 67
+064E    CALL     a16, 06 75
+0651    21 LXI    H  <-  1C L  <-  DC
+0654    22 DHLD     (adr)  <-  L, (adr)  <-  H
+0657    21 LXI    H  <-  20 L  <-  7C
+065A    35 DCR    M
+065B    35 DCR    M
+065C    2b DCX H
+065D    35 DCR    M
+065E    35 DCR    M
+065F    MVI    A, 06
+0661    32 STA    a16, 7D 20
+0664    JMP  06 6C
+0667    ANA A
+0668    RNZ
+0669    JMP  06 75
+066C    21 LXI    H  <-  20 L  <-  79
+066F    CALL     a16, 1A 3B
+0672    JMP  14 91
+0675    21 LXI    H  <-  20 L  <-  79
+0678    CALL     a16, 1A 3B
+067B    JMP  14 52
+067E    22 DHLD     (adr)  <-  L, (adr)  <-  H
+0681    RET
+0682    POP H
+0683    LDA  adr
+0686    CPI 02
+0688    RNZ
+0689    21 LXI    H  <-  20 L  <-  83
+068C    MOV  A  <-  M
+068D    ANA A
+068E    JZ  05 0F
+0691    LDA  adr
+0694    ANA A
+0695    JNZ 05 0F
+0698    23 INX H
+0699    MOV  A  <-  M
+069A    ANA A
+069B    JNZ 06 AB
+069E    LDA  adr
+06A1    CPI 08
+06A3    JC     a16, 05 0F
+06A6    36 MVI      M  <-  01
+06A8    CALL     a16, 07 3C
+06AB    11 LXI  D <-  20  E <-  8A
+06AE    CALL     a16, 1A 06
+06B1    RNC
+06B2    21 LXI    H  <-  20 L  <-  85
+06B5    MOV  A  <-  M
+06B6    ANA A
+06B7    JNZ 06 D6
+06BA    21 LXI    H  <-  20 L  <-  8A
+06BD    MOV  A  <-  M
+06BE    23 INX H
+06BF    23 INX H
+06C0    ADD M
+06C1    32 STA    a16, 8A 20
+06C4    CALL     a16, 07 3C
+06C7    21 LXI    H  <-  20 L  <-  8A
+06CA    MOV  A  <-  M
+06CB    CPI 28
+06CD    JC     a16, 06 F9
+06D0    CPI E1
+06D2    JNC 06 F9
+06D5    RET
+06D6    06  MVI B <- FE
+06D8    CALL     a16, 19 DC
+06DB    23 INX H
+06DC    35 DCR    M
+06DD    MOV  A  <-  M
+06DE    CPI 1F
+06E0    JZ  07 4B
+06E3    CPI 18
+06E5    JZ  07 0C
+06E8    ANA A
+06E9    RNZ
+06EA    06  MVI B <- EF
+06EC    21 LXI    H  <-  20 L  <-  98
+06EF    MOV  A  <-  M
+06F0    ANA B
+06F1    MOV  M  <-  A
+06F2    ANI 20
+06F4    OUT D8
+06F6    00 NOP
+06F7    00 NOP
+06F8    00 NOP
+06F9    CALL     a16, 07 42
+06FC    CALL     a16, 14 CB
+06FF    21 LXI    H  <-  20 L  <-  83
+0702    06  MVI B <- 0A
+0704    CALL     a16, 07 5F
+0707    06  MVI B <- FE
+0709    JMP  19 DC
+070C    MVI    A, 01
+070E    32 STA    a16, F1 20
+0711    2a LHLD adr    L  <- (adr)  H  <- (adr)
+0714    MOV  B  <-  M
+0715    0e MVI      C  <-  04
+0717    21 LXI    H  <-  1D L  <-  50
+071A    11 LXI  D <-  1D  E <-  4C
+071D    1a LDAX D
+071E    CMP B
+071F    JZ  07 28
+0722    23 INX H
+0723    13 INX D
+0724    0d DCR C
+0725    JNZ 07 1D
+0728    MOV  A  <-  M
+0729    32 STA    a16, 87 20
+072C    26 MVI      H  <-  00
+072E    MOV  L  <-  B
+072F    29 DAD H
+0730    29 DAD H
+0731    29 DAD H
+0732    29 DAD H
+0733    22 DHLD     (adr)  <-  L, (adr)  <-  H
+0736    CALL     a16, 07 42
+0739    JMP  08 F1
+073C    CALL     a16, 07 42
+073F    JMP  14 39
+0742    21 LXI    H  <-  20 L  <-  87
+0745    CALL     a16, 1A 3B
+0748    JMP  1A 47
+074B    06  MVI B <- 10
+074D    21 LXI    H  <-  20 L  <-  98
+0750    MOV  A  <-  M
+0751    ORA B
+0752    MOV  M  <-  A
+0753    CALL     a16, 17 70
+0756    21 LXI    H  <-  1D L  <-  7C
+0759    22 DHLD     (adr)  <-  L, (adr)  <-  H
+075C    JMP  07 3C
+075F    11 LXI  D <-  1B  E <-  83
+0762    JMP  1A 32
+0765    MVI    A, 01
+0767    32 STA    a16, 93 20
+076A    31 LXI      SP.hi  <- 24  SP.lo  <- 00
+076D    EI
+076E    CALL     a16, 19 79
+0771    CALL     a16, 09 D6
+0774    21 LXI    H  <-  30 L  <-  13
+0777    11 LXI  D <-  1F  E <-  F3
+077A    0e MVI      C  <-  04
+077C    CALL     a16, 08 F3
+077F    LDA  adr
+0782    DCR A
+0783    21 LXI    H  <-  28 L  <-  10
+0786    0e MVI      C  <-  14
+0788    JNZ 08 57
+078B    11 LXI  D <-  1A  E <-  CF
+078E    CALL     a16, 08 F3
+0791    IN     d8, 01
+0793    ANI 04
+0795    JZ  07 7F
+0798    06  MVI B <- 99
+079A    XRA A
+079B    32 STA    a16, CE 20
+079E    LDA  adr
+07A1    ADD B
+07A2    27 DAA
+07A3    32 STA    a16, EB 20
+07A6    CALL     a16, 19 47
+07A9    21 LXI    H  <-  00 L  <-  00
+07AC    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07AF    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07B2    CALL     a16, 19 25
+07B5    CALL     a16, 19 2B
+07B8    CALL     a16, 19 D7
+07BB    21 LXI    H  <-  01 L  <-  01
+07BE    MOV  A  <-  H
+07BF    32 STA    a16, EF 20
+07C2    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07C5    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07C8    CALL     a16, 19 56
+07CB    CALL     a16, 01 EF
+07CE    CALL     a16, 01 F5
+07D1    CALL     a16, 08 D1
+07D4    32 STA    a16, FF 21
+07D7    32 STA    a16, FF 22
+07DA    CALL     a16, 00 D7
+07DD    XRA A
+07DE    32 STA    a16, FE 21
+07E1    32 STA    a16, FE 22
+07E4    CALL     a16, 01 C0
+07E7    CALL     a16, 19 04
+07EA    21 LXI    H  <-  38 L  <-  78
+07ED    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07F0    22 DHLD     (adr)  <-  L, (adr)  <-  H
+07F3    CALL     a16, 01 E4
+07F6    CALL     a16, 1A 7F
+07F9    CALL     a16, 08 8D
+07FC    CALL     a16, 09 D6
+07FF    00 NOP
+0800    XRA A
+0801    32 STA    a16, C1 20
+0804    CALL     a16, 01 CF
+0807    LDA  adr
+080A    0F  RRC
+080B    JC     a16, 08 72
+080E    CALL     a16, 02 13
+0811    CALL     a16, 01 CF
+0814    CALL     a16, 00 B1
+0817    CALL     a16, 19 D1
+081A    06  MVI B <- 20
+081C    CALL     a16, 18 FA
+081F    CALL     a16, 16 18
+0822    CALL     a16, 19 0A
+0825    CALL     a16, 15 F3
+0828    CALL     a16, 09 88
+082B    LDA  adr
+082E    ANA A
+082F    JZ  09 EF
+0832    CALL     a16, 17 0E
+0835    CALL     a16, 09 35
+0838    CALL     a16, 08 D8
+083B    CALL     a16, 17 2C
+083E    CALL     a16, 0A 59
+0841    JZ  08 49
+0844    06  MVI B <- 04
+0846    CALL     a16, 18 FA
+0849    CALL     a16, 17 75
+084C    OUT D8
+084E    CALL     a16, 18 04
+0851    JMP  08 1F
+0854    00 NOP
+0855    00 NOP
+0856    00 NOP
+0857    11 LXI  D <-  1A  E <-  BA
+085A    CALL     a16, 08 F3
+085D    06  MVI B <- 98
+085F    IN     d8, 01
+0861    0F  RRC
+0862    0F  RRC
+0863    JC     a16, 08 6D
+0866    0F  RRC
+0867    JC     a16, 07 98
+086A    JMP  07 7F
+086D    MVI    A, 01
+086F    JMP  07 9B
+0872    CALL     a16, 02 1A
+0875    JMP  08 14
+0878    LDA  adr
+087B    MOV  B  <-  A
+087C    2a LHLD adr    L  <- (adr)  H  <- (adr)
+087F    XCGH
+0880    JMP  08 86
+0883    00 NOP
+0884    00 NOP
+0885    00 NOP
+0886    LDA  adr
+0889    MOV  H  <-  A
+088A    2e MVI     L  <-  FC
+088C    RET
+088D    21 LXI    H  <-  2B L  <-  11
+0890    11 LXI  D <-  1B  E <-  70
+0893    0e MVI      C  <-  0E
+0895    CALL     a16, 08 F3
+0898    LDA  adr
+089B    0F  RRC
+089C    MVI    A, 1C
+089E    21 LXI    H  <-  37 L  <-  11
+08A1    CNC 08 FF
+08A4    MVI    A, B0
+08A6    32 STA    a16, C0 20
+08A9    LDA  adr
+08AC    ANA A
+08AD    RZ
+08AE    ANI 04
+08B0    JNZ 08 BC
+08B3    CALL     a16, 09 CA
+08B6    CALL     a16, 19 31
+08B9    JMP  08 A9
+08BC    06  MVI B <- 20
+08BE    21 LXI    H  <-  27 L  <-  1C
+08C1    LDA  adr
+08C4    0F  RRC
+08C5    JC     a16, 08 CB
+08C8    21 LXI    H  <-  39 L  <-  1C
+08CB    CALL     a16, 14 CB
+08CE    JMP  08 A9
+08D1    IN     d8, 02
+08D3    ANI 03
+08D5    ADI 03
+08D7    RET
+08D8    LDA  adr
+08DB    CPI 09
+08DD    RNC
+08DE    MVI    A, FB
+08E0    32 STA    a16, 7E 20
+08E3    RET
+08E4    LDA  adr
+08E7    ANA A
+08E8    RNZ
+08E9    21 LXI    H  <-  39 L  <-  1C
+08EC    06  MVI B <- 20
+08EE    JMP  14 CB
+08F1    0e MVI      C  <-  03
+08F3    1a LDAX D
+08F4    PUSH D
+08F5    CALL     a16, 08 FF
+08F8    POP D
+08F9    13 INX D
+08FA    0d DCR C
+08FB    JNZ 08 F3
+08FE    RET
+08FF    11 LXI  D <-  1E  E <-  00
+0902    PUSH  PSW
+0903    26 MVI      H  <-  00
+0905    MOV  L  <-  A
+0906    29 DAD H
+0907    29 DAD H
+0908    29 DAD H
+0909    19 DAD D
+090A    XCGH
+090B    POP H
+090C    06  MVI B <- 08
+090E    OUT D8
+0910    JMP  14 39
+0913    LDA  adr
+0916    CPI 78
+0918    RNC
+0919    2a LHLD adr    L  <- (adr)  H  <- (adr)
+091C    MOV  A  <-  L
+091D    ORA H
+091E    JNZ 09 29
+0921    21 LXI    H  <-  06 L  <-  00
+0924    MVI    A, 01
+0926    32 STA    a16, 83 20
+0929    2b DCX H
+092A    22 DHLD     (adr)  <-  L, (adr)  <-  H
+092D    RET
+092E    CALL     a16, 16 11
+0931    2e MVI     L  <-  FF
+0933    MOV  A  <-  M
+0934    RET
+0935    CALL     a16, 19 10
+0938    2b DCX H
+0939    2b DCX H
+093A    MOV  A  <-  M
+093B    ANA A
+093C    RZ
+093D    06  MVI B <- 15
+093F    IN     d8, 02
+0941    ANI 08
+0943    JZ  09 48
+0946    06  MVI B <- 10
+0948    CALL     a16, 09 CA
+094B    23 INX H
+094C    MOV  A  <-  M
+094D    CMP B
+094E    RC
+094F    CALL     a16, 09 2E
+0952    34 INR  M
+0953    MOV  A  <-  M
+0954    PUSH  PSW
+0955    21 LXI    H  <-  25 L  <-  01
+0958    24 INR H
+0959    24 INR H
+095A    DCR A
+095B    JNZ 09 58
+095E    06  MVI B <- 10
+0960    11 LXI  D <-  1C  E <-  60
+0963    CALL     a16, 14 39
+0966    POP PSW
+0967    INR A
+0968    CALL     a16, 1A 8B
+096B    CALL     a16, 19 10
+096E    2b DCX H
+096F    2b DCX H
+0970    36 MVI      M  <-  00
+0972    MVI    A, FF
+0974    32 STA    a16, 99 20
+0977    06  MVI B <- 10
+0979    JMP  18 FA
+097C    21 LXI    H  <-  1D L  <-  A0
+097F    CPI 02
+0981    RC
+0982    23 INX H
+0983    CPI 04
+0985    RC
+0986    23 INX H
+0987    RET
+0988    CALL     a16, 09 CA
+098B    LDA  adr
+098E    ANA A
+098F    RZ
+0990    XRA A
+0991    32 STA    a16, F1 20
+0994    PUSH  PSW
+0995    2a LHLD adr    L  <- (adr)  H  <- (adr)
+0998    XCGH
+0999    POP H
+099A    MOV  A  <-  M
+099B    ADD E
+099C    27 DAA
+099D    MOV  M  <-  A
+099E    MOV  E  <-  A
+099F    23 INX H
+09A0    MOV  A  <-  M
+09A1    ADC D
+09A2    27 DAA
+09A3    MOV  M  <-  A
+09A4    MOV  D  <-  A
+09A5    23 INX H
+09A6    MOV  A  <-  M
+09A7    23 INX H
+09A8    MOV  H  <-  M
+09A9    MOV  L  <-  A
+09AA    JMP  09 AD
+09AD    MOV  A  <-  D
+09AE    CALL     a16, 09 B2
+09B1    MOV  A  <-  E
+09B2    PUSH D
+09B3    PUSH  PSW
+09B4    0F  RRC
+09B5    0F  RRC
+09B6    0F  RRC
+09B7    0F  RRC
+09B8    ANI 0F
+09BA    CALL     a16, 09 C5
+09BD    POP PSW
+09BE    ANI 0F
+09C0    CALL     a16, 09 C5
+09C3    POP D
+09C4    RET
+09C5    ADI 1A
+09C7    JMP  08 FF
+09CA    LDA  adr
+09CD    0F  RRC
+09CE    21 LXI    H  <-  20 L  <-  F8
+09D1    RC
+09D2    21 LXI    H  <-  20 L  <-  FC
+09D5    RET
+09D6    21 LXI    H  <-  24 L  <-  02
+09D9    36 MVI      M  <-  00
+09DB    23 INX H
+09DC    MOV  A  <-  L
+09DD    ANI 1F
+09DF    CPI 1C
+09E1    JC     a16, 09 E8
+09E4    11 LXI  D <-  00  E <-  06
+09E7    19 DAD D
+09E8    MOV  A  <-  H
+09E9    CPI 40
+09EB    JC     a16, 09 D9
+09EE    RET
+09EF    CALL     a16, 0A 3C
+09F2    XRA A
+09F3    32 STA    a16, E9 20
+09F6    CALL     a16, 09 D6
+09F9    LDA  adr
+09FC    PUSH  PSW
+09FD    CALL     a16, 01 E4
+0A00    POP PSW
+0A01    32 STA    a16, 67 20
+0A04    LDA  adr
+0A07    MOV  H  <-  A
+0A08    PUSH  PSW
+0A09    2e MVI     L  <-  FE
+0A0B    MOV  A  <-  M
+0A0C    ANI 07
+0A0E    INR A
+0A0F    MOV  M  <-  A
+0A10    21 LXI    H  <-  1D L  <-  A2
+0A13    23 INX H
+0A14    DCR A
+0A15    JNZ 0A 13
+0A18    MOV  A  <-  M
+0A19    POP H
+0A1A    2e MVI     L  <-  FC
+0A1C    MOV  M  <-  A
+0A1D    23 INX H
+0A1E    36 MVI      M  <-  38
+0A20    MOV  A  <-  H
+0A21    0F  RRC
+0A22    JC     a16, 0A 33
+0A25    MVI    A, 21
+0A27    32 STA    a16, 98 20
+0A2A    CALL     a16, 01 F5
+0A2D    CALL     a16, 19 04
+0A30    JMP  08 04
+0A33    CALL     a16, 01 EF
+0A36    CALL     a16, 01 C0
+0A39    JMP  08 04
+0A3C    CALL     a16, 0A 59
+0A3F    JNZ 0A 52
+0A42    MVI    A, 30
+0A44    32 STA    a16, C0 20
+0A47    LDA  adr
+0A4A    ANA A
+0A4B    RZ
+0A4C    CALL     a16, 0A 59
+0A4F    JZ  0A 47
+0A52    CALL     a16, 0A 59
+0A55    JNZ 0A 52
+0A58    RET
+0A59    LDA  adr
+0A5C    CPI FF
+0A5E    RET
+0A5F    LDA  adr
+0A62    ANA A
+0A63    JZ  0A 7C
+0A66    MOV  C  <-  B
+0A67    06  MVI B <- 08
+0A69    CALL     a16, 18 FA
+0A6C    MOV  B  <-  C
+0A6D    MOV  A  <-  B
+0A6E    CALL     a16, 09 7C
+0A71    MOV  A  <-  M
+0A72    21 LXI    H  <-  20 L  <-  F3
+0A75    36 MVI      M  <-  00
+0A77    2b DCX H
+0A78    MOV  M  <-  A
+0A79    2b DCX H
+0A7A    36 MVI      M  <-  01
+0A7C    21 LXI    H  <-  20 L  <-  62
+0A7F    RET
+0A80    MVI    A, 02
+0A82    32 STA    a16, C1 20
+0A85    OUT D8
+0A87    LDA  adr
+0A8A    ANA A
+0A8B    JZ  0A 85
+0A8E    XRA A
+0A8F    32 STA    a16, C1 20
+0A92    RET
+0A93    PUSH D
+0A94    1a LDAX D
+0A95    CALL     a16, 08 FF
+0A98    POP D
+0A99    MVI    A, 07
+0A9B    32 STA    a16, C0 20
+0A9E    LDA  adr
+0AA1    DCR A
+0AA2    JNZ 0A 9E
+0AA5    13 INX D
+0AA6    0d DCR C
+0AA7    JNZ 0A 93
+0AAA    RET
+0AAB    21 LXI    H  <-  20 L  <-  50
+0AAE    JMP  02 4B
+0AB1    MVI    A, 40
+0AB3    JMP  0A D7
+0AB6    MVI    A, 80
+0AB8    JMP  0A D7
+0ABB    POP H
+0ABC    JMP  00 72
+0ABF    LDA  adr
+0AC2    0F  RRC
+0AC3    JC     a16, 0A BB
+0AC6    0F  RRC
+0AC7    JC     a16, 18 68
+0ACA    0F  RRC
+0ACB    JC     a16, 0A AB
+0ACE    RET
+0ACF    21 LXI    H  <-  2B L  <-  14
+0AD2    0e MVI      C  <-  0F
+0AD4    JMP  0A 93
+0AD7    32 STA    a16, C0 20
+0ADA    LDA  adr
+0ADD    ANA A
+0ADE    JNZ 0A DA
+0AE1    RET
+0AE2    21 LXI    H  <-  20 L  <-  C2
+0AE5    06  MVI B <- 0C
+0AE7    JMP  1A 32
+0AEA    XRA A
+0AEB    OUT D8
+0AED    OUT D8
+0AEF    CALL     a16, 19 82
+0AF2    EI
+0AF3    CALL     a16, 0A B1
+0AF6    LDA  adr
+0AF9    ANA A
+0AFA    21 LXI    H  <-  30 L  <-  17
+0AFD    0e MVI      C  <-  04
+0AFF    JNZ 0B E8
+0B02    11 LXI  D <-  1C  E <-  FA
+0B05    CALL     a16, 0A 93
+0B08    11 LXI  D <-  1D  E <-  AF
+0B0B    CALL     a16, 0A CF
+0B0E    CALL     a16, 0A B1
+0B11    CALL     a16, 18 15
+0B14    CALL     a16, 0A B6
+0B17    LDA  adr
+0B1A    ANA A
+0B1B    JNZ 0B 4A
+0B1E    11 LXI  D <-  1A  E <-  95
+0B21    CALL     a16, 0A E2
+0B24    CALL     a16, 0A 80
+0B27    11 LXI  D <-  1B  E <-  B0
+0B2A    CALL     a16, 0A E2
+0B2D    CALL     a16, 0A 80
+0B30    CALL     a16, 0A B1
+0B33    11 LXI  D <-  1F  E <-  C9
+0B36    CALL     a16, 0A E2
+0B39    CALL     a16, 0A 80
+0B3C    CALL     a16, 0A B1
+0B3F    21 LXI    H  <-  33 L  <-  B7
+0B42    06  MVI B <- 0A
+0B44    CALL     a16, 14 CB
+0B47    CALL     a16, 0A B6
+0B4A    CALL     a16, 09 D6
+0B4D    LDA  adr
+0B50    ANA A
+0B51    JNZ 0B 5D
+0B54    CALL     a16, 08 D1
+0B57    32 STA    a16, FF 21
+0B5A    CALL     a16, 1A 7F
+0B5D    CALL     a16, 01 E4
+0B60    CALL     a16, 01 C0
+0B63    CALL     a16, 01 EF
+0B66    CALL     a16, 02 1A
+0B69    MVI    A, 01
+0B6B    32 STA    a16, C1 20
+0B6E    CALL     a16, 01 CF
+0B71    CALL     a16, 16 18
+0B74    CALL     a16, 0B F1
+0B77    OUT D8
+0B79    CALL     a16, 0A 59
+0B7C    JZ  0B 71
+0B7F    XRA A
+0B80    32 STA    a16, 25 20
+0B83    CALL     a16, 0A 59
+0B86    JNZ 0B 83
+0B89    XRA A
+0B8A    32 STA    a16, C1 20
+0B8D    CALL     a16, 0A B1
+0B90    CALL     a16, 19 88
+0B93    0e MVI      C  <-  0C
+0B95    21 LXI    H  <-  2C L  <-  11
+0B98    11 LXI  D <-  1F  E <-  90
+0B9B    CALL     a16, 08 F3
+0B9E    LDA  adr
+0BA1    CPI 00
+0BA3    JNZ 0B AE
+0BA6    21 LXI    H  <-  33 L  <-  11
+0BA9    MVI    A, 02
+0BAB    CALL     a16, 08 FF
+0BAE    01  LXI, B: 1F 9C
+0BB1    CALL     a16, 18 56
+0BB4    CALL     a16, 18 4C
+0BB7    IN     d8, 02
+0BB9    07  RLC
+0BBA    JC     a16, 0B C3
+0BBD    01  LXI, B: 1F A0
+0BC0    CALL     a16, 18 3A
+0BC3    CALL     a16, 0A B6
+0BC6    LDA  adr
+0BC9    CPI 00
+0BCB    JNZ 0B DA
+0BCE    11 LXI  D <-  1F  E <-  D5
+0BD1    CALL     a16, 0A E2
+0BD4    CALL     a16, 0A 80
+0BD7    CALL     a16, 18 9E
+0BDA    21 LXI    H  <-  20 L  <-  EC
+0BDD    MOV  A  <-  M
+0BDE    INR A
+0BDF    ANI 01
+0BE1    MOV  M  <-  A
+0BE2    CALL     a16, 09 D6
+0BE5    JMP  18 DF
+0BE8    11 LXI  D <-  1D  E <-  AB
+0BEB    CALL     a16, 0A 93
+0BEE    JMP  0B 0B
+0BF1    CALL     a16, 19 0A
+0BF4    JMP  19 9A
+0BF7    13 INX D
+0BF8    00 NOP
+0BF9    08  reserved
+0BFA    13 INX D
+0BFB    0e MVI      C  <-  26
+0BFD    02  STAX B
+0BFE    0e MVI      C  <-  0F
+0C00    00 NOP
+0C01    00 NOP
+0C02    00 NOP
+0C03    00 NOP
+0C04    00 NOP
+0C05    00 NOP
+0C06    00 NOP
+0C07    00 NOP
+0C08    00 NOP
+0C09    00 NOP
+0C0A    00 NOP
+0C0B    00 NOP
+0C0C    00 NOP
+0C0D    00 NOP
+0C0E    00 NOP
+0C0F    00 NOP
+0C10    00 NOP
+0C11    00 NOP
+0C12    00 NOP
+0C13    00 NOP
+0C14    00 NOP
+0C15    00 NOP
+0C16    00 NOP
+0C17    00 NOP
+0C18    00 NOP
+0C19    00 NOP
+0C1A    00 NOP
+0C1B    00 NOP
+0C1C    00 NOP
+0C1D    00 NOP
+0C1E    00 NOP
+0C1F    00 NOP
+0C20    00 NOP
+0C21    00 NOP
+0C22    00 NOP
+0C23    00 NOP
+0C24    00 NOP
+0C25    00 NOP
+0C26    00 NOP
+0C27    00 NOP
+0C28    00 NOP
+0C29    00 NOP
+0C2A    00 NOP
+0C2B    00 NOP
+0C2C    00 NOP
+0C2D    00 NOP
+0C2E    00 NOP
+0C2F    00 NOP
+0C30    00 NOP
+0C31    00 NOP
+0C32    00 NOP
+0C33    00 NOP
+0C34    00 NOP
+0C35    00 NOP
+0C36    00 NOP
+0C37    00 NOP
+0C38    00 NOP
+0C39    00 NOP
+0C3A    00 NOP
+0C3B    00 NOP
+0C3C    00 NOP
+0C3D    00 NOP
+0C3E    00 NOP
+0C3F    00 NOP
+0C40    00 NOP
+0C41    00 NOP
+0C42    00 NOP
+0C43    00 NOP
+0C44    00 NOP
+0C45    00 NOP
+0C46    00 NOP
+0C47    00 NOP
+0C48    00 NOP
+0C49    00 NOP
+0C4A    00 NOP
+0C4B    00 NOP
+0C4C    00 NOP
+0C4D    00 NOP
+0C4E    00 NOP
+0C4F    00 NOP
+0C50    00 NOP
+0C51    00 NOP
+0C52    00 NOP
+0C53    00 NOP
+0C54    00 NOP
+0C55    00 NOP
+0C56    00 NOP
+0C57    00 NOP
+0C58    00 NOP
+0C59    00 NOP
+0C5A    00 NOP
+0C5B    00 NOP
+0C5C    00 NOP
+0C5D    00 NOP
+0C5E    00 NOP
+0C5F    00 NOP
+0C60    00 NOP
+0C61    00 NOP
+0C62    00 NOP
+0C63    00 NOP
+0C64    00 NOP
+0C65    00 NOP
+0C66    00 NOP
+0C67    00 NOP
+0C68    00 NOP
+0C69    00 NOP
+0C6A    00 NOP
+0C6B    00 NOP
+0C6C    00 NOP
+0C6D    00 NOP
+0C6E    00 NOP
+0C6F    00 NOP
+0C70    00 NOP
+0C71    00 NOP
+0C72    00 NOP
+0C73    00 NOP
+0C74    00 NOP
+0C75    00 NOP
+0C76    00 NOP
+0C77    00 NOP
+0C78    00 NOP
+0C79    00 NOP
+0C7A    00 NOP
+0C7B    00 NOP
+0C7C    00 NOP
+0C7D    00 NOP
+0C7E    00 NOP
+0C7F    00 NOP
+0C80    00 NOP
+0C81    00 NOP
+0C82    00 NOP
+0C83    00 NOP
+0C84    00 NOP
+0C85    00 NOP
+0C86    00 NOP
+0C87    00 NOP
+0C88    00 NOP
+0C89    00 NOP
+0C8A    00 NOP
+0C8B    00 NOP
+0C8C    00 NOP
+0C8D    00 NOP
+0C8E    00 NOP
+0C8F    00 NOP
+0C90    00 NOP
+0C91    00 NOP
+0C92    00 NOP
+0C93    00 NOP
+0C94    00 NOP
+0C95    00 NOP
+0C96    00 NOP
+0C97    00 NOP
+0C98    00 NOP
+0C99    00 NOP
+0C9A    00 NOP
+0C9B    00 NOP
+0C9C    00 NOP
+0C9D    00 NOP
+0C9E    00 NOP
+0C9F    00 NOP
+0CA0    00 NOP
+0CA1    00 NOP
+0CA2    00 NOP
+0CA3    00 NOP
+0CA4    00 NOP
+0CA5    00 NOP
+0CA6    00 NOP
+0CA7    00 NOP
+0CA8    00 NOP
+0CA9    00 NOP
+0CAA    00 NOP
+0CAB    00 NOP
+0CAC    00 NOP
+0CAD    00 NOP
+0CAE    00 NOP
+0CAF    00 NOP
+0CB0    00 NOP
+0CB1    00 NOP
+0CB2    00 NOP
+0CB3    00 NOP
+0CB4    00 NOP
+0CB5    00 NOP
+0CB6    00 NOP
+0CB7    00 NOP
+0CB8    00 NOP
+0CB9    00 NOP
+0CBA    00 NOP
+0CBB    00 NOP
+0CBC    00 NOP
+0CBD    00 NOP
+0CBE    00 NOP
+0CBF    00 NOP
+0CC0    00 NOP
+0CC1    00 NOP
+0CC2    00 NOP
+0CC3    00 NOP
+0CC4    00 NOP
+0CC5    00 NOP
+0CC6    00 NOP
+0CC7    00 NOP
+0CC8    00 NOP
+0CC9    00 NOP
+0CCA    00 NOP
+0CCB    00 NOP
+0CCC    00 NOP
+0CCD    00 NOP
+0CCE    00 NOP
+0CCF    00 NOP
+0CD0    00 NOP
+0CD1    00 NOP
+0CD2    00 NOP
+0CD3    00 NOP
+0CD4    00 NOP
+0CD5    00 NOP
+0CD6    00 NOP
+0CD7    00 NOP
+0CD8    00 NOP
+0CD9    00 NOP
+0CDA    00 NOP
+0CDB    00 NOP
+0CDC    00 NOP
+0CDD    00 NOP
+0CDE    00 NOP
+0CDF    00 NOP
+0CE0    00 NOP
+0CE1    00 NOP
+0CE2    00 NOP
+0CE3    00 NOP
+0CE4    00 NOP
+0CE5    00 NOP
+0CE6    00 NOP
+0CE7    00 NOP
+0CE8    00 NOP
+0CE9    00 NOP
+0CEA    00 NOP
+0CEB    00 NOP
+0CEC    00 NOP
+0CED    00 NOP
+0CEE    00 NOP
+0CEF    00 NOP
+0CF0    00 NOP
+0CF1    00 NOP
+0CF2    00 NOP
+0CF3    00 NOP
+0CF4    00 NOP
+0CF5    00 NOP
+0CF6    00 NOP
+0CF7    00 NOP
+0CF8    00 NOP
+0CF9    00 NOP
+0CFA    00 NOP
+0CFB    00 NOP
+0CFC    00 NOP
+0CFD    00 NOP
+0CFE    00 NOP
+0CFF    00 NOP
+0D00    00 NOP
+0D01    00 NOP
+0D02    00 NOP
+0D03    00 NOP
+0D04    00 NOP
+0D05    00 NOP
+0D06    00 NOP
+0D07    00 NOP
+0D08    00 NOP
+0D09    00 NOP
+0D0A    00 NOP
+0D0B    00 NOP
+0D0C    00 NOP
+0D0D    00 NOP
+0D0E    00 NOP
+0D0F    00 NOP
+0D10    00 NOP
+0D11    00 NOP
+0D12    00 NOP
+0D13    00 NOP
+0D14    00 NOP
+0D15    00 NOP
+0D16    00 NOP
+0D17    00 NOP
+0D18    00 NOP
+0D19    00 NOP
+0D1A    00 NOP
+0D1B    00 NOP
+0D1C    00 NOP
+0D1D    00 NOP
+0D1E    00 NOP
+0D1F    00 NOP
+0D20    00 NOP
+0D21    00 NOP
+0D22    00 NOP
+0D23    00 NOP
+0D24    00 NOP
+0D25    00 NOP
+0D26    00 NOP
+0D27    00 NOP
+0D28    00 NOP
+0D29    00 NOP
+0D2A    00 NOP
+0D2B    00 NOP
+0D2C    00 NOP
+0D2D    00 NOP
+0D2E    00 NOP
+0D2F    00 NOP
+0D30    00 NOP
+0D31    00 NOP
+0D32    00 NOP
+0D33    00 NOP
+0D34    00 NOP
+0D35    00 NOP
+0D36    00 NOP
+0D37    00 NOP
+0D38    00 NOP
+0D39    00 NOP
+0D3A    00 NOP
+0D3B    00 NOP
+0D3C    00 NOP
+0D3D    00 NOP
+0D3E    00 NOP
+0D3F    00 NOP
+0D40    00 NOP
+0D41    00 NOP
+0D42    00 NOP
+0D43    00 NOP
+0D44    00 NOP
+0D45    00 NOP
+0D46    00 NOP
+0D47    00 NOP
+0D48    00 NOP
+0D49    00 NOP
+0D4A    00 NOP
+0D4B    00 NOP
+0D4C    00 NOP
+0D4D    00 NOP
+0D4E    00 NOP
+0D4F    00 NOP
+0D50    00 NOP
+0D51    00 NOP
+0D52    00 NOP
+0D53    00 NOP
+0D54    00 NOP
+0D55    00 NOP
+0D56    00 NOP
+0D57    00 NOP
+0D58    00 NOP
+0D59    00 NOP
+0D5A    00 NOP
+0D5B    00 NOP
+0D5C    00 NOP
+0D5D    00 NOP
+0D5E    00 NOP
+0D5F    00 NOP
+0D60    00 NOP
+0D61    00 NOP
+0D62    00 NOP
+0D63    00 NOP
+0D64    00 NOP
+0D65    00 NOP
+0D66    00 NOP
+0D67    00 NOP
+0D68    00 NOP
+0D69    00 NOP
+0D6A    00 NOP
+0D6B    00 NOP
+0D6C    00 NOP
+0D6D    00 NOP
+0D6E    00 NOP
+0D6F    00 NOP
+0D70    00 NOP
+0D71    00 NOP
+0D72    00 NOP
+0D73    00 NOP
+0D74    00 NOP
+0D75    00 NOP
+0D76    00 NOP
+0D77    00 NOP
+0D78    00 NOP
+0D79    00 NOP
+0D7A    00 NOP
+0D7B    00 NOP
+0D7C    00 NOP
+0D7D    00 NOP
+0D7E    00 NOP
+0D7F    00 NOP
+0D80    00 NOP
+0D81    00 NOP
+0D82    00 NOP
+0D83    00 NOP
+0D84    00 NOP
+0D85    00 NOP
+0D86    00 NOP
+0D87    00 NOP
+0D88    00 NOP
+0D89    00 NOP
+0D8A    00 NOP
+0D8B    00 NOP
+0D8C    00 NOP
+0D8D    00 NOP
+0D8E    00 NOP
+0D8F    00 NOP
+0D90    00 NOP
+0D91    00 NOP
+0D92    00 NOP
+0D93    00 NOP
+0D94    00 NOP
+0D95    00 NOP
+0D96    00 NOP
+0D97    00 NOP
+0D98    00 NOP
+0D99    00 NOP
+0D9A    00 NOP
+0D9B    00 NOP
+0D9C    00 NOP
+0D9D    00 NOP
+0D9E    00 NOP
+0D9F    00 NOP
+0DA0    00 NOP
+0DA1    00 NOP
+0DA2    00 NOP
+0DA3    00 NOP
+0DA4    00 NOP
+0DA5    00 NOP
+0DA6    00 NOP
+0DA7    00 NOP
+0DA8    00 NOP
+0DA9    00 NOP
+0DAA    00 NOP
+0DAB    00 NOP
+0DAC    00 NOP
+0DAD    00 NOP
+0DAE    00 NOP
+0DAF    00 NOP
+0DB0    00 NOP
+0DB1    00 NOP
+0DB2    00 NOP
+0DB3    00 NOP
+0DB4    00 NOP
+0DB5    00 NOP
+0DB6    00 NOP
+0DB7    00 NOP
+0DB8    00 NOP
+0DB9    00 NOP
+0DBA    00 NOP
+0DBB    00 NOP
+0DBC    00 NOP
+0DBD    00 NOP
+0DBE    00 NOP
+0DBF    00 NOP
+0DC0    00 NOP
+0DC1    00 NOP
+0DC2    00 NOP
+0DC3    00 NOP
+0DC4    00 NOP
+0DC5    00 NOP
+0DC6    00 NOP
+0DC7    00 NOP
+0DC8    00 NOP
+0DC9    00 NOP
+0DCA    00 NOP
+0DCB    00 NOP
+0DCC    00 NOP
+0DCD    00 NOP
+0DCE    00 NOP
+0DCF    00 NOP
+0DD0    00 NOP
+0DD1    00 NOP
+0DD2    00 NOP
+0DD3    00 NOP
+0DD4    00 NOP
+0DD5    00 NOP
+0DD6    00 NOP
+0DD7    00 NOP
+0DD8    00 NOP
+0DD9    00 NOP
+0DDA    00 NOP
+0DDB    00 NOP
+0DDC    00 NOP
+0DDD    00 NOP
+0DDE    00 NOP
+0DDF    00 NOP
+0DE0    00 NOP
+0DE1    00 NOP
+0DE2    00 NOP
+0DE3    00 NOP
+0DE4    00 NOP
+0DE5    00 NOP
+0DE6    00 NOP
+0DE7    00 NOP
+0DE8    00 NOP
+0DE9    00 NOP
+0DEA    00 NOP
+0DEB    00 NOP
+0DEC    00 NOP
+0DED    00 NOP
+0DEE    00 NOP
+0DEF    00 NOP
+0DF0    00 NOP
+0DF1    00 NOP
+0DF2    00 NOP
+0DF3    00 NOP
+0DF4    00 NOP
+0DF5    00 NOP
+0DF6    00 NOP
+0DF7    00 NOP
+0DF8    00 NOP
+0DF9    00 NOP
+0DFA    00 NOP
+0DFB    00 NOP
+0DFC    00 NOP
+0DFD    00 NOP
+0DFE    00 NOP
+0DFF    00 NOP
+0E00    00 NOP
+0E01    00 NOP
+0E02    00 NOP
+0E03    00 NOP
+0E04    00 NOP
+0E05    00 NOP
+0E06    00 NOP
+0E07    00 NOP
+0E08    00 NOP
+0E09    00 NOP
+0E0A    00 NOP
+0E0B    00 NOP
+0E0C    00 NOP
+0E0D    00 NOP
+0E0E    00 NOP
+0E0F    00 NOP
+0E10    00 NOP
+0E11    00 NOP
+0E12    00 NOP
+0E13    00 NOP
+0E14    00 NOP
+0E15    00 NOP
+0E16    00 NOP
+0E17    00 NOP
+0E18    00 NOP
+0E19    00 NOP
+0E1A    00 NOP
+0E1B    00 NOP
+0E1C    00 NOP
+0E1D    00 NOP
+0E1E    00 NOP
+0E1F    00 NOP
+0E20    00 NOP
+0E21    00 NOP
+0E22    00 NOP
+0E23    00 NOP
+0E24    00 NOP
+0E25    00 NOP
+0E26    00 NOP
+0E27    00 NOP
+0E28    00 NOP
+0E29    00 NOP
+0E2A    00 NOP
+0E2B    00 NOP
+0E2C    00 NOP
+0E2D    00 NOP
+0E2E    00 NOP
+0E2F    00 NOP
+0E30    00 NOP
+0E31    00 NOP
+0E32    00 NOP
+0E33    00 NOP
+0E34    00 NOP
+0E35    00 NOP
+0E36    00 NOP
+0E37    00 NOP
+0E38    00 NOP
+0E39    00 NOP
+0E3A    00 NOP
+0E3B    00 NOP
+0E3C    00 NOP
+0E3D    00 NOP
+0E3E    00 NOP
+0E3F    00 NOP
+0E40    00 NOP
+0E41    00 NOP
+0E42    00 NOP
+0E43    00 NOP
+0E44    00 NOP
+0E45    00 NOP
+0E46    00 NOP
+0E47    00 NOP
+0E48    00 NOP
+0E49    00 NOP
+0E4A    00 NOP
+0E4B    00 NOP
+0E4C    00 NOP
+0E4D    00 NOP
+0E4E    00 NOP
+0E4F    00 NOP
+0E50    00 NOP
+0E51    00 NOP
+0E52    00 NOP
+0E53    00 NOP
+0E54    00 NOP
+0E55    00 NOP
+0E56    00 NOP
+0E57    00 NOP
+0E58    00 NOP
+0E59    00 NOP
+0E5A    00 NOP
+0E5B    00 NOP
+0E5C    00 NOP
+0E5D    00 NOP
+0E5E    00 NOP
+0E5F    00 NOP
+0E60    00 NOP
+0E61    00 NOP
+0E62    00 NOP
+0E63    00 NOP
+0E64    00 NOP
+0E65    00 NOP
+0E66    00 NOP
+0E67    00 NOP
+0E68    00 NOP
+0E69    00 NOP
+0E6A    00 NOP
+0E6B    00 NOP
+0E6C    00 NOP
+0E6D    00 NOP
+0E6E    00 NOP
+0E6F    00 NOP
+0E70    00 NOP
+0E71    00 NOP
+0E72    00 NOP
+0E73    00 NOP
+0E74    00 NOP
+0E75    00 NOP
+0E76    00 NOP
+0E77    00 NOP
+0E78    00 NOP
+0E79    00 NOP
+0E7A    00 NOP
+0E7B    00 NOP
+0E7C    00 NOP
+0E7D    00 NOP
+0E7E    00 NOP
+0E7F    00 NOP
+0E80    00 NOP
+0E81    00 NOP
+0E82    00 NOP
+0E83    00 NOP
+0E84    00 NOP
+0E85    00 NOP
+0E86    00 NOP
+0E87    00 NOP
+0E88    00 NOP
+0E89    00 NOP
+0E8A    00 NOP
+0E8B    00 NOP
+0E8C    00 NOP
+0E8D    00 NOP
+0E8E    00 NOP
+0E8F    00 NOP
+0E90    00 NOP
+0E91    00 NOP
+0E92    00 NOP
+0E93    00 NOP
+0E94    00 NOP
+0E95    00 NOP
+0E96    00 NOP
+0E97    00 NOP
+0E98    00 NOP
+0E99    00 NOP
+0E9A    00 NOP
+0E9B    00 NOP
+0E9C    00 NOP
+0E9D    00 NOP
+0E9E    00 NOP
+0E9F    00 NOP
+0EA0    00 NOP
+0EA1    00 NOP
+0EA2    00 NOP
+0EA3    00 NOP
+0EA4    00 NOP
+0EA5    00 NOP
+0EA6    00 NOP
+0EA7    00 NOP
+0EA8    00 NOP
+0EA9    00 NOP
+0EAA    00 NOP
+0EAB    00 NOP
+0EAC    00 NOP
+0EAD    00 NOP
+0EAE    00 NOP
+0EAF    00 NOP
+0EB0    00 NOP
+0EB1    00 NOP
+0EB2    00 NOP
+0EB3    00 NOP
+0EB4    00 NOP
+0EB5    00 NOP
+0EB6    00 NOP
+0EB7    00 NOP
+0EB8    00 NOP
+0EB9    00 NOP
+0EBA    00 NOP
+0EBB    00 NOP
+0EBC    00 NOP
+0EBD    00 NOP
+0EBE    00 NOP
+0EBF    00 NOP
+0EC0    00 NOP
+0EC1    00 NOP
+0EC2    00 NOP
+0EC3    00 NOP
+0EC4    00 NOP
+0EC5    00 NOP
+0EC6    00 NOP
+0EC7    00 NOP
+0EC8    00 NOP
+0EC9    00 NOP
+0ECA    00 NOP
+0ECB    00 NOP
+0ECC    00 NOP
+0ECD    00 NOP
+0ECE    00 NOP
+0ECF    00 NOP
+0ED0    00 NOP
+0ED1    00 NOP
+0ED2    00 NOP
+0ED3    00 NOP
+0ED4    00 NOP
+0ED5    00 NOP
+0ED6    00 NOP
+0ED7    00 NOP
+0ED8    00 NOP
+0ED9    00 NOP
+0EDA    00 NOP
+0EDB    00 NOP
+0EDC    00 NOP
+0EDD    00 NOP
+0EDE    00 NOP
+0EDF    00 NOP
+0EE0    00 NOP
+0EE1    00 NOP
+0EE2    00 NOP
+0EE3    00 NOP
+0EE4    00 NOP
+0EE5    00 NOP
+0EE6    00 NOP
+0EE7    00 NOP
+0EE8    00 NOP
+0EE9    00 NOP
+0EEA    00 NOP
+0EEB    00 NOP
+0EEC    00 NOP
+0EED    00 NOP
+0EEE    00 NOP
+0EEF    00 NOP
+0EF0    00 NOP
+0EF1    00 NOP
+0EF2    00 NOP
+0EF3    00 NOP
+0EF4    00 NOP
+0EF5    00 NOP
+0EF6    00 NOP
+0EF7    00 NOP
+0EF8    00 NOP
+0EF9    00 NOP
+0EFA    00 NOP
+0EFB    00 NOP
+0EFC    00 NOP
+0EFD    00 NOP
+0EFE    00 NOP
+0EFF    00 NOP
+0F00    00 NOP
+0F01    00 NOP
+0F02    00 NOP
+0F03    00 NOP
+0F04    00 NOP
+0F05    00 NOP
+0F06    00 NOP
+0F07    00 NOP
+0F08    00 NOP
+0F09    00 NOP
+0F0A    00 NOP
+0F0B    00 NOP
+0F0C    00 NOP
+0F0D    00 NOP
+0F0E    00 NOP
+0F0F    00 NOP
+0F10    00 NOP
+0F11    00 NOP
+0F12    00 NOP
+0F13    00 NOP
+0F14    00 NOP
+0F15    00 NOP
+0F16    00 NOP
+0F17    00 NOP
+0F18    00 NOP
+0F19    00 NOP
+0F1A    00 NOP
+0F1B    00 NOP
+0F1C    00 NOP
+0F1D    00 NOP
+0F1E    00 NOP
+0F1F    00 NOP
+0F20    00 NOP
+0F21    00 NOP
+0F22    00 NOP
+0F23    00 NOP
+0F24    00 NOP
+0F25    00 NOP
+0F26    00 NOP
+0F27    00 NOP
+0F28    00 NOP
+0F29    00 NOP
+0F2A    00 NOP
+0F2B    00 NOP
+0F2C    00 NOP
+0F2D    00 NOP
+0F2E    00 NOP
+0F2F    00 NOP
+0F30    00 NOP
+0F31    00 NOP
+0F32    00 NOP
+0F33    00 NOP
+0F34    00 NOP
+0F35    00 NOP
+0F36    00 NOP
+0F37    00 NOP
+0F38    00 NOP
+0F39    00 NOP
+0F3A    00 NOP
+0F3B    00 NOP
+0F3C    00 NOP
+0F3D    00 NOP
+0F3E    00 NOP
+0F3F    00 NOP
+0F40    00 NOP
+0F41    00 NOP
+0F42    00 NOP
+0F43    00 NOP
+0F44    00 NOP
+0F45    00 NOP
+0F46    00 NOP
+0F47    00 NOP
+0F48    00 NOP
+0F49    00 NOP
+0F4A    00 NOP
+0F4B    00 NOP
+0F4C    00 NOP
+0F4D    00 NOP
+0F4E    00 NOP
+0F4F    00 NOP
+0F50    00 NOP
+0F51    00 NOP
+0F52    00 NOP
+0F53    00 NOP
+0F54    00 NOP
+0F55    00 NOP
+0F56    00 NOP
+0F57    00 NOP
+0F58    00 NOP
+0F59    00 NOP
+0F5A    00 NOP
+0F5B    00 NOP
+0F5C    00 NOP
+0F5D    00 NOP
+0F5E    00 NOP
+0F5F    00 NOP
+0F60    00 NOP
+0F61    00 NOP
+0F62    00 NOP
+0F63    00 NOP
+0F64    00 NOP
+0F65    00 NOP
+0F66    00 NOP
+0F67    00 NOP
+0F68    00 NOP
+0F69    00 NOP
+0F6A    00 NOP
+0F6B    00 NOP
+0F6C    00 NOP
+0F6D    00 NOP
+0F6E    00 NOP
+0F6F    00 NOP
+0F70    00 NOP
+0F71    00 NOP
+0F72    00 NOP
+0F73    00 NOP
+0F74    00 NOP
+0F75    00 NOP
+0F76    00 NOP
+0F77    00 NOP
+0F78    00 NOP
+0F79    00 NOP
+0F7A    00 NOP
+0F7B    00 NOP
+0F7C    00 NOP
+0F7D    00 NOP
+0F7E    00 NOP
+0F7F    00 NOP
+0F80    00 NOP
+0F81    00 NOP
+0F82    00 NOP
+0F83    00 NOP
+0F84    00 NOP
+0F85    00 NOP
+0F86    00 NOP
+0F87    00 NOP
+0F88    00 NOP
+0F89    00 NOP
+0F8A    00 NOP
+0F8B    00 NOP
+0F8C    00 NOP
+0F8D    00 NOP
+0F8E    00 NOP
+0F8F    00 NOP
+0F90    00 NOP
+0F91    00 NOP
+0F92    00 NOP
+0F93    00 NOP
+0F94    00 NOP
+0F95    00 NOP
+0F96    00 NOP
+0F97    00 NOP
+0F98    00 NOP
+0F99    00 NOP
+0F9A    00 NOP
+0F9B    00 NOP
+0F9C    00 NOP
+0F9D    00 NOP
+0F9E    00 NOP
+0F9F    00 NOP
+0FA0    00 NOP
+0FA1    00 NOP
+0FA2    00 NOP
+0FA3    00 NOP
+0FA4    00 NOP
+0FA5    00 NOP
+0FA6    00 NOP
+0FA7    00 NOP
+0FA8    00 NOP
+0FA9    00 NOP
+0FAA    00 NOP
+0FAB    00 NOP
+0FAC    00 NOP
+0FAD    00 NOP
+0FAE    00 NOP
+0FAF    00 NOP
+0FB0    00 NOP
+0FB1    00 NOP
+0FB2    00 NOP
+0FB3    00 NOP
+0FB4    00 NOP
+0FB5    00 NOP
+0FB6    00 NOP
+0FB7    00 NOP
+0FB8    00 NOP
+0FB9    00 NOP
+0FBA    00 NOP
+0FBB    00 NOP
+0FBC    00 NOP
+0FBD    00 NOP
+0FBE    00 NOP
+0FBF    00 NOP
+0FC0    00 NOP
+0FC1    00 NOP
+0FC2    00 NOP
+0FC3    00 NOP
+0FC4    00 NOP
+0FC5    00 NOP
+0FC6    00 NOP
+0FC7    00 NOP
+0FC8    00 NOP
+0FC9    00 NOP
+0FCA    00 NOP
+0FCB    00 NOP
+0FCC    00 NOP
+0FCD    00 NOP
+0FCE    00 NOP
+0FCF    00 NOP
+0FD0    00 NOP
+0FD1    00 NOP
+0FD2    00 NOP
+0FD3    00 NOP
+0FD4    00 NOP
+0FD5    00 NOP
+0FD6    00 NOP
+0FD7    00 NOP
+0FD8    00 NOP
+0FD9    00 NOP
+0FDA    00 NOP
+0FDB    00 NOP
+0FDC    00 NOP
+0FDD    00 NOP
+0FDE    00 NOP
+0FDF    00 NOP
+0FE0    00 NOP
+0FE1    00 NOP
+0FE2    00 NOP
+0FE3    00 NOP
+0FE4    00 NOP
+0FE5    00 NOP
+0FE6    00 NOP
+0FE7    00 NOP
+0FE8    00 NOP
+0FE9    00 NOP
+0FEA    00 NOP
+0FEB    00 NOP
+0FEC    00 NOP
+0FED    00 NOP
+0FEE    00 NOP
+0FEF    00 NOP
+0FF0    00 NOP
+0FF1    00 NOP
+0FF2    00 NOP
+0FF3    00 NOP
+0FF4    00 NOP
+0FF5    00 NOP
+0FF6    00 NOP
+0FF7    00 NOP
+0FF8    00 NOP
+0FF9    00 NOP
+0FFA    00 NOP
+0FFB    00 NOP
+0FFC    00 NOP
+0FFD    00 NOP
+0FFE    00 NOP
+0FFF    00 NOP
+1000    00 NOP
+1001    00 NOP
+1002    00 NOP
+1003    00 NOP
+1004    00 NOP
+1005    00 NOP
+1006    00 NOP
+1007    00 NOP
+1008    00 NOP
+1009    00 NOP
+100A    00 NOP
+100B    00 NOP
+100C    00 NOP
+100D    00 NOP
+100E    00 NOP
+100F    00 NOP
+1010    00 NOP
+1011    00 NOP
+1012    00 NOP
+1013    00 NOP
+1014    00 NOP
+1015    00 NOP
+1016    00 NOP
+1017    00 NOP
+1018    00 NOP
+1019    00 NOP
+101A    00 NOP
+101B    00 NOP
+101C    00 NOP
+101D    00 NOP
+101E    00 NOP
+101F    00 NOP
+1020    00 NOP
+1021    00 NOP
+1022    00 NOP
+1023    00 NOP
+1024    00 NOP
+1025    00 NOP
+1026    00 NOP
+1027    00 NOP
+1028    00 NOP
+1029    00 NOP
+102A    00 NOP
+102B    00 NOP
+102C    00 NOP
+102D    00 NOP
+102E    00 NOP
+102F    00 NOP
+1030    00 NOP
+1031    00 NOP
+1032    00 NOP
+1033    00 NOP
+1034    00 NOP
+1035    00 NOP
+1036    00 NOP
+1037    00 NOP
+1038    00 NOP
+1039    00 NOP
+103A    00 NOP
+103B    00 NOP
+103C    00 NOP
+103D    00 NOP
+103E    00 NOP
+103F    00 NOP
+1040    00 NOP
+1041    00 NOP
+1042    00 NOP
+1043    00 NOP
+1044    00 NOP
+1045    00 NOP
+1046    00 NOP
+1047    00 NOP
+1048    00 NOP
+1049    00 NOP
+104A    00 NOP
+104B    00 NOP
+104C    00 NOP
+104D    00 NOP
+104E    00 NOP
+104F    00 NOP
+1050    00 NOP
+1051    00 NOP
+1052    00 NOP
+1053    00 NOP
+1054    00 NOP
+1055    00 NOP
+1056    00 NOP
+1057    00 NOP
+1058    00 NOP
+1059    00 NOP
+105A    00 NOP
+105B    00 NOP
+105C    00 NOP
+105D    00 NOP
+105E    00 NOP
+105F    00 NOP
+1060    00 NOP
+1061    00 NOP
+1062    00 NOP
+1063    00 NOP
+1064    00 NOP
+1065    00 NOP
+1066    00 NOP
+1067    00 NOP
+1068    00 NOP
+1069    00 NOP
+106A    00 NOP
+106B    00 NOP
+106C    00 NOP
+106D    00 NOP
+106E    00 NOP
+106F    00 NOP
+1070    00 NOP
+1071    00 NOP
+1072    00 NOP
+1073    00 NOP
+1074    00 NOP
+1075    00 NOP
+1076    00 NOP
+1077    00 NOP
+1078    00 NOP
+1079    00 NOP
+107A    00 NOP
+107B    00 NOP
+107C    00 NOP
+107D    00 NOP
+107E    00 NOP
+107F    00 NOP
+1080    00 NOP
+1081    00 NOP
+1082    00 NOP
+1083    00 NOP
+1084    00 NOP
+1085    00 NOP
+1086    00 NOP
+1087    00 NOP
+1088    00 NOP
+1089    00 NOP
+108A    00 NOP
+108B    00 NOP
+108C    00 NOP
+108D    00 NOP
+108E    00 NOP
+108F    00 NOP
+1090    00 NOP
+1091    00 NOP
+1092    00 NOP
+1093    00 NOP
+1094    00 NOP
+1095    00 NOP
+1096    00 NOP
+1097    00 NOP
+1098    00 NOP
+1099    00 NOP
+109A    00 NOP
+109B    00 NOP
+109C    00 NOP
+109D    00 NOP
+109E    00 NOP
+109F    00 NOP
+10A0    00 NOP
+10A1    00 NOP
+10A2    00 NOP
+10A3    00 NOP
+10A4    00 NOP
+10A5    00 NOP
+10A6    00 NOP
+10A7    00 NOP
+10A8    00 NOP
+10A9    00 NOP
+10AA    00 NOP
+10AB    00 NOP
+10AC    00 NOP
+10AD    00 NOP
+10AE    00 NOP
+10AF    00 NOP
+10B0    00 NOP
+10B1    00 NOP
+10B2    00 NOP
+10B3    00 NOP
+10B4    00 NOP
+10B5    00 NOP
+10B6    00 NOP
+10B7    00 NOP
+10B8    00 NOP
+10B9    00 NOP
+10BA    00 NOP
+10BB    00 NOP
+10BC    00 NOP
+10BD    00 NOP
+10BE    00 NOP
+10BF    00 NOP
+10C0    00 NOP
+10C1    00 NOP
+10C2    00 NOP
+10C3    00 NOP
+10C4    00 NOP
+10C5    00 NOP
+10C6    00 NOP
+10C7    00 NOP
+10C8    00 NOP
+10C9    00 NOP
+10CA    00 NOP
+10CB    00 NOP
+10CC    00 NOP
+10CD    00 NOP
+10CE    00 NOP
+10CF    00 NOP
+10D0    00 NOP
+10D1    00 NOP
+10D2    00 NOP
+10D3    00 NOP
+10D4    00 NOP
+10D5    00 NOP
+10D6    00 NOP
+10D7    00 NOP
+10D8    00 NOP
+10D9    00 NOP
+10DA    00 NOP
+10DB    00 NOP
+10DC    00 NOP
+10DD    00 NOP
+10DE    00 NOP
+10DF    00 NOP
+10E0    00 NOP
+10E1    00 NOP
+10E2    00 NOP
+10E3    00 NOP
+10E4    00 NOP
+10E5    00 NOP
+10E6    00 NOP
+10E7    00 NOP
+10E8    00 NOP
+10E9    00 NOP
+10EA    00 NOP
+10EB    00 NOP
+10EC    00 NOP
+10ED    00 NOP
+10EE    00 NOP
+10EF    00 NOP
+10F0    00 NOP
+10F1    00 NOP
+10F2    00 NOP
+10F3    00 NOP
+10F4    00 NOP
+10F5    00 NOP
+10F6    00 NOP
+10F7    00 NOP
+10F8    00 NOP
+10F9    00 NOP
+10FA    00 NOP
+10FB    00 NOP
+10FC    00 NOP
+10FD    00 NOP
+10FE    00 NOP
+10FF    00 NOP
+1100    00 NOP
+1101    00 NOP
+1102    00 NOP
+1103    00 NOP
+1104    00 NOP
+1105    00 NOP
+1106    00 NOP
+1107    00 NOP
+1108    00 NOP
+1109    00 NOP
+110A    00 NOP
+110B    00 NOP
+110C    00 NOP
+110D    00 NOP
+110E    00 NOP
+110F    00 NOP
+1110    00 NOP
+1111    00 NOP
+1112    00 NOP
+1113    00 NOP
+1114    00 NOP
+1115    00 NOP
+1116    00 NOP
+1117    00 NOP
+1118    00 NOP
+1119    00 NOP
+111A    00 NOP
+111B    00 NOP
+111C    00 NOP
+111D    00 NOP
+111E    00 NOP
+111F    00 NOP
+1120    00 NOP
+1121    00 NOP
+1122    00 NOP
+1123    00 NOP
+1124    00 NOP
+1125    00 NOP
+1126    00 NOP
+1127    00 NOP
+1128    00 NOP
+1129    00 NOP
+112A    00 NOP
+112B    00 NOP
+112C    00 NOP
+112D    00 NOP
+112E    00 NOP
+112F    00 NOP
+1130    00 NOP
+1131    00 NOP
+1132    00 NOP
+1133    00 NOP
+1134    00 NOP
+1135    00 NOP
+1136    00 NOP
+1137    00 NOP
+1138    00 NOP
+1139    00 NOP
+113A    00 NOP
+113B    00 NOP
+113C    00 NOP
+113D    00 NOP
+113E    00 NOP
+113F    00 NOP
+1140    00 NOP
+1141    00 NOP
+1142    00 NOP
+1143    00 NOP
+1144    00 NOP
+1145    00 NOP
+1146    00 NOP
+1147    00 NOP
+1148    00 NOP
+1149    00 NOP
+114A    00 NOP
+114B    00 NOP
+114C    00 NOP
+114D    00 NOP
+114E    00 NOP
+114F    00 NOP
+1150    00 NOP
+1151    00 NOP
+1152    00 NOP
+1153    00 NOP
+1154    00 NOP
+1155    00 NOP
+1156    00 NOP
+1157    00 NOP
+1158    00 NOP
+1159    00 NOP
+115A    00 NOP
+115B    00 NOP
+115C    00 NOP
+115D    00 NOP
+115E    00 NOP
+115F    00 NOP
+1160    00 NOP
+1161    00 NOP
+1162    00 NOP
+1163    00 NOP
+1164    00 NOP
+1165    00 NOP
+1166    00 NOP
+1167    00 NOP
+1168    00 NOP
+1169    00 NOP
+116A    00 NOP
+116B    00 NOP
+116C    00 NOP
+116D    00 NOP
+116E    00 NOP
+116F    00 NOP
+1170    00 NOP
+1171    00 NOP
+1172    00 NOP
+1173    00 NOP
+1174    00 NOP
+1175    00 NOP
+1176    00 NOP
+1177    00 NOP
+1178    00 NOP
+1179    00 NOP
+117A    00 NOP
+117B    00 NOP
+117C    00 NOP
+117D    00 NOP
+117E    00 NOP
+117F    00 NOP
+1180    00 NOP
+1181    00 NOP
+1182    00 NOP
+1183    00 NOP
+1184    00 NOP
+1185    00 NOP
+1186    00 NOP
+1187    00 NOP
+1188    00 NOP
+1189    00 NOP
+118A    00 NOP
+118B    00 NOP
+118C    00 NOP
+118D    00 NOP
+118E    00 NOP
+118F    00 NOP
+1190    00 NOP
+1191    00 NOP
+1192    00 NOP
+1193    00 NOP
+1194    00 NOP
+1195    00 NOP
+1196    00 NOP
+1197    00 NOP
+1198    00 NOP
+1199    00 NOP
+119A    00 NOP
+119B    00 NOP
+119C    00 NOP
+119D    00 NOP
+119E    00 NOP
+119F    00 NOP
+11A0    00 NOP
+11A1    00 NOP
+11A2    00 NOP
+11A3    00 NOP
+11A4    00 NOP
+11A5    00 NOP
+11A6    00 NOP
+11A7    00 NOP
+11A8    00 NOP
+11A9    00 NOP
+11AA    00 NOP
+11AB    00 NOP
+11AC    00 NOP
+11AD    00 NOP
+11AE    00 NOP
+11AF    00 NOP
+11B0    00 NOP
+11B1    00 NOP
+11B2    00 NOP
+11B3    00 NOP
+11B4    00 NOP
+11B5    00 NOP
+11B6    00 NOP
+11B7    00 NOP
+11B8    00 NOP
+11B9    00 NOP
+11BA    00 NOP
+11BB    00 NOP
+11BC    00 NOP
+11BD    00 NOP
+11BE    00 NOP
+11BF    00 NOP
+11C0    00 NOP
+11C1    00 NOP
+11C2    00 NOP
+11C3    00 NOP
+11C4    00 NOP
+11C5    00 NOP
+11C6    00 NOP
+11C7    00 NOP
+11C8    00 NOP
+11C9    00 NOP
+11CA    00 NOP
+11CB    00 NOP
+11CC    00 NOP
+11CD    00 NOP
+11CE    00 NOP
+11CF    00 NOP
+11D0    00 NOP
+11D1    00 NOP
+11D2    00 NOP
+11D3    00 NOP
+11D4    00 NOP
+11D5    00 NOP
+11D6    00 NOP
+11D7    00 NOP
+11D8    00 NOP
+11D9    00 NOP
+11DA    00 NOP
+11DB    00 NOP
+11DC    00 NOP
+11DD    00 NOP
+11DE    00 NOP
+11DF    00 NOP
+11E0    00 NOP
+11E1    00 NOP
+11E2    00 NOP
+11E3    00 NOP
+11E4    00 NOP
+11E5    00 NOP
+11E6    00 NOP
+11E7    00 NOP
+11E8    00 NOP
+11E9    00 NOP
+11EA    00 NOP
+11EB    00 NOP
+11EC    00 NOP
+11ED    00 NOP
+11EE    00 NOP
+11EF    00 NOP
+11F0    00 NOP
+11F1    00 NOP
+11F2    00 NOP
+11F3    00 NOP
+11F4    00 NOP
+11F5    00 NOP
+11F6    00 NOP
+11F7    00 NOP
+11F8    00 NOP
+11F9    00 NOP
+11FA    00 NOP
+11FB    00 NOP
+11FC    00 NOP
+11FD    00 NOP
+11FE    00 NOP
+11FF    00 NOP
+1200    00 NOP
+1201    00 NOP
+1202    00 NOP
+1203    00 NOP
+1204    00 NOP
+1205    00 NOP
+1206    00 NOP
+1207    00 NOP
+1208    00 NOP
+1209    00 NOP
+120A    00 NOP
+120B    00 NOP
+120C    00 NOP
+120D    00 NOP
+120E    00 NOP
+120F    00 NOP
+1210    00 NOP
+1211    00 NOP
+1212    00 NOP
+1213    00 NOP
+1214    00 NOP
+1215    00 NOP
+1216    00 NOP
+1217    00 NOP
+1218    00 NOP
+1219    00 NOP
+121A    00 NOP
+121B    00 NOP
+121C    00 NOP
+121D    00 NOP
+121E    00 NOP
+121F    00 NOP
+1220    00 NOP
+1221    00 NOP
+1222    00 NOP
+1223    00 NOP
+1224    00 NOP
+1225    00 NOP
+1226    00 NOP
+1227    00 NOP
+1228    00 NOP
+1229    00 NOP
+122A    00 NOP
+122B    00 NOP
+122C    00 NOP
+122D    00 NOP
+122E    00 NOP
+122F    00 NOP
+1230    00 NOP
+1231    00 NOP
+1232    00 NOP
+1233    00 NOP
+1234    00 NOP
+1235    00 NOP
+1236    00 NOP
+1237    00 NOP
+1238    00 NOP
+1239    00 NOP
+123A    00 NOP
+123B    00 NOP
+123C    00 NOP
+123D    00 NOP
+123E    00 NOP
+123F    00 NOP
+1240    00 NOP
+1241    00 NOP
+1242    00 NOP
+1243    00 NOP
+1244    00 NOP
+1245    00 NOP
+1246    00 NOP
+1247    00 NOP
+1248    00 NOP
+1249    00 NOP
+124A    00 NOP
+124B    00 NOP
+124C    00 NOP
+124D    00 NOP
+124E    00 NOP
+124F    00 NOP
+1250    00 NOP
+1251    00 NOP
+1252    00 NOP
+1253    00 NOP
+1254    00 NOP
+1255    00 NOP
+1256    00 NOP
+1257    00 NOP
+1258    00 NOP
+1259    00 NOP
+125A    00 NOP
+125B    00 NOP
+125C    00 NOP
+125D    00 NOP
+125E    00 NOP
+125F    00 NOP
+1260    00 NOP
+1261    00 NOP
+1262    00 NOP
+1263    00 NOP
+1264    00 NOP
+1265    00 NOP
+1266    00 NOP
+1267    00 NOP
+1268    00 NOP
+1269    00 NOP
+126A    00 NOP
+126B    00 NOP
+126C    00 NOP
+126D    00 NOP
+126E    00 NOP
+126F    00 NOP
+1270    00 NOP
+1271    00 NOP
+1272    00 NOP
+1273    00 NOP
+1274    00 NOP
+1275    00 NOP
+1276    00 NOP
+1277    00 NOP
+1278    00 NOP
+1279    00 NOP
+127A    00 NOP
+127B    00 NOP
+127C    00 NOP
+127D    00 NOP
+127E    00 NOP
+127F    00 NOP
+1280    00 NOP
+1281    00 NOP
+1282    00 NOP
+1283    00 NOP
+1284    00 NOP
+1285    00 NOP
+1286    00 NOP
+1287    00 NOP
+1288    00 NOP
+1289    00 NOP
+128A    00 NOP
+128B    00 NOP
+128C    00 NOP
+128D    00 NOP
+128E    00 NOP
+128F    00 NOP
+1290    00 NOP
+1291    00 NOP
+1292    00 NOP
+1293    00 NOP
+1294    00 NOP
+1295    00 NOP
+1296    00 NOP
+1297    00 NOP
+1298    00 NOP
+1299    00 NOP
+129A    00 NOP
+129B    00 NOP
+129C    00 NOP
+129D    00 NOP
+129E    00 NOP
+129F    00 NOP
+12A0    00 NOP
+12A1    00 NOP
+12A2    00 NOP
+12A3    00 NOP
+12A4    00 NOP
+12A5    00 NOP
+12A6    00 NOP
+12A7    00 NOP
+12A8    00 NOP
+12A9    00 NOP
+12AA    00 NOP
+12AB    00 NOP
+12AC    00 NOP
+12AD    00 NOP
+12AE    00 NOP
+12AF    00 NOP
+12B0    00 NOP
+12B1    00 NOP
+12B2    00 NOP
+12B3    00 NOP
+12B4    00 NOP
+12B5    00 NOP
+12B6    00 NOP
+12B7    00 NOP
+12B8    00 NOP
+12B9    00 NOP
+12BA    00 NOP
+12BB    00 NOP
+12BC    00 NOP
+12BD    00 NOP
+12BE    00 NOP
+12BF    00 NOP
+12C0    00 NOP
+12C1    00 NOP
+12C2    00 NOP
+12C3    00 NOP
+12C4    00 NOP
+12C5    00 NOP
+12C6    00 NOP
+12C7    00 NOP
+12C8    00 NOP
+12C9    00 NOP
+12CA    00 NOP
+12CB    00 NOP
+12CC    00 NOP
+12CD    00 NOP
+12CE    00 NOP
+12CF    00 NOP
+12D0    00 NOP
+12D1    00 NOP
+12D2    00 NOP
+12D3    00 NOP
+12D4    00 NOP
+12D5    00 NOP
+12D6    00 NOP
+12D7    00 NOP
+12D8    00 NOP
+12D9    00 NOP
+12DA    00 NOP
+12DB    00 NOP
+12DC    00 NOP
+12DD    00 NOP
+12DE    00 NOP
+12DF    00 NOP
+12E0    00 NOP
+12E1    00 NOP
+12E2    00 NOP
+12E3    00 NOP
+12E4    00 NOP
+12E5    00 NOP
+12E6    00 NOP
+12E7    00 NOP
+12E8    00 NOP
+12E9    00 NOP
+12EA    00 NOP
+12EB    00 NOP
+12EC    00 NOP
+12ED    00 NOP
+12EE    00 NOP
+12EF    00 NOP
+12F0    00 NOP
+12F1    00 NOP
+12F2    00 NOP
+12F3    00 NOP
+12F4    00 NOP
+12F5    00 NOP
+12F6    00 NOP
+12F7    00 NOP
+12F8    00 NOP
+12F9    00 NOP
+12FA    00 NOP
+12FB    00 NOP
+12FC    00 NOP
+12FD    00 NOP
+12FE    00 NOP
+12FF    00 NOP
+1300    00 NOP
+1301    00 NOP
+1302    00 NOP
+1303    00 NOP
+1304    00 NOP
+1305    00 NOP
+1306    00 NOP
+1307    00 NOP
+1308    00 NOP
+1309    00 NOP
+130A    00 NOP
+130B    00 NOP
+130C    00 NOP
+130D    00 NOP
+130E    00 NOP
+130F    00 NOP
+1310    00 NOP
+1311    00 NOP
+1312    00 NOP
+1313    00 NOP
+1314    00 NOP
+1315    00 NOP
+1316    00 NOP
+1317    00 NOP
+1318    00 NOP
+1319    00 NOP
+131A    00 NOP
+131B    00 NOP
+131C    00 NOP
+131D    00 NOP
+131E    00 NOP
+131F    00 NOP
+1320    00 NOP
+1321    00 NOP
+1322    00 NOP
+1323    00 NOP
+1324    00 NOP
+1325    00 NOP
+1326    00 NOP
+1327    00 NOP
+1328    00 NOP
+1329    00 NOP
+132A    00 NOP
+132B    00 NOP
+132C    00 NOP
+132D    00 NOP
+132E    00 NOP
+132F    00 NOP
+1330    00 NOP
+1331    00 NOP
+1332    00 NOP
+1333    00 NOP
+1334    00 NOP
+1335    00 NOP
+1336    00 NOP
+1337    00 NOP
+1338    00 NOP
+1339    00 NOP
+133A    00 NOP
+133B    00 NOP
+133C    00 NOP
+133D    00 NOP
+133E    00 NOP
+133F    00 NOP
+1340    00 NOP
+1341    00 NOP
+1342    00 NOP
+1343    00 NOP
+1344    00 NOP
+1345    00 NOP
+1346    00 NOP
+1347    00 NOP
+1348    00 NOP
+1349    00 NOP
+134A    00 NOP
+134B    00 NOP
+134C    00 NOP
+134D    00 NOP
+134E    00 NOP
+134F    00 NOP
+1350    00 NOP
+1351    00 NOP
+1352    00 NOP
+1353    00 NOP
+1354    00 NOP
+1355    00 NOP
+1356    00 NOP
+1357    00 NOP
+1358    00 NOP
+1359    00 NOP
+135A    00 NOP
+135B    00 NOP
+135C    00 NOP
+135D    00 NOP
+135E    00 NOP
+135F    00 NOP
+1360    00 NOP
+1361    00 NOP
+1362    00 NOP
+1363    00 NOP
+1364    00 NOP
+1365    00 NOP
+1366    00 NOP
+1367    00 NOP
+1368    00 NOP
+1369    00 NOP
+136A    00 NOP
+136B    00 NOP
+136C    00 NOP
+136D    00 NOP
+136E    00 NOP
+136F    00 NOP
+1370    00 NOP
+1371    00 NOP
+1372    00 NOP
+1373    00 NOP
+1374    00 NOP
+1375    00 NOP
+1376    00 NOP
+1377    00 NOP
+1378    00 NOP
+1379    00 NOP
+137A    00 NOP
+137B    00 NOP
+137C    00 NOP
+137D    00 NOP
+137E    00 NOP
+137F    00 NOP
+1380    00 NOP
+1381    00 NOP
+1382    00 NOP
+1383    00 NOP
+1384    00 NOP
+1385    00 NOP
+1386    00 NOP
+1387    00 NOP
+1388    00 NOP
+1389    00 NOP
+138A    00 NOP
+138B    00 NOP
+138C    00 NOP
+138D    00 NOP
+138E    00 NOP
+138F    00 NOP
+1390    00 NOP
+1391    00 NOP
+1392    00 NOP
+1393    00 NOP
+1394    00 NOP
+1395    00 NOP
+1396    00 NOP
+1397    00 NOP
+1398    00 NOP
+1399    00 NOP
+139A    00 NOP
+139B    00 NOP
+139C    00 NOP
+139D    00 NOP
+139E    00 NOP
+139F    00 NOP
+13A0    00 NOP
+13A1    00 NOP
+13A2    00 NOP
+13A3    00 NOP
+13A4    00 NOP
+13A5    00 NOP
+13A6    00 NOP
+13A7    00 NOP
+13A8    00 NOP
+13A9    00 NOP
+13AA    00 NOP
+13AB    00 NOP
+13AC    00 NOP
+13AD    00 NOP
+13AE    00 NOP
+13AF    00 NOP
+13B0    00 NOP
+13B1    00 NOP
+13B2    00 NOP
+13B3    00 NOP
+13B4    00 NOP
+13B5    00 NOP
+13B6    00 NOP
+13B7    00 NOP
+13B8    00 NOP
+13B9    00 NOP
+13BA    00 NOP
+13BB    00 NOP
+13BC    00 NOP
+13BD    00 NOP
+13BE    00 NOP
+13BF    00 NOP
+13C0    00 NOP
+13C1    00 NOP
+13C2    00 NOP
+13C3    00 NOP
+13C4    00 NOP
+13C5    00 NOP
+13C6    00 NOP
+13C7    00 NOP
+13C8    00 NOP
+13C9    00 NOP
+13CA    00 NOP
+13CB    00 NOP
+13CC    00 NOP
+13CD    00 NOP
+13CE    00 NOP
+13CF    00 NOP
+13D0    00 NOP
+13D1    00 NOP
+13D2    00 NOP
+13D3    00 NOP
+13D4    00 NOP
+13D5    00 NOP
+13D6    00 NOP
+13D7    00 NOP
+13D8    00 NOP
+13D9    00 NOP
+13DA    00 NOP
+13DB    00 NOP
+13DC    00 NOP
+13DD    00 NOP
+13DE    00 NOP
+13DF    00 NOP
+13E0    00 NOP
+13E1    00 NOP
+13E2    00 NOP
+13E3    00 NOP
+13E4    00 NOP
+13E5    00 NOP
+13E6    00 NOP
+13E7    00 NOP
+13E8    00 NOP
+13E9    00 NOP
+13EA    00 NOP
+13EB    00 NOP
+13EC    00 NOP
+13ED    00 NOP
+13EE    00 NOP
+13EF    00 NOP
+13F0    00 NOP
+13F1    00 NOP
+13F2    00 NOP
+13F3    00 NOP
+13F4    00 NOP
+13F5    00 NOP
+13F6    00 NOP
+13F7    00 NOP
+13F8    00 NOP
+13F9    00 NOP
+13FA    00 NOP
+13FB    00 NOP
+13FC    00 NOP
+13FD    00 NOP
+13FE    00 NOP
+13FF    00 NOP
+1400    00 NOP
+1401    CALL     a16, 14 74
+1404    00 NOP
+1405    PUSH B
+1406    PUSH  PSW
+1407    1a LDAX D
+1408    OUT D8
+140A    IN     d8, 03
+140C    ORA M
+140D    MOV  M  <-  A
+140E    23 INX H
+140F    13 INX D
+1410    XRA A
+1411    OUT D8
+1413    IN     d8, 03
+1415    ORA M
+1416    MOV  M  <-  A
+1417    POP H
+1418    01  LXI, B: 00 20
+141B    09  DAD B
+141C    POP B
+141D    05  DCR B
+141E    JNZ 14 05
+1421    RET
+1422    00 NOP
+1423    00 NOP
+1424    CALL     a16, 14 74
+1427    PUSH B
+1428    PUSH  PSW
+1429    XRA A
+142A    MOV  M  <-  A
+142B    23 INX H
+142C    MOV  M  <-  A
+142D    23 INX H
+142E    POP H
+142F    01  LXI, B: 00 20
+1432    09  DAD B
+1433    POP B
+1434    05  DCR B
+1435    JNZ 14 27
+1438    RET
+1439    PUSH B
+143A    1a LDAX D
+143B    MOV  M  <-  A
+143C    13 INX D
+143D    01  LXI, B: 00 20
+1440    09  DAD B
+1441    POP B
+1442    05  DCR B
+1443    JNZ 14 39
+1446    RET
+1447    00 NOP
+1448    00 NOP
+1449    00 NOP
+144A    00 NOP
+144B    00 NOP
+144C    00 NOP
+144D    00 NOP
+144E    00 NOP
+144F    00 NOP
+1450    00 NOP
+1451    00 NOP
+1452    CALL     a16, 14 74
+1455    PUSH B
+1456    PUSH  PSW
+1457    1a LDAX D
+1458    OUT D8
+145A    IN     d8, 03
+145C    2f CMA
+145D    ANA M
+145E    MOV  M  <-  A
+145F    23 INX H
+1460    13 INX D
+1461    XRA A
+1462    OUT D8
+1464    IN     d8, 03
+1466    2f CMA
+1467    ANA M
+1468    MOV  M  <-  A
+1469    POP H
+146A    01  LXI, B: 00 20
+146D    09  DAD B
+146E    POP B
+146F    05  DCR B
+1470    JNZ 14 55
+1473    RET
+1474    MOV  A  <-  L
+1475    ANI 07
+1477    OUT D8
+1479    JMP  1A 47
+147C    PUSH B
+147D    PUSH  PSW
+147E    MOV  A  <-  M
+147F    12 STAX D
+1480    13 INX D
+1481    23 INX H
+1482    0d DCR C
+1483    JNZ 14 7E
+1486    POP H
+1487    01  LXI, B: 00 20
+148A    09  DAD B
+148B    POP B
+148C    05  DCR B
+148D    JNZ 14 7C
+1490    RET
+1491    CALL     a16, 14 74
+1494    XRA A
+1495    32 STA    a16, 61 20
+1498    PUSH B
+1499    PUSH  PSW
+149A    1a LDAX D
+149B    OUT D8
+149D    IN     d8, 03
+149F    PUSH  PSW
+14A0    ANA M
+14A1    JZ  14 A9
+14A4    MVI    A, 01
+14A6    32 STA    a16, 61 20
+14A9    POP PSW
+14AA    ORA M
+14AB    MOV  M  <-  A
+14AC    23 INX H
+14AD    13 INX D
+14AE    XRA A
+14AF    OUT D8
+14B1    IN     d8, 03
+14B3    PUSH  PSW
+14B4    ANA M
+14B5    JZ  14 BD
+14B8    MVI    A, 01
+14BA    32 STA    a16, 61 20
+14BD    POP PSW
+14BE    ORA M
+14BF    MOV  M  <-  A
+14C0    POP H
+14C1    01  LXI, B: 00 20
+14C4    09  DAD B
+14C5    POP B
+14C6    05  DCR B
+14C7    JNZ 14 98
+14CA    RET
+14CB    XRA A
+14CC    PUSH B
+14CD    MOV  M  <-  A
+14CE    01  LXI, B: 00 20
+14D1    09  DAD B
+14D2    POP B
+14D3    05  DCR B
+14D4    JNZ 14 CC
+14D7    RET
+14D8    LDA  adr
+14DB    CPI 05
+14DD    RZ
+14DE    CPI 02
+14E0    RNZ
+14E1    LDA  adr
+14E4    CPI D8
+14E6    MOV  B  <-  A
+14E7    JNC 15 30
+14EA    LDA  adr
+14ED    ANA A
+14EE    RZ
+14EF    MOV  A  <-  B
+14F0    CPI CE
+14F2    JNC 15 79
+14F5    ADI 06
+14F7    MOV  B  <-  A
+14F8    LDA  adr
+14FB    CPI 90
+14FD    JNC 15 04
+1500    CMP B
+1501    JNC 15 30
+1504    MOV  L  <-  B
+1505    CALL     a16, 15 62
+1508    LDA  adr
+150B    MOV  H  <-  A
+150C    CALL     a16, 15 6F
+150F    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1512    MVI    A, 05
+1514    32 STA    a16, 25 20
+1517    CALL     a16, 15 81
+151A    MOV  A  <-  M
+151B    ANA A
+151C    JZ  15 30
+151F    36 MVI      M  <-  00
+1521    CALL     a16, 0A 5F
+1524    CALL     a16, 1A 3B
+1527    CALL     a16, 15 D3
+152A    MVI    A, 10
+152C    32 STA    a16, 03 20
+152F    RET
+1530    MVI    A, 03
+1532    32 STA    a16, 25 20
+1535    JMP  15 4A
+1538    21 LXI    H  <-  20 L  <-  03
+153B    35 DCR    M
+153C    RNZ
+153D    2a LHLD adr    L  <- (adr)  H  <- (adr)
+1540    06  MVI B <- 10
+1542    CALL     a16, 14 24
+1545    MVI    A, 04
+1547    32 STA    a16, 25 20
+154A    XRA A
+154B    32 STA    a16, 02 20
+154E    06  MVI B <- F7
+1550    JMP  19 DC
+1553    00 NOP
+1554    0e MVI      C  <-  00
+1556    CMP H
+1557    CNC 15 90
+155A    CMP H
+155B    RNC
+155C    ADI 10
+155E    0c  INR C
+155F    JMP  15 5A
+1562    LDA  adr
+1565    MOV  H  <-  L
+1566    CALL     a16, 15 54
+1569    MOV  B  <-  C
+156A    05  DCR B
+156B    SBI 10
+156D    MOV  L  <-  A
+156E    RET
+156F    LDA  adr
+1572    CALL     a16, 15 54
+1575    SBI 10
+1577    MOV  H  <-  A
+1578    RET
+1579    MVI    A, 01
+157B    32 STA    a16, 85 20
+157E    JMP  15 45
+1581    MOV  A  <-  B
+1582    07  RLC
+1583    07  RLC
+1584    07  RLC
+1585    ADD B
+1586    ADD B
+1587    ADD B
+1588    ADD C
+1589    DCR A
+158A    MOV  L  <-  A
+158B    LDA  adr
+158E    MOV  H  <-  A
+158F    RET
+1590    0c  INR C
+1591    ADI 10
+1593    JM 15 90
+1596    RET
+1597    LDA  adr
+159A    ANA A
+159B    JNZ 15 B7
+159E    21 LXI    H  <-  3E L  <-  A4
+15A1    CALL     a16, 15 C5
+15A4    RNC
+15A5    06  MVI B <- FE
+15A7    MVI    A, 01
+15A9    32 STA    a16, 0D 20
+15AC    MOV  A  <-  B
+15AD    32 STA    a16, 08 20
+15B0    LDA  adr
+15B3    32 STA    a16, 07 20
+15B6    RET
+15B7    21 LXI    H  <-  25 L  <-  24
+15BA    CALL     a16, 15 C5
+15BD    RNC
+15BE    CALL     a16, 18 F1
+15C1    XRA A
+15C2    JMP  15 A9
+15C5    06  MVI B <- 17
+15C7    MOV  A  <-  M
+15C8    ANA A
+15C9    JNZ 16 6B
+15CC    23 INX H
+15CD    05  DCR B
+15CE    JNZ 15 C7
+15D1    RET
+15D2    00 NOP
+15D3    CALL     a16, 14 74
+15D6    PUSH  PSW
+15D7    PUSH B
+15D8    PUSH  PSW
+15D9    1a LDAX D
+15DA    OUT D8
+15DC    IN     d8, 03
+15DE    MOV  M  <-  A
+15DF    23 INX H
+15E0    13 INX D
+15E1    XRA A
+15E2    OUT D8
+15E4    IN     d8, 03
+15E6    MOV  M  <-  A
+15E7    POP H
+15E8    01  LXI, B: 00 20
+15EB    09  DAD B
+15EC    POP B
+15ED    05  DCR B
+15EE    JNZ 15 D7
+15F1    POP H
+15F2    RET
+15F3    CALL     a16, 16 11
+15F6    01  LXI, B: 37 00
+15F9    MOV  A  <-  M
+15FA    ANA A
+15FB    JZ  15 FF
+15FE    0c  INR C
+15FF    23 INX H
+1600    05  DCR B
+1601    JNZ 15 F9
+1604    MOV  A  <-  C
+1605    32 STA    a16, 82 20
+1608    CPI 01
+160A    RNZ
+160B    21 LXI    H  <-  20 L  <-  6B
+160E    36 MVI      M  <-  01
+1610    RET
+1611    2e MVI     L  <-  00
+1613    LDA  adr
+1616    MOV  H  <-  A
+1617    RET
+1618    LDA  adr
+161B    CPI FF
+161D    RNZ
+161E    21 LXI    H  <-  20 L  <-  10
+1621    MOV  A  <-  M
+1622    23 INX H
+1623    MOV  B  <-  M
+1624    ORA B
+1625    RNZ
+1626    LDA  adr
+1629    ANA A
+162A    RNZ
+162B    LDA  adr
+162E    ANA A
+162F    JZ  16 52
+1632    LDA  adr
+1635    ANA A
+1636    JNZ 16 48
+1639    CALL     a16, 17 C0
+163C    ANI 10
+163E    RZ
+163F    MVI    A, 01
+1641    32 STA    a16, 25 20
+1644    32 STA    a16, 2D 20
+1647    RET
+1648    CALL     a16, 17 C0
+164B    ANI 10
+164D    RNZ
+164E    32 STA    a16, 2D 20
+1651    RET
+1652    21 LXI    H  <-  20 L  <-  25
+1655    36 MVI      M  <-  01
+1657    2a LHLD adr    L  <- (adr)  H  <- (adr)
+165A    23 INX H
+165B    MOV  A  <-  L
+165C    CPI 7E
+165E    JC     a16, 16 63
+1661    2e MVI     L  <-  74
+1663    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1666    MOV  A  <-  M
+1667    32 STA    a16, 1D 20
+166A    RET
+166B    37 STC
+166C    RET
+166D    XRA A
+166E    CALL     a16, 1A 8B
+1671    CALL     a16, 19 10
+1674    36 MVI      M  <-  00
+1676    CALL     a16, 09 CA
+1679    23 INX H
+167A    11 LXI  D <-  20  E <-  F5
+167D    1a LDAX D
+167E    CMP M
+167F    1b DCX D
+1680    2b DCX H
+1681    1a LDAX D
+1682    JZ  16 8B
+1685    JNC 16 98
+1688    JMP  16 8F
+168B    CMP M
+168C    JNC 16 98
+168F    MOV  A  <-  M
+1690    12 STAX D
+1691    13 INX D
+1692    23 INX H
+1693    MOV  A  <-  M
+1694    12 STAX D
+1695    CALL     a16, 19 50
+1698    LDA  adr
+169B    ANA A
+169C    JZ  16 C9
+169F    21 LXI    H  <-  28 L  <-  03
+16A2    11 LXI  D <-  1A  E <-  A6
+16A5    0e MVI      C  <-  14
+16A7    CALL     a16, 0A 93
+16AA    25 DCR H
+16AB    25 DCR H
+16AC    06  MVI B <- 1B
+16AE    LDA  adr
+16B1    0F  RRC
+16B2    JC     a16, 16 B7
+16B5    06  MVI B <- 1C
+16B7    MOV  A  <-  B
+16B8    CALL     a16, 08 FF
+16BB    CALL     a16, 0A B1
+16BE    CALL     a16, 18 E7
+16C1    MOV  A  <-  M
+16C2    ANA A
+16C3    JZ  16 C9
+16C6    JMP  02 ED
+16C9    21 LXI    H  <-  2D L  <-  18
+16CC    11 LXI  D <-  1A  E <-  A6
+16CF    0e MVI      C  <-  0A
+16D1    CALL     a16, 0A 93
+16D4    CALL     a16, 0A B6
+16D7    CALL     a16, 09 D6
+16DA    XRA A
+16DB    32 STA    a16, EF 20
+16DE    OUT D8
+16E0    CALL     a16, 19 D1
+16E3    JMP  0B 89
+16E6    31 LXI      SP.hi  <- 24  SP.lo  <- 00
+16E9    EI
+16EA    XRA A
+16EB    32 STA    a16, 15 20
+16EE    CALL     a16, 14 D8
+16F1    06  MVI B <- 04
+16F3    CALL     a16, 18 FA
+16F6    CALL     a16, 0A 59
+16F9    JNZ 16 EE
+16FC    CALL     a16, 19 D7
+16FF    21 LXI    H  <-  27 L  <-  01
+1702    CALL     a16, 19 FA
+1705    XRA A
+1706    CALL     a16, 1A 8B
+1709    06  MVI B <- FB
+170B    JMP  19 6B
+170E    CALL     a16, 09 CA
+1711    23 INX H
+1712    MOV  A  <-  M
+1713    11 LXI  D <-  1C  E <-  B8
+1716    21 LXI    H  <-  1A L  <-  A1
+1719    0e MVI      C  <-  04
+171B    MOV  B  <-  A
+171C    1a LDAX D
+171D    CMP B
+171E    JNC 17 27
+1721    23 INX H
+1722    13 INX D
+1723    0d DCR C
+1724    JNZ 17 1C
+1727    MOV  A  <-  M
+1728    32 STA    a16, CF 20
+172B    RET
+172C    LDA  adr
+172F    CPI 00
+1731    JNZ 17 39
+1734    06  MVI B <- FD
+1736    JMP  19 DC
+1739    06  MVI B <- 02
+173B    JMP  18 FA
+173E    00 NOP
+173F    00 NOP
+1740    21 LXI    H  <-  20 L  <-  9B
+1743    35 DCR    M
+1744    CZ 17 6D
+1747    LDA  adr
+174A    ANA A
+174B    JZ  17 6D
+174E    21 LXI    H  <-  20 L  <-  96
+1751    35 DCR    M
+1752    RNZ
+1753    21 LXI    H  <-  20 L  <-  98
+1756    MOV  A  <-  M
+1757    OUT D8
+1759    LDA  adr
+175C    ANA A
+175D    JZ  17 6D
+1760    2b DCX H
+1761    MOV  A  <-  M
+1762    2b DCX H
+1763    MOV  M  <-  A
+1764    2b DCX H
+1765    36 MVI      M  <-  01
+1767    MVI    A, 04
+1769    32 STA    a16, 9B 20
+176C    RET
+176D    LDA  adr
+1770    ANI 30
+1772    OUT D8
+1774    RET
+1775    LDA  adr
+1778    ANA A
+1779    JZ  17 AA
+177C    21 LXI    H  <-  1A L  <-  11
+177F    11 LXI  D <-  1A  E <-  21
+1782    LDA  adr
+1785    CMP M
+1786    JNC 17 8E
+1789    23 INX H
+178A    13 INX D
+178B    JMP  17 85
+178E    1a LDAX D
+178F    32 STA    a16, 97 20
+1792    21 LXI    H  <-  20 L  <-  98
+1795    MOV  A  <-  M
+1796    ANI 30
+1798    MOV  B  <-  A
+1799    MOV  A  <-  M
+179A    ANI 0F
+179C    07  RLC
+179D    CPI 10
+179F    JNZ 17 A4
+17A2    MVI    A, 01
+17A4    ORA B
+17A5    MOV  M  <-  A
+17A6    XRA A
+17A7    32 STA    a16, 95 20
+17AA    21 LXI    H  <-  20 L  <-  99
+17AD    35 DCR    M
+17AE    RNZ
+17AF    06  MVI B <- EF
+17B1    JMP  19 DC
+17B4    06  MVI B <- EF
+17B6    21 LXI    H  <-  20 L  <-  98
+17B9    MOV  A  <-  M
+17BA    ANA B
+17BB    MOV  M  <-  A
+17BC    OUT D8
+17BE    RET
+17BF    00 NOP
+17C0    LDA  adr
+17C3    0F  RRC
+17C4    JNC 17 CA
+17C7    IN     d8, 01
+17C9    RET
+17CA    IN     d8, 02
+17CC    RET
+17CD    IN     d8, 02
+17CF    ANI 04
+17D1    RZ
+17D2    LDA  adr
+17D5    ANA A
+17D6    RNZ
+17D7    31 LXI      SP.hi  <- 24  SP.lo  <- 00
+17DA    06  MVI B <- 04
+17DC    CALL     a16, 09 D6
+17DF    05  DCR B
+17E0    JNZ 17 DC
+17E3    MVI    A, 01
+17E5    32 STA    a16, 9A 20
+17E8    CALL     a16, 19 D7
+17EB    EI
+17EC    11 LXI  D <-  1C  E <-  BC
+17EF    21 LXI    H  <-  30 L  <-  16
+17F2    0e MVI      C  <-  04
+17F4    CALL     a16, 0A 93
+17F7    CALL     a16, 0A B1
+17FA    XRA A
+17FB    32 STA    a16, 9A 20
+17FE    32 STA    a16, 93 20
+1801    JMP  16 C9
+1804    21 LXI    H  <-  20 L  <-  84
+1807    MOV  A  <-  M
+1808    ANA A
+1809    JZ  07 07
+180C    23 INX H
+180D    MOV  A  <-  M
+180E    ANA A
+180F    RNZ
+1810    06  MVI B <- 01
+1812    JMP  18 FA
+1815    21 LXI    H  <-  28 L  <-  10
+1818    11 LXI  D <-  1C  E <-  A3
+181B    0e MVI      C  <-  15
+181D    CALL     a16, 08 F3
+1820    MVI    A, 0A
+1822    32 STA    a16, 6C 20
+1825    01  LXI, B: 1D BE
+1828    CALL     a16, 18 56
+182B    JC     a16, 18 37
+182E    CALL     a16, 18 44
+1831    JMP  18 28
+1834    CALL     a16, 0A B1
+1837    01  LXI, B: 1D CF
+183A    CALL     a16, 18 56
+183D    RC
+183E    CALL     a16, 18 4C
+1841    JMP  18 3A
+1844    PUSH B
+1845    06  MVI B <- 10
+1847    CALL     a16, 14 39
+184A    POP B
+184B    RET
+184C    PUSH B
+184D    LDA  adr
+1850    MOV  C  <-  A
+1851    CALL     a16, 0A 93
+1854    POP B
+1855    RET
+1856    0a  LDAX B
+1857    CPI FF
+1859    37 STC
+185A    RZ
+185B    MOV  L  <-  A
+185C    03  INX B
+185D    0a  LDAX B
+185E    MOV  H  <-  A
+185F    03  INX B
+1860    0a  LDAX B
+1861    MOV  E  <-  A
+1862    03  INX B
+1863    0a  LDAX B
+1864    MOV  D  <-  A
+1865    03  INX B
+1866    ANA A
+1867    RET
+1868    21 LXI    H  <-  20 L  <-  C2
+186B    34 INR  M
+186C    23 INX H
+186D    MOV  C  <-  M
+186E    CALL     a16, 01 D9
+1871    MOV  B  <-  A
+1872    LDA  adr
+1875    CMP B
+1876    JZ  18 98
+1879    LDA  adr
+187C    ANI 04
+187E    2a LHLD adr    L  <- (adr)  H  <- (adr)
+1881    JNZ 18 88
+1884    11 LXI  D <-  00  E <-  30
+1887    19 DAD D
+1888    22 DHLD     (adr)  <-  L, (adr)  <-  H
+188B    21 LXI    H  <-  20 L  <-  C5
+188E    CALL     a16, 1A 3B
+1891    XCGH
+1892    JMP  15 D3
+1895    00 NOP
+1896    00 NOP
+1897    00 NOP
+1898    MVI    A, 01
+189A    32 STA    a16, CB 20
+189D    RET
+189E    21 LXI    H  <-  20 L  <-  50
+18A1    11 LXI  D <-  1B  E <-  C0
+18A4    06  MVI B <- 10
+18A6    CALL     a16, 1A 32
+18A9    MVI    A, 02
+18AB    32 STA    a16, 80 20
+18AE    MVI    A, FF
+18B0    32 STA    a16, 7E 20
+18B3    MVI    A, 04
+18B5    32 STA    a16, C1 20
+18B8    LDA  adr
+18BB    ANI 01
+18BD    JZ  18 B8
+18C0    LDA  adr
+18C3    ANI 01
+18C5    JNZ 18 C0
+18C8    21 LXI    H  <-  33 L  <-  11
+18CB    MVI    A, 26
+18CD    00 NOP
+18CE    CALL     a16, 08 FF
+18D1    JMP  0A B6
+18D4    31 LXI      SP.hi  <- 24  SP.lo  <- 00
+18D7    06  MVI B <- 00
+18D9    CALL     a16, 01 E6
+18DC    CALL     a16, 19 56
+18DF    MVI    A, 08
+18E1    32 STA    a16, CF 20
+18E4    JMP  0A EA
+18E7    LDA  adr
+18EA    21 LXI    H  <-  20 L  <-  E7
+18ED    0F  RRC
+18EE    RNC
+18EF    23 INX H
+18F0    RET
+18F1    06  MVI B <- 02
+18F3    LDA  adr
+18F6    DCR A
+18F7    RNZ
+18F8    04  INR B
+18F9    RET
+18FA    LDA  adr
+18FD    ORA B
+18FE    32 STA    a16, 94 20
+1901    OUT D8
+1903    RET
+1904    21 LXI    H  <-  22 L  <-  00
+1907    JMP  01 C3
+190A    CALL     a16, 14 D8
+190D    JMP  15 97
+1910    21 LXI    H  <-  20 L  <-  E7
+1913    LDA  adr
+1916    0F  RRC
+1917    RC
+1918    23 INX H
+1919    RET
+191A    0e MVI      C  <-  1C
+191C    21 LXI    H  <-  24 L  <-  1E
+191F    11 LXI  D <-  1A  E <-  E4
+1922    JMP  08 F3
+1925    21 LXI    H  <-  20 L  <-  F8
+1928    JMP  19 31
+192B    21 LXI    H  <-  20 L  <-  FC
+192E    JMP  19 31
+1931    MOV  E  <-  M
+1932    23 INX H
+1933    MOV  D  <-  M
+1934    23 INX H
+1935    MOV  A  <-  M
+1936    23 INX H
+1937    MOV  H  <-  M
+1938    MOV  L  <-  A
+1939    JMP  09 AD
+193C    0e MVI      C  <-  07
+193E    21 LXI    H  <-  35 L  <-  01
+1941    11 LXI  D <-  1F  E <-  A9
+1944    JMP  08 F3
+1947    LDA  adr
+194A    21 LXI    H  <-  3C L  <-  01
+194D    JMP  09 B2
+1950    21 LXI    H  <-  20 L  <-  F4
+1953    JMP  19 31
+1956    CALL     a16, 1A 5C
+1959    CALL     a16, 19 1A
+195C    CALL     a16, 19 25
+195F    CALL     a16, 19 2B
+1962    CALL     a16, 19 50
+1965    CALL     a16, 19 3C
+1968    JMP  19 47
+196B    CALL     a16, 19 DC
+196E    JMP  16 71
+1971    MVI    A, 01
+1973    32 STA    a16, 6D 20
+1976    JMP  16 E6
+1979    CALL     a16, 19 D7
+197C    CALL     a16, 19 47
+197F    JMP  19 3C
+1982    32 STA    a16, C1 20
+1985    RET
+1986    ADC E
+1987    19 DAD D
+1988    JMP  09 D6
+198B    21 LXI    H  <-  28 L  <-  03
+198E    11 LXI  D <-  19  E <-  BE
+1991    0e MVI      C  <-  13
+1993    JMP  08 F3
+1996    00 NOP
+1997    00 NOP
+1998    00 NOP
+1999    00 NOP
+199A    LDA  adr
+199D    ANA A
+199E    JNZ 19 AC
+19A1    IN     d8, 01
+19A3    ANI 76
+19A5    SUI 72
+19A7    RNZ
+19A8    INR A
+19A9    32 STA    a16, 1E 20
+19AC    IN     d8, 01
+19AE    ANI 76
+19B0    CPI 34
+19B2    RNZ
+19B3    21 LXI    H  <-  2E L  <-  1B
+19B6    11 LXI  D <-  0B  E <-  F7
+19B9    0e MVI      C  <-  09
+19BB    JMP  08 F3
+19BE    28 This should not be called
+19BF    13 INX D
+19C0    00 NOP
+19C1    08  reserved
+19C2    13 INX D
+19C3    0e MVI      C  <-  26
+19C5    02  STAX B
+19C6    0e MVI      C  <-  11
+19C8    0F  RRC
+19C9    0e MVI      C  <-  11
+19CB    00 NOP
+19CC    13 INX D
+19CD    08  reserved
+19CE    0e MVI      C  <-  0D
+19D0    28 This should not be called
+19D1    MVI    A, 01
+19D3    32 STA    a16, E9 20
+19D6    RET
+19D7    XRA A
+19D8    JMP  19 D3
+19DB    00 NOP
+19DC    LDA  adr
+19DF    ANA B
+19E0    32 STA    a16, 94 20
+19E3    OUT D8
+19E5    RET
+19E6    21 LXI    H  <-  27 L  <-  01
+19E9    JZ  19 FA
+19EC    11 LXI  D <-  1C  E <-  60
+19EF    06  MVI B <- 10
+19F1    MOV  C  <-  A
+19F2    CALL     a16, 14 39
+19F5    MOV  A  <-  C
+19F6    DCR A
+19F7    JNZ 19 EC
+19FA    06  MVI B <- 10
+19FC    CALL     a16, 14 CB
+19FF    MOV  A  <-  H
+1A00    CPI 35
+1A02    JNZ 19 FA
+1A05    RET
+1A06    21 LXI    H  <-  20 L  <-  72
+1A09    MOV  B  <-  M
+1A0A    1a LDAX D
+1A0B    ANI 80
+1A0D    XRA B
+1A0E    RNZ
+1A0F    37 STC
+1A10    RET
+1A11    32 STA    a16, 2B 24
+1A14    1c INR E
+1A15    16  MVI  D  <- 11
+1A17    0d DCR C
+1A18    0a  LDAX B
+1A19    08  reserved
+1A1A    07  RLC
+1A1B    06  MVI B <- 05
+1A1D    04  INR B
+1A1E    03  INX B
+1A1F    02  STAX B
+1A20    01  LXI, B: 2E 34
+1A23    27 DAA
+1A24    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1A27    15 DCR D
+1A28    13 INX D
+1A29    10   -----
+1A2A    0e MVI      C  <-  0D
+1A2C    0c  INR C
+1A2D    0B  DCX B
+1A2E    09  DAD B
+1A2F    07  RLC
+1A30    05  DCR B
+1A31    RST 7
+1A32    1a LDAX D
+1A33    MOV  M  <-  A
+1A34    23 INX H
+1A35    13 INX D
+1A36    05  DCR B
+1A37    JNZ 1A 32
+1A3A    RET
+1A3B    MOV  E  <-  M
+1A3C    23 INX H
+1A3D    MOV  D  <-  M
+1A3E    23 INX H
+1A3F    MOV  A  <-  M
+1A40    23 INX H
+1A41    MOV  C  <-  M
+1A42    23 INX H
+1A43    MOV  B  <-  M
+1A44    MOV  H  <-  C
+1A45    MOV  L  <-  A
+1A46    RET
+1A47    PUSH B
+1A48    06  MVI B <- 03
+1A4A    MOV  A  <-  H
+1A4B    1f RAR
+1A4C    MOV  H  <-  A
+1A4D    MOV  A  <-  L
+1A4E    1f RAR
+1A4F    MOV  L  <-  A
+1A50    05  DCR B
+1A51    JNZ 1A 4A
+1A54    MOV  A  <-  H
+1A55    ANI 3F
+1A57    ORI 20
+1A59    MOV  H  <-  A
+1A5A    POP B
+1A5B    RET
+1A5C    21 LXI    H  <-  24 L  <-  00
+1A5F    36 MVI      M  <-  00
+1A61    23 INX H
+1A62    MOV  A  <-  H
+1A63    CPI 40
+1A65    JNZ 1A 5F
+1A68    RET
+1A69    PUSH B
+1A6A    PUSH  PSW
+1A6B    1a LDAX D
+1A6C    ORA M
+1A6D    MOV  M  <-  A
+1A6E    13 INX D
+1A6F    23 INX H
+1A70    0d DCR C
+1A71    JNZ 1A 6B
+1A74    POP H
+1A75    01  LXI, B: 00 20
+1A78    09  DAD B
+1A79    POP B
+1A7A    05  DCR B
+1A7B    JNZ 1A 69
+1A7E    RET
+1A7F    CALL     a16, 09 2E
+1A82    ANA A
+1A83    RZ
+1A84    PUSH  PSW
+1A85    DCR A
+1A86    MOV  M  <-  A
+1A87    CALL     a16, 19 E6
+1A8A    POP PSW
+1A8B    21 LXI    H  <-  25 L  <-  01
+1A8E    ANI 0F
+1A90    JMP  09 C5
+1A93    00 NOP
+1A94    00 NOP
+1A95    00 NOP
+1A96    00 NOP
+1A97    RST 7
+1A98    CMP B
+1A99    CPI 20
+1A9B    1c INR E
+1A9C    10   -----
+1A9D    SBB M
+1A9E    00 NOP
+1A9F    20 RIM
+1AA0    1c INR E
+1AA1    30 SIM
+1AA2    10   -----
+1AA3    0B  DCX B
+1AA4    08  reserved
+1AA5    07  RLC
+1AA6    06  MVI B <- 00
+1AA8    0c  INR C
+1AA9    04  INR B
+1AAA    26 MVI      H  <-  0E
+1AAC    15 DCR D
+1AAD    04  INR B
+1AAE    11 LXI  D <-  26  E <-  26
+1AB1    0F  RRC
+1AB2    0B  DCX B
+1AB3    00 NOP
+1AB4    18 ----
+1AB5    04  INR B
+1AB6    11 LXI  D <-  26  E <-  24
+1AB9    25 DCR H
+1ABA    1b DCX D
+1ABB    26 MVI      H  <-  0E
+1ABD    11 LXI  D <-  1C  E <-  26
+1AC0    0F  RRC
+1AC1    0B  DCX B
+1AC2    00 NOP
+1AC3    18 ----
+1AC4    04  INR B
+1AC5    11 LXI  D <-  26  E <-  12
+1AC8    01  LXI, B: 13 14
+1ACB    13 INX D
+1ACC    0e MVI      C  <-  0D
+1ACE    26 MVI      H  <-  0E
+1AD0    0d DCR C
+1AD1    0B  DCX B
+1AD2    18 ----
+1AD3    26 MVI      H  <-  1B
+1AD5    0F  RRC
+1AD6    0B  DCX B
+1AD7    00 NOP
+1AD8    18 ----
+1AD9    04  INR B
+1ADA    11 LXI  D <-  26  E <-  26
+1ADD    01  LXI, B: 13 14
+1AE0    13 INX D
+1AE1    0e MVI      C  <-  0D
+1AE3    26 MVI      H  <-  26
+1AE5    12 STAX D
+1AE6    02  STAX B
+1AE7    0e MVI      C  <-  11
+1AE9    04  INR B
+1AEA    24 INR H
+1AEB    1b DCX D
+1AEC    25 DCR H
+1AED    26 MVI      H  <-  07
+1AEF    08  reserved
+1AF0    CMC
+1AF1    12 STAX D
+1AF2    02  STAX B
+1AF3    0e MVI      C  <-  11
+1AF5    04  INR B
+1AF6    26 MVI      H  <-  12
+1AF8    02  STAX B
+1AF9    0e MVI      C  <-  11
+1AFB    04  INR B
+1AFC    24 INR H
+1AFD    1c INR E
+1AFE    25 DCR H
+1AFF    26 MVI      H  <-  01
+1B01    00 NOP
+1B02    00 NOP
+1B03    10   -----
+1B04    00 NOP
+1B05    00 NOP
+1B06    00 NOP
+1B07    00 NOP
+1B08    02  STAX B
+1B09    MOV  A  <-  B
+1B0A    38 This should not be called
+1B0B    MOV  A  <-  B
+1B0C    38 This should not be called
+1B0D    00 NOP
+1B0E    RM
+1B0F    00 NOP
+1B10    00 NOP
+1B11    ADD B
+1B12    00 NOP
+1B13    ADC M
+1B14    02  STAX B
+1B15    RST 7
+1B16    05  DCR B
+1B17    0c  INR C
+1B18    MOV  H  <-  B
+1B19    1c INR E
+1B1A    20 RIM
+1B1B    30 SIM
+1B1C    10   -----
+1B1D    01  LXI, B: 00 00
+1B20    00 NOP
+1B21    00 NOP
+1B22    00 NOP
+1B23    CMP E
+1B24    03  INX B
+1B25    00 NOP
+1B26    10   -----
+1B27    SUB B
+1B28    1c INR E
+1B29    28 This should not be called
+1B2A    30 SIM
+1B2B    01  LXI, B: 00 04
+1B2E    RST 7
+1B2F    RST 7
+1B30    00 NOP
+1B31    00 NOP
+1B32    02  STAX B
+1B33    HLT
+1B34    04  INR B
+1B35    00 NOP
+1B36    00 NOP
+1B37    00 NOP
+1B38    00 NOP
+1B39    00 NOP
+1B3A    04  INR B
+1B3B    XRI 1C
+1B3D    00 NOP
+1B3E    00 NOP
+1B3F    03  INX B
+1B40    00 NOP
+1B41    00 NOP
+1B42    00 NOP
+1B43    ORA M
+1B44    04  INR B
+1B45    00 NOP
+1B46    00 NOP
+1B47    01  LXI, B: 1D 00
+1B4A    04  INR B
+1B4B    JPO 00 1C
+1B4E    00 NOP
+1B4F    03  INX B
+1B50    00 NOP
+1B51    00 NOP
+1B52    00 NOP
+1B53    ADD D
+1B54    06  MVI B <- 00
+1B56    00 NOP
+1B57    01  LXI, B: 1D 06
+1B5A    04  INR B
+1B5B    RNC
+1B5C    1c INR E
+1B5D    00 NOP
+1B5E    00 NOP
+1B5F    03  INX B
+1B60    RST 7
+1B61    00 NOP
+1B62    RNZ
+1B63    1c INR E
+1B64    00 NOP
+1B65    00 NOP
+1B66    10   -----
+1B67    21 LXI    H  <-  00 L  <-  01
+1B6A    30 SIM
+1B6B    00 NOP
+1B6C    12 STAX D
+1B6D    00 NOP
+1B6E    00 NOP
+1B6F    00 NOP
+1B70    0F  RRC
+1B71    0B  DCX B
+1B72    00 NOP
+1B73    18 ----
+1B74    26 MVI      H  <-  0F
+1B76    0B  DCX B
+1B77    00 NOP
+1B78    18 ----
+1B79    04  INR B
+1B7A    11 LXI  D <-  1B  E <-  24
+1B7D    25 DCR H
+1B7E    CM 01 00
+1B81    RST 7
+1B82    RST 7
+1B83    00 NOP
+1B84    00 NOP
+1B85    00 NOP
+1B86    20 RIM
+1B87    MOV  H  <-  H
+1B88    1d DCR E
+1B89    RNC
+1B8A    29 DAD H
+1B8B    18 ----
+1B8C    02  STAX B
+1B8D    MOV  D  <-  H
+1B8E    1d DCR E
+1B8F    00 NOP
+1B90    08  reserved
+1B91    00 NOP
+1B92    06  MVI B <- 00
+1B94    00 NOP
+1B95    01  LXI, B: 00 40
+1B98    01  LXI, B: 00 00
+1B9B    10   -----
+1B9C    SBB M
+1B9D    00 NOP
+1B9E    20 RIM
+1B9F    1c INR E
+1BA0    00 NOP
+1BA1    03  INX B
+1BA2    04  INR B
+1BA3    MOV  A  <-  B
+1BA4    14 INR D
+1BA5    13 INX D
+1BA6    08  reserved
+1BA7    1a LDAX D
+1BA8    DCR A
+1BA9    MOV  L  <-  B
+1BAA    CM 68 FC
+1BAD    DCR A
+1BAE    1a LDAX D
+1BAF    00 NOP
+1BB0    00 NOP
+1BB1    00 NOP
+1BB2    01  LXI, B: 98 B8
+1BB5    ANA B
+1BB6    1b DCX D
+1BB7    10   -----
+1BB8    RST 7
+1BB9    00 NOP
+1BBA    ANA B
+1BBB    1b DCX D
+1BBC    00 NOP
+1BBD    00 NOP
+1BBE    00 NOP
+1BBF    00 NOP
+1BC0    00 NOP
+1BC1    10   -----
+1BC2    00 NOP
+1BC3    0e MVI      C  <-  05
+1BC5    00 NOP
+1BC6    00 NOP
+1BC7    00 NOP
+1BC8    00 NOP
+1BC9    00 NOP
+1BCA    07  RLC
+1BCB    RNC
+1BCC    1c INR E
+1BCD    RZ
+1BCE    SBB E
+1BCF    03  INX B
+1BD0    00 NOP
+1BD1    00 NOP
+1BD2    03  INX B
+1BD3    04  INR B
+1BD4    MOV  A  <-  B
+1BD5    14 INR D
+1BD6    0B  DCX B
+1BD7    19 DAD D
+1BD8    LDA  adr
+1BDB    JM 3A 6D
+1BDE    19 DAD D
+1BDF    00 NOP
+1BE0    00 NOP
+1BE1    00 NOP
+1BE2    00 NOP
+1BE3    00 NOP
+1BE4    00 NOP
+1BE5    00 NOP
+1BE6    00 NOP
+1BE7    00 NOP
+1BE8    00 NOP
+1BE9    01  LXI, B: 00 00
+1BEC    01  LXI, B: 1F 74
+1BEF    00 NOP
+1BF0    ADD B
+1BF1    00 NOP
+1BF2    00 NOP
+1BF3    00 NOP
+1BF4    00 NOP
+1BF5    00 NOP
+1BF6    1c INR E
+1BF7    2f CMA
+1BF8    00 NOP
+1BF9    00 NOP
+1BFA    1c INR E
+1BFB    27 DAA
+1BFC    00 NOP
+1BFD    00 NOP
+1BFE    1c INR E
+1BFF    DAD  SP
+1C00    00 NOP
+1C01    00 NOP
+1C02    DAD  SP
+1C03    MOV  A  <-  C
+1C04    MOV  A  <-  D
+1C05    MOV  L  <-  M
+1C06    CPE FA FA
+1C09    CPE 7A 6E
+1C0C    MOV  A  <-  C
+1C0D    DAD  SP
+1C0E    00 NOP
+1C0F    00 NOP
+1C10    00 NOP
+1C11    00 NOP
+1C12    00 NOP
+1C13    MOV  A  <-  B
+1C14    1d DCR E
+1C15    CMP M
+1C16    MOV  L  <-  H
+1C17    INR A
+1C18    INR A
+1C19    INR A
+1C1A    MOV  L  <-  H
+1C1B    CMP M
+1C1C    1d DCR E
+1C1D    MOV  A  <-  B
+1C1E    00 NOP
+1C1F    00 NOP
+1C20    00 NOP
+1C21    00 NOP
+1C22    00 NOP
+1C23    00 NOP
+1C24    19 DAD D
+1C25    LDA  adr
+1C28    JM 3A 6D
+1C2B    19 DAD D
+1C2C    00 NOP
+1C2D    00 NOP
+1C2E    00 NOP
+1C2F    00 NOP
+1C30    00 NOP
+1C31    00 NOP
+1C32    38 This should not be called
+1C33    MOV  A  <-  D
+1C34    MOV  A  <-  A
+1C35    MOV  L  <-  L
+1C36    CPE FA FA
+1C39    CPE 7F 6D
+1C3C    MOV  A  <-  D
+1C3D    38 This should not be called
+1C3E    00 NOP
+1C3F    00 NOP
+1C40    00 NOP
+1C41    00 NOP
+1C42    00 NOP
+1C43    0e MVI      C  <-  18
+1C45    CMP M
+1C46    MOV  L  <-  L
+1C47    DCR A
+1C48    INR A
+1C49    DCR A
+1C4A    MOV  L  <-  L
+1C4B    CMP M
+1C4C    18 ----
+1C4D    0e MVI      C  <-  00
+1C4F    00 NOP
+1C50    00 NOP
+1C51    00 NOP
+1C52    00 NOP
+1C53    00 NOP
+1C54    1a LDAX D
+1C55    DCR A
+1C56    MOV  L  <-  B
+1C57    CM 68 FC
+1C5A    DCR A
+1C5B    1a LDAX D
+1C5C    00 NOP
+1C5D    00 NOP
+1C5E    00 NOP
+1C5F    00 NOP
+1C60    00 NOP
+1C61    00 NOP
+1C62    0F  RRC
+1C63    1f RAR
+1C64    1f RAR
+1C65    1f RAR
+1C66    1f RAR
+1C67    MOV  A  <-  A
+1C68    RST 7
+1C69    MOV  A  <-  A
+1C6A    1f RAR
+1C6B    1f RAR
+1C6C    1f RAR
+1C6D    1f RAR
+1C6E    0F  RRC
+1C6F    00 NOP
+1C70    00 NOP
+1C71    04  INR B
+1C72    01  LXI, B: 03 13
+1C75    07  RLC
+1C76    ORA E
+1C77    0F  RRC
+1C78    2f CMA
+1C79    03  INX B
+1C7A    2f CMA
+1C7B    MOV  C  <-  C
+1C7C    04  INR B
+1C7D    03  INX B
+1C7E    00 NOP
+1C7F    01  LXI, B: 08 40
+1C82    05  DCR B
+1C83    ANA E
+1C84    0a  LDAX B
+1C85    03  INX B
+1C86    MOV  E  <-  E
+1C87    0F  RRC
+1C88    27 DAA
+1C89    27 DAA
+1C8A    0B  DCX B
+1C8B    MOV  C  <-  E
+1C8C    MOV  B  <-  B
+1C8D    ADD H
+1C8E    11 LXI  D <-  0F  E <-  48
+1C91    SBB C
+1C92    INR A
+1C93    MOV  A  <-  M
+1C94    DCR A
+1C95    CMP H
+1C96    MVI    A, 7C
+1C98    SBB C
+1C99    27 DAA
+1C9A    1b DCX D
+1C9B    1a LDAX D
+1C9C    26 MVI      H  <-  0F
+1C9E    0e MVI      C  <-  08
+1CA0    0d DCR C
+1CA1    13 INX D
+1CA2    12 STAX D
+1CA3    28 This should not be called
+1CA4    12 STAX D
+1CA5    02  STAX B
+1CA6    0e MVI      C  <-  11
+1CA8    04  INR B
+1CA9    26 MVI      H  <-  00
+1CAB    03  INX B
+1CAC    15 DCR D
+1CAD    00 NOP
+1CAE    0d DCR C
+1CAF    02  STAX B
+1CB0    04  INR B
+1CB1    26 MVI      H  <-  13
+1CB3    00 NOP
+1CB4    01  LXI, B: 04 0B
+1CB7    28 This should not be called
+1CB8    02  STAX B
+1CB9    10   -----
+1CBA    20 RIM
+1CBB    30 SIM
+1CBC    13 INX D
+1CBD    08  reserved
+1CBE    0B  DCX B
+1CBF    13 INX D
+1CC0    00 NOP
+1CC1    08  reserved
+1CC2    MOV  C  <-  C
+1CC3    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1CC6    MOV  B  <-  D
+1CC7    00 NOP
+1CC8    MOV  B  <-  D
+1CC9    ADD C
+1CCA    14 INR D
+1CCB    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1CCE    00 NOP
+1CCF    00 NOP
+1CD0    MOV  B  <-  H
+1CD1    XRA D
+1CD2    10   -----
+1CD3    ADC B
+1CD4    MOV  D  <-  H
+1CD5    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1CD8    MOV  B  <-  H
+1CD9    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1CDC    MOV  C  <-  D
+1CDD    15 DCR D
+1CDE    CMP M
+1CDF    CMC
+1CE0    MOV  E  <-  M
+1CE1    25 DCR H
+1CE2    04  INR B
+1CE3    CM 10 04
+1CE6    CM 20 10
+1CE9    CM 80 20
+1CEC    CM 00 80
+1CEF    CPI 00
+1CF1    24 INR H
+1CF2    CPI 12
+1CF4    00 NOP
+1CF5    CPI 00
+1CF7    MOV  C  <-  B
+1CF8    CPI 90
+1CFA    0F  RRC
+1CFB    0B  DCX B
+1CFC    00 NOP
+1CFD    29 DAD H
+1CFE    00 NOP
+1CFF    00 NOP
+1D00    01  LXI, B: 01 07
+1D03    01  LXI, B: 04 01
+1D06    0B  DCX B
+1D07    01  LXI, B: 03 06
+1D0A    01  LXI, B: 0B 01
+1D0D    09  DAD B
+1D0E    02  STAX B
+1D0F    08  reserved
+1D10    02  STAX B
+1D11    0B  DCX B
+1D12    04  INR B
+1D13    07  RLC
+1D14    0a  LDAX B
+1D15    05  DCR B
+1D16    02  STAX B
+1D17    05  DCR B
+1D18    04  INR B
+1D19    06  MVI B <- 07
+1D1B    08  reserved
+1D1C    0a  LDAX B
+1D1D    06  MVI B <- 0A
+1D1F    03  INX B
+1D20    RST 7
+1D21    0F  RRC
+1D22    RST 7
+1D23    1f RAR
+1D24    RST 7
+1D25    CMC
+1D26    RST 7
+1D27    MOV  A  <-  A
+1D28    RST 7
+1D29    RST 7
+1D2A    CM F8 FF
+1D2D    RST 7
+1D2E    RP
+1D2F    RST 7
+1D30    RP
+1D31    RST 7
+1D32    RP
+1D33    RST 7
+1D34    RP
+1D35    RST 7
+1D36    RP
+1D37    RST 7
+1D38    RP
+1D39    RST 7
+1D3A    RP
+1D3B    RST 7
+1D3C    RM
+1D3D    RST 7
+1D3E    CM FF FF
+1D41    RST 7
+1D42    RST 7
+1D43    RST 7
+1D44    RST 7
+1D45    MOV  A  <-  A
+1D46    RST 7
+1D47    CMC
+1D48    RST 7
+1D49    1f RAR
+1D4A    RST 7
+1D4B    0F  RRC
+1D4C    05  DCR B
+1D4D    10   -----
+1D4E    15 DCR D
+1D4F    30 SIM
+1D50    SUB H
+1D51    SUB A
+1D52    SBB D
+1D53    SBB L
+1D54    10   -----
+1D55    05  DCR B
+1D56    05  DCR B
+1D57    10   -----
+1D58    15 DCR D
+1D59    10   -----
+1D5A    10   -----
+1D5B    05  DCR B
+1D5C    30 SIM
+1D5D    10   -----
+1D5E    10   -----
+1D5F    10   -----
+1D60    05  DCR B
+1D61    15 DCR D
+1D62    10   -----
+1D63    05  DCR B
+1D64    00 NOP
+1D65    00 NOP
+1D66    00 NOP
+1D67    00 NOP
+1D68    04  INR B
+1D69    0c  INR C
+1D6A    1e MVI  E  <- 37
+1D6C    MVI    A, 7C
+1D6E    MOV  M  <-  H
+1D6F    MOV  A  <-  M
+1D70    MOV  A  <-  M
+1D71    MOV  M  <-  H
+1D72    MOV  A  <-  H
+1D73    MVI    A, 37
+1D75    1e MVI  E  <- 0C
+1D77    04  INR B
+1D78    00 NOP
+1D79    00 NOP
+1D7A    00 NOP
+1D7B    00 NOP
+1D7C    00 NOP
+1D7D    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1D80    MOV  B  <-  B
+1D81    08  reserved
+1D82    SBB B
+1D83    DCR A
+1D84    ORA M
+1D85    INR A
+1D86    36 MVI      M  <-  1D
+1D88    10   -----
+1D89    MOV  C  <-  B
+1D8A    MOV  H  <-  D
+1D8B    ORA M
+1D8C    1d DCR E
+1D8D    SBB B
+1D8E    08  reserved
+1D8F    MOV  B  <-  D
+1D90    SUB B
+1D91    08  reserved
+1D92    00 NOP
+1D93    00 NOP
+1D94    26 MVI      H  <-  1F
+1D96    1a LDAX D
+1D97    1b DCX D
+1D98    1a LDAX D
+1D99    1a LDAX D
+1D9A    1b DCX D
+1D9B    1f RAR
+1D9C    1a LDAX D
+1D9D    1d DCR E
+1D9E    1a LDAX D
+1D9F    1a LDAX D
+1DA0    10   -----
+1DA1    20 RIM
+1DA2    30 SIM
+1DA3    MOV  H  <-  B
+1DA4    MOV  D  <-  B
+1DA5    MOV  C  <-  B
+1DA6    MOV  C  <-  B
+1DA7    MOV  C  <-  B
+1DA8    MOV  B  <-  B
+1DA9    MOV  B  <-  B
+1DAA    MOV  B  <-  B
+1DAB    0F  RRC
+1DAC    0B  DCX B
+1DAD    00 NOP
+1DAE    18 ----
+1DAF    12 STAX D
+1DB0    0F  RRC
+1DB1    00 NOP
+1DB2    02  STAX B
+1DB3    04  INR B
+1DB4    26 MVI      H  <-  26
+1DB6    08  reserved
+1DB7    0d DCR C
+1DB8    15 DCR D
+1DB9    00 NOP
+1DBA    03  INX B
+1DBB    04  INR B
+1DBC    11 LXI  D <-  0E  E <-  12
+1DBF    2c INR L
+1DC0    MOV  L  <-  B
+1DC1    1d DCR E
+1DC2    0c  INR C
+1DC3    2c INR L
+1DC4    20 RIM
+1DC5    1c INR E
+1DC6    0a  LDAX B
+1DC7    2c INR L
+1DC8    MOV  B  <-  B
+1DC9    1c INR E
+1DCA    08  reserved
+1DCB    2c INR L
+1DCC    00 NOP
+1DCD    1c INR E
+1DCE    RST 7
+1DCF    0e MVI      C  <-  2E
+1DD1    RPO
+1DD2    1d DCR E
+1DD3    0c  INR C
+1DD4    2e MVI     L  <-  EA
+1DD6    1d DCR E
+1DD7    0a  LDAX B
+1DD8    2e MVI     L  <-  F4
+1DDA    1d DCR E
+1DDB    08  reserved
+1DDC    2e MVI     L  <-  99
+1DDE    1c INR E
+1DDF    RST 7
+1DE0    27 DAA
+1DE1    38 This should not be called
+1DE2    26 MVI      H  <-  0C
+1DE4    18 ----
+1DE5    12 STAX D
+1DE6    13 INX D
+1DE7    04  INR B
+1DE8    11 LXI  D <-  27  E <-  18
+1DEB    1d DCR E
+1DEC    1a LDAX D
+1DED    26 MVI      H  <-  0F
+1DEF    0e MVI      C  <-  08
+1DF1    0d DCR C
+1DF2    13 INX D
+1DF3    12 STAX D
+1DF4    27 DAA
+1DF5    1c INR E
+1DF6    1a LDAX D
+1DF7    26 MVI      H  <-  0F
+1DF9    0e MVI      C  <-  08
+1DFB    0d DCR C
+1DFC    13 INX D
+1DFD    12 STAX D
+1DFE    00 NOP
+1DFF    00 NOP
+1E00    00 NOP
+1E01    1f RAR
+1E02    24 INR H
+1E03    MOV  B  <-  H
+1E04    24 INR H
+1E05    1f RAR
+1E06    00 NOP
+1E07    00 NOP
+1E08    00 NOP
+1E09    MOV  A  <-  A
+1E0A    MOV  C  <-  C
+1E0B    MOV  C  <-  C
+1E0C    MOV  C  <-  C
+1E0D    36 MVI      M  <-  00
+1E0F    00 NOP
+1E10    00 NOP
+1E11    MVI    A, 41
+1E13    MOV  B  <-  C
+1E14    MOV  B  <-  C
+1E15    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1E18    00 NOP
+1E19    MOV  A  <-  A
+1E1A    MOV  B  <-  C
+1E1B    MOV  B  <-  C
+1E1C    MOV  B  <-  C
+1E1D    MVI    A, 00
+1E1F    00 NOP
+1E20    00 NOP
+1E21    MOV  A  <-  A
+1E22    MOV  C  <-  C
+1E23    MOV  C  <-  C
+1E24    MOV  C  <-  C
+1E25    MOV  B  <-  C
+1E26    00 NOP
+1E27    00 NOP
+1E28    00 NOP
+1E29    MOV  A  <-  A
+1E2A    MOV  C  <-  B
+1E2B    MOV  C  <-  B
+1E2C    MOV  C  <-  B
+1E2D    MOV  B  <-  B
+1E2E    00 NOP
+1E2F    00 NOP
+1E30    00 NOP
+1E31    MVI    A, 41
+1E33    MOV  B  <-  C
+1E34    MOV  B  <-  L
+1E35    MOV  B  <-  A
+1E36    00 NOP
+1E37    00 NOP
+1E38    00 NOP
+1E39    MOV  A  <-  A
+1E3A    08  reserved
+1E3B    08  reserved
+1E3C    08  reserved
+1E3D    MOV  A  <-  A
+1E3E    00 NOP
+1E3F    00 NOP
+1E40    00 NOP
+1E41    00 NOP
+1E42    MOV  B  <-  C
+1E43    MOV  A  <-  A
+1E44    MOV  B  <-  C
+1E45    00 NOP
+1E46    00 NOP
+1E47    00 NOP
+1E48    00 NOP
+1E49    02  STAX B
+1E4A    01  LXI, B: 01 01
+1E4D    MOV  A  <-  M
+1E4E    00 NOP
+1E4F    00 NOP
+1E50    00 NOP
+1E51    MOV  A  <-  A
+1E52    08  reserved
+1E53    14 INR D
+1E54    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1E57    00 NOP
+1E58    00 NOP
+1E59    MOV  A  <-  A
+1E5A    01  LXI, B: 01 01
+1E5D    01  LXI, B: 00 00
+1E60    00 NOP
+1E61    MOV  A  <-  A
+1E62    20 RIM
+1E63    18 ----
+1E64    20 RIM
+1E65    MOV  A  <-  A
+1E66    00 NOP
+1E67    00 NOP
+1E68    00 NOP
+1E69    MOV  A  <-  A
+1E6A    10   -----
+1E6B    08  reserved
+1E6C    04  INR B
+1E6D    MOV  A  <-  A
+1E6E    00 NOP
+1E6F    00 NOP
+1E70    00 NOP
+1E71    MVI    A, 41
+1E73    MOV  B  <-  C
+1E74    MOV  B  <-  C
+1E75    MVI    A, 00
+1E77    00 NOP
+1E78    00 NOP
+1E79    MOV  A  <-  A
+1E7A    MOV  C  <-  B
+1E7B    MOV  C  <-  B
+1E7C    MOV  C  <-  B
+1E7D    30 SIM
+1E7E    00 NOP
+1E7F    00 NOP
+1E80    00 NOP
+1E81    MVI    A, 41
+1E83    MOV  B  <-  L
+1E84    MOV  B  <-  D
+1E85    DCR A
+1E86    00 NOP
+1E87    00 NOP
+1E88    00 NOP
+1E89    MOV  A  <-  A
+1E8A    MOV  C  <-  B
+1E8B    MOV  C  <-  H
+1E8C    MOV  C  <-  D
+1E8D    31 LXI      SP.hi  <- 00  SP.lo  <- 00
+1E90    00 NOP
+1E91    32 STA    a16, 49 49
+1E94    MOV  C  <-  C
+1E95    26 MVI      H  <-  00
+1E97    00 NOP
+1E98    00 NOP
+1E99    MOV  B  <-  B
+1E9A    MOV  B  <-  B
+1E9B    MOV  A  <-  A
+1E9C    MOV  B  <-  B
+1E9D    MOV  B  <-  B
+1E9E    00 NOP
+1E9F    00 NOP
+1EA0    00 NOP
+1EA1    MOV  A  <-  M
+1EA2    01  LXI, B: 01 01
+1EA5    MOV  A  <-  M
+1EA6    00 NOP
+1EA7    00 NOP
+1EA8    00 NOP
+1EA9    MOV  A  <-  H
+1EAA    02  STAX B
+1EAB    01  LXI, B: 7C 02
+1EAE    00 NOP
+1EAF    00 NOP
+1EB0    00 NOP
+1EB1    MOV  A  <-  A
+1EB2    02  STAX B
+1EB3    0c  INR C
+1EB4    02  STAX B
+1EB5    MOV  A  <-  A
+1EB6    00 NOP
+1EB7    00 NOP
+1EB8    00 NOP
+1EB9    MOV  H  <-  E
+1EBA    14 INR D
+1EBB    08  reserved
+1EBC    14 INR D
+1EBD    MOV  H  <-  E
+1EBE    00 NOP
+1EBF    00 NOP
+1EC0    00 NOP
+1EC1    MOV  H  <-  B
+1EC2    10   -----
+1EC3    0F  RRC
+1EC4    10   -----
+1EC5    MOV  H  <-  B
+1EC6    00 NOP
+1EC7    00 NOP
+1EC8    00 NOP
+1EC9    MOV  B  <-  E
+1ECA    MOV  B  <-  L
+1ECB    MOV  C  <-  C
+1ECC    MOV  D  <-  C
+1ECD    MOV  H  <-  C
+1ECE    00 NOP
+1ECF    00 NOP
+1ED0    00 NOP
+1ED1    MVI    A, 45
+1ED3    MOV  C  <-  C
+1ED4    MOV  D  <-  C
+1ED5    MVI    A, 00
+1ED7    00 NOP
+1ED8    00 NOP
+1ED9    00 NOP
+1EDA    21 LXI    H  <-  01 L  <-  7F
+1EDD    00 NOP
+1EDE    00 NOP
+1EDF    00 NOP
+1EE0    00 NOP
+1EE1    23 INX H
+1EE2    MOV  B  <-  L
+1EE3    MOV  C  <-  C
+1EE4    MOV  C  <-  C
+1EE5    31 LXI      SP.hi  <- 00  SP.lo  <- 00
+1EE8    00 NOP
+1EE9    MOV  B  <-  D
+1EEA    MOV  B  <-  C
+1EEB    MOV  C  <-  C
+1EEC    MOV  E  <-  C
+1EED    MOV  H  <-  M
+1EEE    00 NOP
+1EEF    00 NOP
+1EF0    00 NOP
+1EF1    0c  INR C
+1EF2    14 INR D
+1EF3    24 INR H
+1EF4    MOV  A  <-  A
+1EF5    04  INR B
+1EF6    00 NOP
+1EF7    00 NOP
+1EF8    00 NOP
+1EF9    MOV  M  <-  D
+1EFA    MOV  D  <-  C
+1EFB    MOV  D  <-  C
+1EFC    MOV  D  <-  C
+1EFD    MOV  C  <-  M
+1EFE    00 NOP
+1EFF    00 NOP
+1F00    00 NOP
+1F01    1e MVI  E  <- 29
+1F03    MOV  C  <-  C
+1F04    MOV  C  <-  C
+1F05    MOV  B  <-  M
+1F06    00 NOP
+1F07    00 NOP
+1F08    00 NOP
+1F09    MOV  B  <-  B
+1F0A    MOV  B  <-  A
+1F0B    MOV  C  <-  B
+1F0C    MOV  D  <-  B
+1F0D    MOV  H  <-  B
+1F0E    00 NOP
+1F0F    00 NOP
+1F10    00 NOP
+1F11    36 MVI      M  <-  49
+1F13    MOV  C  <-  C
+1F14    MOV  C  <-  C
+1F15    36 MVI      M  <-  00
+1F17    00 NOP
+1F18    00 NOP
+1F19    31 LXI      SP.hi  <- 49  SP.lo  <- 49
+1F1C    MOV  C  <-  D
+1F1D    INR A
+1F1E    00 NOP
+1F1F    00 NOP
+1F20    00 NOP
+1F21    08  reserved
+1F22    14 INR D
+1F23    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1F26    00 NOP
+1F27    00 NOP
+1F28    00 NOP
+1F29    00 NOP
+1F2A    MOV  B  <-  C
+1F2B    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1F2E    00 NOP
+1F2F    00 NOP
+1F30    00 NOP
+1F31    00 NOP
+1F32    00 NOP
+1F33    00 NOP
+1F34    00 NOP
+1F35    00 NOP
+1F36    00 NOP
+1F37    00 NOP
+1F38    00 NOP
+1F39    14 INR D
+1F3A    14 INR D
+1F3B    14 INR D
+1F3C    14 INR D
+1F3D    14 INR D
+1F3E    00 NOP
+1F3F    00 NOP
+1F40    00 NOP
+1F41    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1F44    14 INR D
+1F45    22 DHLD     (adr)  <-  L, (adr)  <-  H
+1F48    00 NOP
+1F49    03  INX B
+1F4A    04  INR B
+1F4B    MOV  A  <-  B
+1F4C    04  INR B
+1F4D    03  INX B
+1F4E    00 NOP
+1F4F    00 NOP
+1F50    24 INR H
+1F51    1b DCX D
+1F52    26 MVI      H  <-  0E
+1F54    11 LXI  D <-  1C  E <-  26
+1F57    26 MVI      H  <-  0F
+1F59    0B  DCX B
+1F5A    00 NOP
+1F5B    18 ----
+1F5C    04  INR B
+1F5D    11 LXI  D <-  25  E <-  12
+1F60    26 MVI      H  <-  26
+1F62    28 This should not be called
+1F63    1b DCX D
+1F64    26 MVI      H  <-  0F
+1F66    0B  DCX B
+1F67    00 NOP
+1F68    18 ----
+1F69    04  INR B
+1F6A    11 LXI  D <-  26  E <-  26
+1F6D    1b DCX D
+1F6E    26 MVI      H  <-  02
+1F70    0e MVI      C  <-  08
+1F72    0d DCR C
+1F73    26 MVI      H  <-  01
+1F75    01  LXI, B: 00 00
+1F78    01  LXI, B: 02 00
+1F7B    01  LXI, B: 02 00
+1F7E    01  LXI, B: 60 00
+1F81    10   -----
+1F82    0F  RRC
+1F83    10   -----
+1F84    MOV  H  <-  B
+1F85    30 SIM
+1F86    18 ----
+1F87    1a LDAX D
+1F88    DCR A
+1F89    MOV  L  <-  B
+1F8A    CM 68 FC
+1F8D    DCR A
+1F8E    1a LDAX D
+1F8F    00 NOP
+1F90    08  reserved
+1F91    0d DCR C
+1F92    12 STAX D
+1F93    04  INR B
+1F94    11 LXI  D <-  26  E <-  13
+1F97    26 MVI      H  <-  02
+1F99    0e MVI      C  <-  08
+1F9B    0d DCR C
+1F9C    0d DCR C
+1F9D    2a LHLD adr    L  <- (adr)  H  <- (adr)
+1FA0    0a  LDAX B
+1FA1    2a LHLD adr    L  <- (adr)  H  <- (adr)
+1FA4    07  RLC
+1FA5    2a LHLD adr    L  <- (adr)  H  <- (adr)
+1FA8    RST 7
+1FA9    02  STAX B
+1FAA    11 LXI  D <-  03  E <-  04
+1FAD    08  reserved
+1FAE    13 INX D
+1FAF    26 MVI      H  <-  00
+1FB1    MOV  H  <-  B
+1FB2    10   -----
+1FB3    0F  RRC
+1FB4    10   -----
+1FB5    MOV  H  <-  B
+1FB6    38 This should not be called
+1FB7    19 DAD D
+1FB8    LDA  adr
+1FBB    JM 3A 6D
+1FBE    19 DAD D
+1FBF    00 NOP
+1FC0    00 NOP
+1FC1    20 RIM
+1FC2    MOV  B  <-  B
+1FC3    MOV  C  <-  L
+1FC4    MOV  D  <-  B
+1FC5    20 RIM
+1FC6    00 NOP
+1FC7    00 NOP
+1FC8    00 NOP
+1FC9    00 NOP
+1FCA    00 NOP
+1FCB    RST 7
+1FCC    CMP B
+1FCD    RST 7
+1FCE    ADD B
+1FCF    1f RAR
+1FD0    10   -----
+1FD1    SUB A
+1FD2    00 NOP
+1FD3    ADD B
+1FD4    1f RAR
+1FD5    00 NOP
+1FD6    00 NOP
+1FD7    01  LXI, B: 22 D0
+1FDA    20 RIM
+1FDB    1c INR E
+1FDC    10   -----
+1FDD    SUB H
+1FDE    00 NOP
+1FDF    20 RIM
+1FE0    1c INR E
+1FE1    28 This should not be called
+1FE2    1c INR E
+1FE3    26 MVI      H  <-  0F
+1FE5    0B  DCX B
+1FE6    00 NOP
+1FE7    18 ----
+1FE8    04  INR B
+1FE9    11 LXI  D <-  26  E <-  12
+1FEC    1c INR E
+1FED    26 MVI      H  <-  02
+1FEF    0e MVI      C  <-  08
+1FF1    0d DCR C
+1FF2    12 STAX D
+1FF3    0F  RRC
+1FF4    14 INR D
+1FF5    12 STAX D
+1FF6    07  RLC
+1FF7    26 MVI      H  <-  00
+1FF9    08  reserved
+1FFA    08  reserved
+1FFB    08  reserved
+1FFC    08  reserved
+1FFD    08  reserved
+1FFE    00 NOP
+1FFF    00 NOP
+
+Process finished with exit code 0

@@ -24,6 +24,32 @@ import kotlin.system.exitProcess
 //const val xFFFF:UInt = 65535u
 //const val xFFFF0000:UInt = 4294901760u
 var opcount = 0
+var last1000index =0
+var last1000:UIntArray = UIntArray(1000)
+var last1000sp:UIntArray = UIntArray(1000)
+var lastString = ""
+val cycles8080 = intArrayOf(
+	4, 10, 7, 5, 5, 5, 7, 4, 4, 10, 7, 5, 5, 5, 7, 4, //0x00..0x0f
+	4, 10, 7, 5, 5, 5, 7, 4, 4, 10, 7, 5, 5, 5, 7, 4, //0x10..0x1f
+	4, 10, 16, 5, 5, 5, 7, 4, 4, 10, 16, 5, 5, 5, 7, 4, //etc
+	4, 10, 13, 5, 10, 10, 10, 4, 4, 10, 13, 5, 5, 5, 7, 4,
+
+	5, 5, 5, 5, 5, 5, 7, 5, 5, 5, 5, 5, 5, 5, 7, 5, //0x40..0x4f
+	5, 5, 5, 5, 5, 5, 7, 5, 5, 5, 5, 5, 5, 5, 7, 5,
+	5, 5, 5, 5, 5, 5, 7, 5, 5, 5, 5, 5, 5, 5, 7, 5,
+	7, 7, 7, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 5, 7, 5,
+
+	4, 4, 4, 4, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 7, 4, //0x80..8x4f
+	4, 4, 4, 4, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 7, 4,
+	4, 4, 4, 4, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 7, 4,
+	4, 4, 4, 4, 4, 4, 7, 4, 4, 4, 4, 4, 4, 4, 7, 4,
+
+	11, 10, 10, 10, 17, 11, 7, 11, 11, 10, 10, 10, 10, 17, 7, 11, //0xc0..0xcf
+	11, 10, 10, 10, 17, 11, 7, 11, 11, 10, 10, 10, 10, 17, 7, 11,
+	11, 10, 10, 18, 17, 11, 7, 11, 11, 5, 10, 5, 17, 17, 7, 11,
+	11, 10, 10, 4, 17, 11, 7, 11, 11, 5, 10, 4, 17, 17, 7, 11
+        )
+
 
 @kotlin.ExperimentalUnsignedTypes
 class ConditionCodes(){
@@ -162,7 +188,7 @@ class Registers(){
         cc.cy = 0u
         cc.ac = 0u
         setZero(a)
-        setCarry(a)
+        setSign(a)
         //TODO implement parity
     }
     fun ArithFlags(res:UShort){
@@ -178,7 +204,7 @@ class Registers(){
             cc.z = 0u
         }
 
-        if(0x80u.compareTo(res.and(0x80u)) == 0){
+        if(0x80u.toUShort() == res.and(0x80u)){
             cc.s = 0u
         }else{
             cc.s = 1u
@@ -206,7 +232,9 @@ class Registers(){
 
             return
         }
-
+        if(address == 0x20c1){
+            println("Writing there")
+        }
         memory[address] = value
 
 
@@ -228,6 +256,7 @@ class Registers(){
     }
     fun writeToHL(value: UByte){
         val offset = h.toInt().shl(8).or(l.toInt())
+
         WriteMem(offset, value)
     }
     fun flagsZSP(value: UByte){
@@ -268,6 +297,15 @@ fun arrayToBitmap(stateMemory:UByteArray):BufferedImage{
     var i = 0
     var j = 0
     val offset = 0x2400
+    var allClear = true
+    for(q in 0x2800 until 0x38ff){
+        if(stateMemory[q] != 0u.toUByte()){
+            allClear = false
+        }
+    }
+    if(allClear){
+        println("image should be empty")
+    }
     for(x in 0 until img.getWidth()){
         for(y in img.getHeight()-1 downTo 0){
             var pixel = getBit(stateMemory[i+offset].toInt(),j)
@@ -290,10 +328,8 @@ fun arrayToBitmap(stateMemory:UByteArray):BufferedImage{
 }
 private fun getBit(byte:Int, position:Int):Int{
 
-//    if(byte.shr(position).and(1) != 0){
-//        println("yes")
-//    }
     return(byte.shr(position).and(1))
+
 }
 @kotlin.ExperimentalUnsignedTypes
 fun main() {
@@ -347,31 +383,38 @@ fun main() {
             screen.revalidate()
             screen.repaint()
         }
-        var opcode = String.format("%02x",emulate.memory[emulate.pc.toInt()].toByte()).toUpperCase()
-        if(opcode == "DB"){
+        var sinceLast = now - lastTimer
+        var cyclesToCatchUp = (2 * sinceLast).toInt()*1000
+        var cycles = 0
+        while(cyclesToCatchUp > cycles) {
+            var opcode = String.format("%02x",emulate.memory[emulate.pc.toInt()].toByte()).toUpperCase()
+            if (opcode == "DB") {
 //            println(opcode + "  "+ String.format("%04x", emulate.pc.toInt()) )
 
-            var port = emulate.memory[emulate.pc.toInt()+1]
-            emulate.SpaceInvadersIn(port)
-            emulate.pc++
-            emulate.pc++
-        }else if(opcode == "D3"){
+                var port = emulate.memory[emulate.pc.toInt() + 1]
+                emulate.SpaceInvadersIn(port)
+                emulate.pc++
+                emulate.pc++
+                cycles +=3
+            } else if (opcode == "D3") {
 //            println(opcode + "  "+ String.format("%04x", emulate.pc.toInt()) )
 
-            var port = emulate.memory[emulate.pc.toInt()+1]
-            emulate.SpaceInvadersOut(port)
-            emulate.pc++
-            emulate.pc++
-        }else{
-
-            Emulate8080Op(emulate)
-
+                var port = emulate.memory[emulate.pc.toInt() + 1]
+                emulate.SpaceInvadersOut(port)
+                emulate.pc++
+                emulate.pc++
+                cycles+=3
+            } else {
+                cycles += Emulate8080Op(emulate)
+            }
 
         }
-        opcount++
-        if(opcount%25 == 0){
-            Thread.sleep(1)
-        }
+        lastTimer = now
+        //println("Leaving loop")
+//        opcount++
+//        if(opcount%25 == 0){
+//            Thread.sleep(1)
+//        }
         //println(opcount)
     }
 
@@ -387,11 +430,23 @@ fun UnimplementedInstruction(state:Registers){
     exitProcess(2)
 }
 
+fun PrintLast1000(){
+    for (i in 0 until 100){
+        print(String.format("%04d ", i*10))
+        for(j in 0 until 10){
+            var n = i*10 + j
+            print(String.format("%04x  %04x   ", last1000[n].toInt(), last1000sp[n].toInt()))
+            if(n == last1000index){
+                print("**")
+            }
+            println()
+        }
+    }
+}
+
 @kotlin.ExperimentalUnsignedTypes
-fun Emulate8080Op(state:Registers) {
+fun Emulate8080Op(state:Registers):Int {
     var opcode  =  state.memory[state.pc.toInt()].toInt()
-    //var opcode = String.format("%02x", state.memory[state.pc.toInt()].toByte()).toUpperCase()
-    println(String.format("%02x\t%04x", state.memory[state.pc.toInt()].toByte(), state.pc.toInt()))
     //println(opcode + "  " + String.format("%04x", state.pc.toInt()))
     when (opcode) {
         0x00 -> {
@@ -678,6 +733,11 @@ fun Emulate8080Op(state:Registers) {
         0x36 -> {                                   //MVI   M,byte
 //            val offset = state.h.toUInt().shl(8).or(state.l.toUInt())
 //            state.memory[offset.toInt()] = state.memory[state.pc.toInt() + 1]
+//            if(state.pc == 0x09d9u){
+//                println(state.memory[state.pc.toInt()+1])
+//                println(String.format("%02x%02x",state.h.toByte(),state.l.toByte()))
+//            }
+
             state.writeToHL(state.memory[state.pc.toInt()+1])
             state.pc++
             state.pc++
@@ -702,7 +762,7 @@ fun Emulate8080Op(state:Registers) {
         0x3A -> {                                   //LDA   byte
             val offset = (state.memory[state.pc.toInt() + 2].toUInt()).shl(8)
                     .or(state.memory[state.pc.toInt() + 1].toUInt())
-            //println(String.format("%04x", offset))
+            //print(String.format("\t%04x\n", offset.toInt()))
             //println("aaa" + state.memory[offset.toInt()])
             state.a = state.memory[offset.toInt()]
             state.pc = state.pc + 2u
@@ -834,6 +894,7 @@ fun Emulate8080Op(state:Registers) {
         0x75 -> UnimplementedInstruction(state)
         0x76 -> UnimplementedInstruction(state)
         0x77 -> {                                   //MOV   M,A
+            //println(String.format("%02x%02x",state.h.toByte(),state.l.toByte()))
             state.writeToHL(state.a)
             state.pc++
 
@@ -1343,7 +1404,8 @@ fun Emulate8080Op(state:Registers) {
         0xFC -> UnimplementedInstruction(state)
         0xFD -> UnimplementedInstruction(state)
         0xFE -> {
-            val val2 = state.memory[state.pc.toInt() + 1]
+
+
             val value = (state.a - state.memory[state.pc.toInt() + 1]).toUByte()
             state.flagsZSP(value)
 
@@ -1360,7 +1422,7 @@ fun Emulate8080Op(state:Registers) {
     }
 
 
-
+    return cycles8080[opcode]
 
 }
 
