@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1016ef21-bfdb-46d6-8c7a-74a907a63db9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/ConditionCodes.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Register.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Kotlin-Space-Invaders/Registers.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/8080.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/8080.kt" afterDir="false" />
     </list>
@@ -26,20 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/8080.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="306" selection-start-line="306" selection-end-line="306" />
-              <folding>
-                <element signature="e#0#217#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/rt.jar!/sun/misc/Unsafe.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="353" column="23" selection-start-line="353" selection-start-column="23" selection-end-line="353" selection-end-column="23" />
+            <state relative-caret-position="410">
+              <caret line="365" column="35" selection-start-line="365" selection-start-column="35" selection-end-line="365" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -55,10 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>1&quot;</find>
-      <find>&quot;</find>
-      <find>2&quot;</find>
-      <find>3&quot;</find>
       <find>&quot;C</find>
       <find>&quot;D</find>
       <find>&quot;E</find>
@@ -85,6 +66,10 @@
       <find>21</find>
       <find>36</find>
       <find>da</find>
+      <find>xfe</find>
+      <find>e6</find>
+      <find>print</find>
+      <find>xda</find>
     </findStrings>
     <replaceStrings>
       <replace>println(String.format(st))</replace>
@@ -129,7 +114,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="965" />
+    <option name="width" value="1122" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
@@ -137,7 +122,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -159,7 +144,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556943104963</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="5/5/2019&#10;Screen not clearing">
+      <created>1557107430888</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1557107430888</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -262,9 +254,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="965" height="1047" extended-state="0" />
+    <frame x="-7" y="0" width="1122" height="1047" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4992948" visible="true" weight="0.20110497" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4992948" visible="true" weight="0.17419963" />
       <window_info id="Structure" order="1" sideWeight="0.50140846" side_tool="true" weight="0.15298508" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -273,8 +266,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30634573" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.14004377" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30634573" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32932165" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -299,19 +292,10 @@
     <MESSAGE value="4/3/2019&#10;implemented general class structure for CPU and some flag setting methods" />
     <MESSAGE value="4/11/2019&#10;implemented 50 cpu instructions" />
     <MESSAGE value="5/4/2019&#10;Lots of changes&#10;-many more instructions implemented&#10;-a handler for interupts&#10;-implemented the shift hardware&#10;-draws to screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="5/4/2019&#10;Lots of changes&#10;-many more instructions implemented&#10;-a handler for interupts&#10;-implemented the shift hardware&#10;-draws to screen" />
+    <MESSAGE value="5/5/2019&#10;Screen not clearing" />
+    <option name="LAST_COMMIT_MESSAGE" value="5/5/2019&#10;Screen not clearing" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/8080.kt</url>
-          <line>306</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JetRunConfigurationType">
         <watch expression="((Registers)state).memory[8346]" custom="Registers" />
@@ -320,6 +304,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>emulate.pc == 0u</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>if(emulate.pc == 0u)</expression-string>
+        <language-id>kotlin</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>state.a.toUInt() != 0u</expression-string>
         <language-id>kotlin</language-id>
@@ -352,16 +346,6 @@
       </expression>
       <expression>
         <expression-string>opcount &gt;7300 &amp;&amp; pc ==0x23fcu</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>offset.toInt() == 2711</expression-string>
-        <language-id>kotlin</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>offset == 2711</expression-string>
         <language-id>kotlin</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -440,20 +424,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/rt.jar!/sun/misc/Unsafe.class">
+    <entry file="file://$PROJECT_DIR$/src/8080.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="353" column="23" selection-start-line="353" selection-start-column="23" selection-end-line="353" selection-end-column="23" />
+        <state relative-caret-position="410">
+          <caret line="365" column="35" selection-start-line="365" selection-start-column="35" selection-end-line="365" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/8080.kt">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/jre/lib/rt.jar!/sun/misc/Unsafe.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="306" selection-start-line="306" selection-end-line="306" />
-          <folding>
-            <element signature="e#0#217#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4928">
+          <caret line="353" column="23" selection-start-line="353" selection-start-column="23" selection-end-line="353" selection-end-column="23" />
         </state>
       </provider>
     </entry>

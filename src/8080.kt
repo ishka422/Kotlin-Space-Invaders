@@ -232,9 +232,7 @@ class Registers(){
 
             return
         }
-        if(address == 0x20c1){
-            println("Writing there")
-        }
+
         memory[address] = value
 
 
@@ -297,15 +295,7 @@ fun arrayToBitmap(stateMemory:UByteArray):BufferedImage{
     var i = 0
     var j = 0
     val offset = 0x2400
-    var allClear = true
-    for(q in 0x2800 until 0x38ff){
-        if(stateMemory[q] != 0u.toUByte()){
-            allClear = false
-        }
-    }
-    if(allClear){
-        println("image should be empty")
-    }
+
     for(x in 0 until img.getWidth()){
         for(y in img.getHeight()-1 downTo 0){
             var pixel = getBit(stateMemory[i+offset].toInt(),j)
@@ -353,10 +343,13 @@ fun main() {
     var nextFrame = 0L
 
     while(emulate.pc.toInt() < bytes.size){
+
+
+
         var now = System.currentTimeMillis()
         if (lastTimer == 0L){
             lastTimer = now
-            nextInterupt = lastTimer + 16
+            nextInterupt = lastTimer + 48
             whichInterupt = 1
 
         }
@@ -370,7 +363,7 @@ fun main() {
                 emulate.GenerateInterupt(2)
                 whichInterupt = 1
             }
-            nextInterupt = now + 8
+            nextInterupt = now + 24
         }
         if((now - nextFrame) > 16){
             nextFrame = now+16
@@ -384,7 +377,42 @@ fun main() {
             screen.repaint()
         }
         var sinceLast = now - lastTimer
-        var cyclesToCatchUp = (2 * sinceLast).toInt()*1000
+        var cyclesToCatchUp = (2 * sinceLast).toLong()*1000
+
+//        var now = (System.nanoTime()/1000).toLong()
+//
+//        //var now = System.currentTimeMillis()
+//        if (lastTimer == 0L){
+//            lastTimer = now
+//            nextInterupt = lastTimer + 32000
+//            whichInterupt = 1
+//
+//        }
+//
+//        if((emulate.int_enable ==1) && now > nextInterupt){
+//            if(whichInterupt == 1){
+//                emulate.GenerateInterupt(1)
+//                whichInterupt = 2
+//            }
+//            else{
+//                emulate.GenerateInterupt(2)
+//                whichInterupt = 1
+//            }
+//            nextInterupt = now + 16000
+//        }
+//        if((now - nextFrame) > 16000){
+//            nextFrame = now+16000
+//            //screen.remove(display)
+//            display.icon = ImageIcon(arrayToBitmap(emulate.memory))
+//            //display = JLabel(ImageIcon(arrayToBitmap(emulate.memory)))
+//            display.repaint()
+//            screen.add(display)
+//            display.repaint()
+//            screen.revalidate()
+//            screen.repaint()
+//        }
+//        var sinceLast = now - lastTimer
+//        var cyclesToCatchUp = (2 * sinceLast).toLong()
         var cycles = 0
         while(cyclesToCatchUp > cycles) {
             var opcode = String.format("%02x",emulate.memory[emulate.pc.toInt()].toByte()).toUpperCase()
@@ -448,6 +476,7 @@ fun PrintLast1000(){
 fun Emulate8080Op(state:Registers):Int {
     var opcode  =  state.memory[state.pc.toInt()].toInt()
     //println(opcode + "  " + String.format("%04x", state.pc.toInt()))
+    //println(String.format("%02x\t%04x", opcode, state.memory[state.pc.toInt()].toInt()))
     when (opcode) {
         0x00 -> {
             state.pc++
@@ -559,6 +588,11 @@ fun Emulate8080Op(state:Registers):Int {
 
         0x10 -> UnimplementedInstruction(state)
         0x11 -> {
+//            if (state.pc == 0x09e4u){
+//                println(state.memory[state.pc.toInt() + 1])
+//                println(state.memory[state.pc.toInt() + 2])
+//                println()
+//            }
             state.e = state.memory[state.pc.toInt() + 1]
             state.d = state.memory[state.pc.toInt() + 2]
             state.pc = state.pc + 2u
@@ -645,7 +679,7 @@ fun Emulate8080Op(state:Registers):Int {
         }
         0x23 -> {                           //INX   H
             state.l++
-            if (state.l.toInt() == 0) {
+            if (state.l == 0u.toUByte()) {
                 state.h++
             }
             state.pc++
@@ -1251,7 +1285,12 @@ fun Emulate8080Op(state:Registers):Int {
         }
         0xD9 -> UnimplementedInstruction(state)
         0xDA -> {                                   //JC
+
             if (state.cc.cy != 0u) {
+                if (state.pc == 0x09ebu){
+                   println(String.format("%02x%02x", state.memory[state.pc.toInt()+2].toByte(),state.memory[state.pc.toInt()+1].toByte()))
+
+                }
                 state.setPC()
             } else {
                 state.pc += 2u
@@ -1300,6 +1339,9 @@ fun Emulate8080Op(state:Registers):Int {
             state.pc++
         }
         0xE6 -> {                                   //ANI   byte
+//            if(state.pc == 0x09ddu){
+//                println(state.a)
+//            }
             state.a = (state.a.and(state.memory[state.pc.toInt() + 1]))
             state.LogicFlagsA()
             state.pc++
