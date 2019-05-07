@@ -897,10 +897,10 @@ fun Emulate8080Op(state:Registers):Int {
         0xF5 -> {                                   //PUSH  PSW
             state.memory[state.sp.toInt() - 1] = state.a
             val psw: UByte = (state.cc.z
-                    .or(state.cc.s).shl(1)
-                    .or(state.cc.p).shl(2)
-                    .or(state.cc.cy).shl(3)
-                    .or(state.cc.ac).shl(4))
+                    .or(state.cc.s.shl(1))
+                    .or(state.cc.p.shl(2))
+                    .or(state.cc.cy.shl(3))
+                    .or(state.cc.ac.shl(4)))
                     .toUByte()
             state.memory[state.sp.toInt() - 2] = psw
             state.sp = state.sp - 2u
