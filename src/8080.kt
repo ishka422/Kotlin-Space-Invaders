@@ -89,12 +89,10 @@ fun main() {
 //        }
 //        var sinceLast = now - lastTimer
 //        var cyclesToCatchUp = (2 * sinceLast).toLong()*1000
-        var now = System.nanoTime()
-        var now2 = System.currentTimeMillis()
-        println(now)
-        now /= 1000L
-        //println(now)
-        //println("$now2--")
+        var now = System.nanoTime()/1000
+
+
+
 
         //var now = System.currentTimeMillis()
         if (lastTimer == 0L){

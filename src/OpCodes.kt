@@ -325,7 +325,10 @@ fun Emulate8080Op(state:Registers):Int {
         0x3F -> UnimplementedInstruction(state)
 
         0x40 -> UnimplementedInstruction(state)
-        0x41 -> UnimplementedInstruction(state)
+        0x41 -> {
+            state.b = state.c
+            state.pc++
+        }
         0x42 -> UnimplementedInstruction(state)
         0x43 -> UnimplementedInstruction(state)
         0x44 -> UnimplementedInstruction(state)
@@ -424,7 +427,10 @@ fun Emulate8080Op(state:Registers):Int {
             state.writeToHL(state.b)
             state.pc++
         }
-        0x71 -> UnimplementedInstruction(state)
+        0x71 -> {
+            state.writeToHL(state.c)
+            state.pc++
+        }
         0x72 -> UnimplementedInstruction(state)
         0x73 -> UnimplementedInstruction(state)
         0x74 -> UnimplementedInstruction(state)
@@ -524,7 +530,12 @@ fun Emulate8080Op(state:Registers):Int {
         0x94 -> UnimplementedInstruction(state)
         0x95 -> UnimplementedInstruction(state)
         0x96 -> UnimplementedInstruction(state)
-        0x97 -> UnimplementedInstruction(state)
+        0x97 -> {
+            val res = (state.a-state.a).toUShort()
+            state.ArithFlags(res)
+            state.a = res.toUByte()
+            state.pc++
+        }
         0x98 -> UnimplementedInstruction(state)
         0x99 -> UnimplementedInstruction(state)
         0x9A -> UnimplementedInstruction(state)
@@ -877,7 +888,7 @@ fun Emulate8080Op(state:Registers):Int {
                 state.cc.p = 0u
             }
 
-            if (psw.and(0x08u) == 0x05u.toUByte()) {
+            if (psw.and(0x08u) == 0x08u.toUByte()) {
                 state.cc.cy = 1u
             } else {
                 state.cc.cy = 0u
